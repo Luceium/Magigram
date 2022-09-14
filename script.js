@@ -5,15 +5,14 @@ function resetPage(){}
 
 function newName(){
   resetPage();
-  var inputName = nameInputElem.innerText;
+  var inputName = nameInputElem.value;
   letterBankElem.innerText = getLetters(inputName);
-  
 }
 
 function getLetters(input){
   //clean text
   input = input.toLowerCase();
-  input.replace(/[^a-zA-Z]*/g, "");//only keeps letters
+  input = input.replace(/[^a-zA-Z]*/g, "");//only keeps letters
   console.log(input);
   
   //sort
