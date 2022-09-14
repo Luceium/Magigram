@@ -1,0 +1,76 @@
+:root {
+    box-sizing: border-box;
+    --border-size: 0.5%;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    width:100%;
+    background-color: grey;
+    margin: 0;
+}
+
+header > h1 {
+    margin: 0;
+}
+
+section {
+    width: 100%;
+    margin: var(--border-size);
+}
+
+.sectionTitle {
+    margin: 0;
+}
+
+.container {
+    background-color: forestgreen;
+    display: flex;
+    margin: var(--border-size);
+    padding: var(--border-size);
+    width: 100%;
+}
+
+.container > h2 {
+    width: 100%;
+}
+
+.splitH {
+    width: 100%;
+    display: flex;
+}
+
+.splitH > .split1 {
+    width: 25%;
+}
+
+.splitH > .split2 {
+    width: 100%;
+}
+
+.splitV {
+    display: flex;
+    flex-direction: column;
+}
+
+.splitV > .split2 {
+    height: 60vh;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.center > * {
+    width:90%;
+}
+
+footer {
+    display: flex;
+}

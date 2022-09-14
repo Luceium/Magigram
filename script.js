@@ -1,5 +1,8 @@
 var nameInputElem = document.getElementById("input");
 var letterBankElem = document.getElementById("letter-bank");
+nameInputElem.addEventListener("blur", function() {
+    newName();
+});
 
 function resetPage(){}
 
