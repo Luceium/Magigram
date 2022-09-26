@@ -57,7 +57,11 @@ section {
 }
 
 .splitV > .split2 {
-    height: 60vh;
+    height: 10vh;
+}
+
+.splitV > .split1 {
+    height: 50vh;
 }
 
 .center {
