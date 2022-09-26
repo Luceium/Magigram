@@ -25,6 +25,7 @@ searchedWordElem.addEventListener("blur", function() {
         //add taken word to list of words
         selectedWordsElem.appendChild(createWord(searchedWord));
     }
+    searchedWordElem.value = "";
 })
 
 function createWord(searchedWord){
