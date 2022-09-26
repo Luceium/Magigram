@@ -56,6 +56,7 @@ function deleteWord(self){
 
 function resetPage(){
     letterBank = new Map();
+    selectedWordsElem.innerHTML = "";
 }
 
 function cleanText(input){
