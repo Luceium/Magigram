@@ -4,6 +4,7 @@ const nameInputElem = document.getElementById("input");
 const letterBankElem = document.getElementById("letter-bank");
 const searchedWordElem = document.getElementById("searched-word");
 const generatedWordsDivElem = document.getElementById("generated-words-container");
+const selectedWordsElem = document.getElementById("selected-words-container");
 
 nameInputElem.addEventListener("blur", function() {
     resetPage();
@@ -13,11 +14,18 @@ nameInputElem.addEventListener("blur", function() {
 });
 
 searchedWordElem.addEventListener("blur", function() {
-    if (!takeWord(searchedWordElem.value)){
+    var searchedWord = searchedWordElem.value;
+    if (!takeWord(searchedWord)){
         generatedWordsDivElem.innerText = "The word you requested to remove has letters that aren't in your word bank. As of now the synonym feature has not been implemented. My sincere apologies."
     } else {
         generatedWordsDivElem.innerText = "";
         letterBankElem.innerText = mapToString();
+
+        //add taken word to list of words
+        var wordElem = document.createElement("button");
+        wordElem.classList.add("word");
+        wordElem.innerText = searchedWord;
+        selectedWordsElem.appendChild(wordElem);
     }
 })
 

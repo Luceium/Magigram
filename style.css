@@ -75,6 +75,12 @@ section {
     width:90%;
 }
 
+.word {
+    border-radius: 50%;
+    font-size: large;
+    background: grey;
+}
+
 footer {
     display: flex;
 }
