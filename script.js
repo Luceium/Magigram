@@ -22,12 +22,16 @@ searchedWordElem.addEventListener("blur", function() {
         letterBankElem.innerText = mapToString();
 
         //add taken word to list of words
-        var wordElem = document.createElement("button");
-        wordElem.classList.add("word");
-        wordElem.innerText = searchedWord;
-        selectedWordsElem.appendChild(wordElem);
+        selectedWordsElem.appendChild(createWord(searchedWord));
     }
 })
+
+function createWord(searchedWord){
+    var wordElem = document.createElement("button");
+    wordElem.classList.add("word");
+    wordElem.innerText = searchedWord;
+    return wordElem;
+}
 
 function resetPage(){
     letterBank = new Map();
