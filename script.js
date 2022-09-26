@@ -15,6 +15,7 @@ nameInputElem.addEventListener("blur", function() {
 
 searchedWordElem.addEventListener("blur", function() {
     var searchedWord = searchedWordElem.value;
+    if (!searchedWord) {return false;}
     if (!takeWord(searchedWord)){
         generatedWordsDivElem.innerText = "The word you requested to remove has letters that aren't in your word bank. As of now the synonym feature has not been implemented. My sincere apologies."
     } else {
@@ -30,7 +31,27 @@ function createWord(searchedWord){
     var wordElem = document.createElement("button");
     wordElem.classList.add("word");
     wordElem.innerText = searchedWord;
+    wordElem.onclick = function () {deleteWord(this)};
     return wordElem;
+}
+
+function deleteWord(self){
+    var wordStr = self.innerText;
+
+    //deletes self
+    self.parentNode.removeChild(self);
+
+    //adds back letters
+    wordStr.split('').forEach((letter) => {
+        if (letterBank.has(letter)) {
+            letterBank.set(letter, letterBank.get(letter) + 1);
+        } else {
+            letterBank.set(letter, 1);
+        }
+    })
+
+    //updates displayed letterbank
+    letterBankElem.innerText = mapToString();
 }
 
 function resetPage(){
