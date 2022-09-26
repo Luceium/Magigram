@@ -3,6 +3,7 @@ let letterBank = new Map();
 const nameInputElem = document.getElementById("input");
 const letterBankElem = document.getElementById("letter-bank");
 const searchedWordElem = document.getElementById("searched-word");
+const generatedWordsDivElem = document.getElementById("generated-words-container");
 
 nameInputElem.addEventListener("blur", function() {
     resetPage();
@@ -13,9 +14,9 @@ nameInputElem.addEventListener("blur", function() {
 
 searchedWordElem.addEventListener("blur", function() {
     if (!takeWord(searchedWordElem.value)){
-        alert("Letters could not be found in your letter bank");
-        searchedWordElem.value = "";
+        generatedWordsDivElem.innerText = "The word you requested to remove has letters that aren't in your word bank. As of now the synonym feature has not been implemented. My sincere apologies."
     } else {
+        generatedWordsDivElem.innerText = "";
         letterBankElem.innerText = mapToString();
     }
 })
@@ -27,7 +28,7 @@ function resetPage(){
 function cleanText(input){
     input = input.toLowerCase();
     input = input.replace(/[^a-zA-Z]*/g, "");//only keeps letters
-    console.log(input);
+    console.log("Cleaned input to: " + input);
     return input;
 }
 
@@ -51,13 +52,12 @@ function getLetters(input){
         }
     });
 
-    console.log(letters + " -> " + letterBank);
+    console.log("Got letters: " + letterBank);
 }
 
 function mapToString() {
     var letterStr = "";
     letterBank.forEach((value, key, map) => { // the key and values are swapped also there is an undefined char
-        console.log("k:"+ key + " ~ " + "v:"+value);
         letterStr += key.repeat(value);
     })
 
@@ -81,14 +81,15 @@ function takeWord(inputWord){//Do I have to reset the word map???
     });
 
     //checks if word is able to be taken out of letter bank
+    var notEnoughLetters = false;
     wordBank.forEach((value,key) => {
-        console.log("k:"+ key + " ~ " + "v:"+value);
-       //if there are less of a letter than in the word to remove return false
-       console.log(letterBank.get(key) + " < " + value + ": " + (!letterBank.get(key) || letterBank.get(key) < value))
+        //if there are less of a letter than in the word to remove return false
         if (!letterBank.get(key) || letterBank.get(key) < value) {
+            notEnoughLetters = true;
             return false;
         }
     });
+    if (notEnoughLetters) { return false; }
 
     //remove letters from word out of letter bank
     wordBank.forEach((value,key) => {
@@ -96,8 +97,4 @@ function takeWord(inputWord){//Do I have to reset the word map???
     });
     
     return true;
-}
-
-function test(){
-    console.log("hi".repeat(4))
 }
