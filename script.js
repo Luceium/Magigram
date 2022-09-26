@@ -14,7 +14,14 @@ nameInputElem.addEventListener("blur", function() {
 });
 
 searchedWordElem.addEventListener("blur", function() {
-    var searchedWord = searchedWordElem.value;
+    var input = searchedWordElem.value;
+    if (input.indexOf(" ") != -1) {
+        input.split(" ").forEach((word) => {takeWordEventHandler(word);})
+    }
+    takeWordEventHandler(input);
+})
+
+function takeWordEventHandler(searchedWord) {
     if (!searchedWord) {return false;}
     if (!takeWord(searchedWord)){
         generatedWordsDivElem.innerText = "The word you requested to remove has letters that aren't in your word bank. As of now the synonym feature has not been implemented. My sincere apologies."
@@ -26,12 +33,12 @@ searchedWordElem.addEventListener("blur", function() {
         selectedWordsElem.appendChild(createWord(searchedWord));
     }
     searchedWordElem.value = "";
-})
+}
 
 function createWord(searchedWord){
     var wordElem = document.createElement("button");
     wordElem.classList.add("word");
-    wordElem.innerText = searchedWord;
+    wordElem.innerText = searchedWord.toLowerCase();
     wordElem.onclick = function () {deleteWord(this)};
     return wordElem;
 }
