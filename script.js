@@ -92,7 +92,7 @@ function takeWord(inputWord){//Do I have to reset the word map???
 
     //remove letters from word out of letter bank
     wordBank.forEach((value,key) => {
-        letterBank.set(letterBank.get(key) - value);
+        letterBank.set(key, letterBank.get(key) - value);
     });
     
     return true;
