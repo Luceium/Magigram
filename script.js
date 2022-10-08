@@ -45,6 +45,7 @@ function createWord(searchedWord){
 
 function deleteWord(self){
     var wordStr = self.innerText;
+    wordStr = cleanText(wordStr);
 
     //deletes self
     self.parentNode.removeChild(self);
