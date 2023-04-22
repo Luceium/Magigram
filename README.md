@@ -21,3 +21,4 @@ The smaller dictionary should not include overly specific scientific words such 
 We can also seperate all our dictionaries into noun, verb, adjective
 Additionally we should memoize searches. ex. if a search for "aabccd" was made than we can use that too simplify the search for "aabccdghi"
 Also, only words at a length of 4 or more will be presented because humans can easily find words of length 3 (this also works with a partial trie of length 4)
+Remove proper noun, conjunction, preposition, interjection, sounds and effects
