@@ -12,3 +12,11 @@ We want to streamline the process to enable everyone to have an awesome username
     - *If you want to remove a word click the 'x' button to add it's letters back to your word bank*
 4. Now click the epic name generator to generate a plethora of epic names to chose from. (Names will use all remaing letters and can be one or two names long)
     - *If you want to restart clear all words, but don't worry we'll keep track of this final creation for you to come back to incase you liked part of it*
+
+Ways to improve
+Responding with every word possible from a list of letters yields an absurd amount of words
+Many words are useless, such as "well", "to", "too", "furthermore".
+We should create a smaller dictionary of words that are relavent
+The smaller dictionary should not include overly specific scientific words such as "Cerebrum"
+We can also seperate all our dictionaries into noun, verb, adjective
+Additionally we should memoize searches. ex. if a search for "aabccd" was made than we can use that too simplify the search for "aabccdghi"
