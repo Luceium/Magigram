@@ -13,6 +13,10 @@ We want to streamline the process to enable everyone to have an awesome username
 4. Now click the epic name generator to generate a plethora of epic names to chose from. (Names will use all remaing letters and can be one or two names long)
     - *If you want to restart clear all words, but don't worry we'll keep track of this final creation for you to come back to incase you liked part of it*
 
+### This project is powered by
+- EOWL-v1.1.2
+- insert\_APIs\_Here
+
 Ways to improve
 Responding with every word possible from a list of letters yields an absurd amount of words
 Many words are useless, such as "well", "to", "too", "furthermore".
@@ -21,4 +25,5 @@ The smaller dictionary should not include overly specific scientific words such 
 We can also seperate all our dictionaries into noun, verb, adjective
 Additionally we should memoize searches. ex. if a search for "aabccd" was made than we can use that too simplify the search for "aabccdghi"
 Also, only words at a length of 4 or more will be presented because humans can easily find words of length 3 (this also works with a partial trie of length 4)
-Remove proper noun, conjunction, preposition, interjection, sounds and effects
+Remove proper noun, conjunction, preposition, interjection, sounds effects, and plurals
+make trie into a json file that can be used for get requests.
