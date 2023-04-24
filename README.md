@@ -27,3 +27,5 @@ Additionally we should memoize searches. ex. if a search for "aabccd" was made t
 Also, only words at a length of 4 or more will be presented because humans can easily find words of length 3 (this also works with a partial trie of length 4)
 Remove proper noun, conjunction, preposition, interjection, sounds effects, and plurals
 make trie into a json file that can be used for get requests.
+cache api calls by making a json file that maps words to their part of speach that way API calls are only made when the word is not in the dictionary
+the partial trie JSON files can have words prepopulated with letter frequencies
