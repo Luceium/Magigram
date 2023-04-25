@@ -11,7 +11,7 @@ import Foot from "./components/foot";
 function App() {
   return (
     <React.Fragment>
-      <Nav />
+      {/* <Nav /> */}
       <Inputs />
       <LetterBank />
       <History />

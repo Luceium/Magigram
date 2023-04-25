@@ -60,17 +60,17 @@ def makeJsonFiles():
 
 
     et = time.time()
-    print(f'makeJsonFile finisehd in {et - st:.3f}')
+    print(f'makeJsonFile finished in {et - st:.3f}')
 
 def add_word_to_trie(word):
     first_three_letters = word[:3]
     if first_three_letters not in trie:
         trie[first_three_letters] = {}
     if word not in trie[first_three_letters]:
-        letter_freqs = {}
+        letterFrequency = {}
         for letter in word:
-            letter_freqs[letter] = letter_freqs.get(letter, 0) + 1
-        trie[first_three_letters][word] = letter_freqs
+            letterFrequency[letter] = letterFrequency.get(letter, 0) + 1
+        trie[first_three_letters][word] = letterFrequency
 
 def rmDirFiles(dir_path):
     # loop over the files in the directory

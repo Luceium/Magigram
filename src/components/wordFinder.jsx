@@ -3,7 +3,10 @@ class WordFinder extends Component {
     state = {  } 
     render() { 
         return (
-            <h1>word finder</h1>
+            <>
+                <input type=''></input>
+                <h1>word finder</h1>
+            </>
         );
     }
 }
