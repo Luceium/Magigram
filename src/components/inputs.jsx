@@ -3,9 +3,9 @@ class Inputs extends Component {
     state = {  } 
     render() { 
         return (
-            <React.Fragment>
+            <>
                 <h1>inputs</h1>
-            </React.Fragment>
+            </>
         );
     }
 }

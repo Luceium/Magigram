@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import Nav from "./components/nav";
-import Inputs from "./components/inputs";
-import LetterBank from "./components/letterBank";
+import NameSection from "./components/nameSection";
 import History from "./components/history";
 import WordFinder from "./components/wordFinder";
 import CurrentWords from "./components/currentWords";
 import Foot from "./components/foot";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <React.Fragment>
       <Nav />
-      <Inputs />
-      <LetterBank />
+      <NameSection />
       <History />
       <WordFinder />
       <CurrentWords />
