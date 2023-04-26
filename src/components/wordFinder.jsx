@@ -4,7 +4,7 @@ class WordFinder extends Component {
     render() { 
         return (
             <>
-                <input type=''></input>
+                <input type='text'></input>
                 <h1>word finder</h1>
             </>
         );
