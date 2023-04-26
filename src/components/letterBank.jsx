@@ -4,11 +4,10 @@ import { useSelector } from 'react-redux';
 function LetterBank(props) {
     // subscribe to the store
     const letterFrequency = useSelector(state => state.letterFrequency)
-    console.log(letterFrequency)
 
     return (
-        <div className='bg-info rounded d-flex'>
-            <h2>Letter Bank:</h2>
+        <div className='bg-info rounded d-flex p-2'>
+            <h2>Letter Bank: &nbsp;</h2>
             <h2>{frequencyToString(letterFrequency)}</h2>
         </div>
     )
@@ -16,14 +15,12 @@ function LetterBank(props) {
 
 // function that takes an object as an argument and returns a string with the frequency of each letter in the object
 function frequencyToString(letterFrequency) {
-    let string = ''
+    let letterBank = ''
+    // iterate through the keys of the letterFrequency object and add the key to the letterBank string the number of times specified by the value
     for (let letter in letterFrequency) {
-        for (let i = 0; i < letterFrequency[letter]; i++) {
-            string += letter
-        }
+        letterBank += letter.repeat(letterFrequency[letter])
     }
-    console.log(string)
-    return string
+    return letterBank
 }
 
 export default LetterBank;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Input } from 'reactstrap';
 
 
 function Name(props) {  
@@ -9,13 +10,13 @@ function Name(props) {
     function handleBlur(text) {
         let letterFrequency = mapLetterFrequency(text)
         // update the state of the store with the new letterFrequency object
-        dispatch({ type: 'UPDATE_DATA', payload: { letterFrequency } })
+        dispatch({ type: 'UPDATE_DATA', payload: letterFrequency })
     }
     
     return (
-        <div className='d-flex rounded bg-info'>
-            <h2>Name:</h2>
-            <input type='text' placeholder='Tom Marvollo Riddle' onBlur={(e) => handleBlur(e.target.value)}></input>
+        <div className='d-flex rounded bg-info p-2'>
+            <h2>Name:&nbsp;</h2>
+            <Input type='text' placeholder='Tom Marvollo Riddle' className='rounded' autoComplete='name' onBlur={(e) => handleBlur(e.target.value)}></Input>
         </div>
     );
 }

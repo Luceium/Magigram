@@ -7,7 +7,7 @@ letterFrequency: {}
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'UPDATE_DATA':
-      return { ...state, frequency: action.payload };
+      return { ...state, letterFrequency: action.payload };
     default:
       return state;
   }
