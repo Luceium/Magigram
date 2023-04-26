@@ -28,7 +28,6 @@ yarn-error.log*
 
 #generated file content
 /dictionary
-/tinyDictionary
 
 #api key
 config.py
