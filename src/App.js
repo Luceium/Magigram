@@ -14,14 +14,14 @@ function App() {
   return (
     <>
       <Nav />
-      <Container fluid className='m-5'>
+      <Container fluid className='m-auto'>
         <Container>
           <Row>
             <Col md>
-              <Name className='bg-info rounded' />
+              <Name className='bg-info rounded mt-4' />
             </Col>
             <Col md>
-              <LetterBank className='bg-info rounded' />
+              <LetterBank className='bg-info rounded mt-4' />
             </Col>
           </Row>
         </Container>
