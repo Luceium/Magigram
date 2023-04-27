@@ -15,21 +15,31 @@ function App() {
     <>
       <Nav />
       <Container fluid className='m-auto'>
-        <Container>
-          <Row>
-            <Col md>
-              <Name className='bg-info rounded mt-4' />
-            </Col>
-            <Col md>
-              <LetterBank className='bg-info rounded mt-4' />
-            </Col>
-          </Row>
-        </Container>
-        <History />
-        <WordFinder />
-        <CurrentWords />
+        <Row >
+          <Col md className='mt-4 bg-info rounded'>
+            <Name />
+          </Col>
+          <Col md className='mt-4 bg-info rounded'>
+            <LetterBank />
+          </Col>
+        </Row>
+        <Row className='ps-5 pe-5'>
+          <Col className='col-3 bg-info rounded mt-4'>
+            <History />
+          </Col>
+          <Col className='offset-sm-1'>
+            <Row className='bg-info rounded mt-4' >
+              <WordFinder />
+            </Row>
+            <Row className='bg-info rounded mt-4' >
+              <CurrentWords />
+            </Row>
+          </Col>
+        </Row>
+        <Row className='bg-info rounded mt-4' >
+          <Foot />
+        </Row>
       </Container >
-      <Foot />
     </>
   );
 }
