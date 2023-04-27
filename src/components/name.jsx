@@ -1,16 +1,18 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Input } from 'reactstrap';
 
 
 function Name(props) {  
     const dispatch = useDispatch();
+    const words = useSelector(state => state.words);
     
     //function that handles on blur event
     function handleBlur(text) {
         let letterFrequency = mapLetterFrequency(text)
+        let data = { letterFrequency, words }
         // update the state of the store with the new letterFrequency object
-        dispatch({ type: 'UPDATE_DATA', payload: letterFrequency })
+        dispatch({ type: 'UPDATE_DATA', payload: data })
     }
     
     return (

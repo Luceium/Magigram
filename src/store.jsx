@@ -1,13 +1,14 @@
 import { createStore } from 'redux';
 
 const initialState = {
-letterFrequency: {}
+letterFrequency: {},
+words: []
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'UPDATE_DATA':
-      return { ...state, letterFrequency: action.payload };
+      return { ...state, letterFrequency: action.payload.letterFrequency, words: action.payload.words };
     default:
       return state;
   }
