@@ -8,6 +8,7 @@ words: []
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'UPDATE_DATA':
+      console.log(action.payload)
       return { ...state, letterFrequency: action.payload.letterFrequency, words: action.payload.words };
     default:
       return state;
