@@ -7,12 +7,10 @@ export default function WordFinder() {
     let letterFrequency = useSelector(state => state.letterFrequency);
     
     function handleBlur(word) {
-        let tmpLetterFreq = removeLetters(letterFrequency, word);
-        if (!tmpLetterFreq) {
+        if (!removeLetters(letterFrequency, word)) {
             console.log('word could not be extracted from letter bank');
             return;
         }
-        letterFrequency = tmpLetterFreq;
         words = [...words, word];
         let data = {letterFrequency, words}
         //update the state of the store with the new word in the words list
@@ -35,27 +33,27 @@ function removeLetters(letterFrequency, inputWord) {
     inputWord = cleanText(inputWord);
 
     //build map of letters in input Word
-    var wordLetters = inputWord.split("");
-    var wordBank = {};
+    let wordLetters = inputWord.split("");
+    let wordLetterBank = {};
     wordLetters.forEach(element => {
-        if (wordBank[element]){
-            wordBank[element]++;
+        if (wordLetterBank[element]){
+            wordLetterBank[element]++;
         } else {
-            wordBank[element] = 1;
+            wordLetterBank[element] = 1;
         }
     });
 
     //checks if word is able to be taken out of letter bank
-    for (const letter in wordBank) {
+    for (const letter in wordLetterBank) {
         //if there are less of a letter than in the word to remove return false
-        if (!letterFrequency[letter] || letterFrequency[letter] < wordBank[letter]) {
+        if (!letterFrequency[letter] || letterFrequency[letter] < wordLetterBank[letter]) {
             return false;
         }
     }
 
     //remove letters from word out of letter bank
-    for (const letter in wordBank) {
-        letterFrequency[letter] = letterFrequency[letter] - wordBank[letter];
+    for (const letter in wordLetterBank) {
+        letterFrequency[letter] = letterFrequency[letter] - wordLetterBank[letter];
     }
 
     return letterFrequency;
