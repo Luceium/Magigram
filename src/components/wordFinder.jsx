@@ -12,6 +12,8 @@ export default function WordFinder() {
             return;
         }
         words = [...words, word];
+        letterFrequency = {...letterFrequency};
+        console.log(words)
         let data = {letterFrequency, words}
         //update the state of the store with the new word in the words list
         dispatch({type: 'UPDATE_DATA', payload: data})
@@ -56,7 +58,7 @@ function removeLetters(letterFrequency, inputWord) {
         letterFrequency[letter] = letterFrequency[letter] - wordLetterBank[letter];
     }
 
-    return letterFrequency;
+    return true;
 }
 
 function cleanText(input){
