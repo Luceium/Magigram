@@ -1,11 +1,13 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import { Input, Button, ButtonGroup } from 'reactstrap';
 
 export default function WordFinder() {
     const dispatch = useDispatch();
     let words = useSelector(state => state.words);
     let letterFrequency = useSelector(state => state.letterFrequency);
     const [word, setWord] = React.useState('');
+    const [pos, setPos] = React.useState('noun'); // part of speech [noun, verb, adjective]
     
     function handleChange(word) {
         setWord(word);
@@ -24,12 +26,52 @@ export default function WordFinder() {
         setWord(''); // clears input field
     }
 
+    function handleToggle(pos) {
+        setPos(pos.toLowerCase());
+    }
+
+    // TODO: use 'word' (value in input field) to further filter word choices
+    // ie. word.startsWith(word) or word.includes(word)
+    // TODO: populate word choices in real time so user can see progress
+    function getWordChoices() {
+        let wordChoices = [];
+        //make api call to link and store json response in response
+        const response = fetch(`https://github.com/Luceium/EpicAnagram/blob/main/tinyDictionary/JSON/${pos}.json`).then(response => response.json());
+    
+        //for each key in response, check if the key can be made from the letter bank
+        for (const key in response) {
+        }
+    }
+
     return (
         <>
             <h1>word finder</h1>
             <div>
-                <input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
-                <button onClick={handleClick}>Use word</button>
+                <Input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
+                <Button onClick={handleClick}>Use word</Button>
+                <ButtonGroup>
+                    <Button
+                        onClick={(e) => handleToggle(e.target.innerText)}
+                        active={pos=="noun"}
+                    >
+                        Noun
+                    </Button>
+                    <Button
+                        onClick={(e) => handleToggle(e.target.innerText)}
+                        active={pos=="verb"}
+                    >
+                        Verb
+                    </Button>
+                    <Button
+                        onClick={(e) => handleToggle(e.target.innerText)}
+                        active={pos=="adjective"}
+                    >
+                        Adjective
+                    </Button>
+                </ButtonGroup>
+            </div>
+            <div>
+                {getWordChoices()}
             </div>
         </>
     )
@@ -39,24 +81,9 @@ function removeLetters(letterFrequency, inputWord) {
     if (!inputWord) {return false;}
     inputWord = cleanText(inputWord);
 
-    //build map of letters in input Word
-    let wordLetters = inputWord.split("");
-    let wordLetterBank = {};
-    wordLetters.forEach(element => {
-        if (wordLetterBank[element]){
-            wordLetterBank[element]++;
-        } else {
-            wordLetterBank[element] = 1;
-        }
-    });
+    wordLetterBank = mapLetterFrequency(inputWord);
 
-    //checks if word is able to be taken out of letter bank
-    for (const letter in wordLetterBank) {
-        //if there are less of a letter than in the word to remove return false
-        if (!letterFrequency[letter] || letterFrequency[letter] < wordLetterBank[letter]) {
-            return false;
-        }
-    }
+    if (!isSubset(wordLetterBank, letterFrequency)) {return false;}
 
     //remove letters from word out of letter bank
     for (const letter in wordLetterBank) {
@@ -64,10 +91,4 @@ function removeLetters(letterFrequency, inputWord) {
     }
 
     return true;
-}
-
-function cleanText(input){
-    input = input.toLowerCase();
-    input = input.replace(/[^a-zA-Z]*/g, "");//only keeps letters
-    return input;
 }
