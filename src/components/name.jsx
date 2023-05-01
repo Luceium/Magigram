@@ -5,10 +5,15 @@ import { Input } from 'reactstrap';
 
 function Name(props) {  
     const dispatch = useDispatch();
+    let letterFrequency = useSelector(state => state.letterFrequency);
     
     //function that handles on blur event
     function handleBlur(text) {
-        let letterFrequency = mapLetterFrequency(text)
+        let tmpLetterFrequency = mapLetterFrequency(text)
+        if (!deepEquals(letterFrequency, tmpLetterFrequency)) {
+            return;
+        }
+        letterFrequency = tmpLetterFrequency;
         const words = []; //reset all words in word list
         let data = { letterFrequency, words }
         // update the state of the store with the new letterFrequency object
@@ -41,6 +46,10 @@ function mapLetterFrequency(string) {
         }
     })
     return letterFrequency
+}
+
+function deepEquals(obj1, obj2){
+    return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
 
 export default Name;

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 function LetterBank(props) {
     // subscribe to the store
     const letterFrequency = useSelector(state => state.letterFrequency);
-    console.log(letterFrequency, "useSelector was updated")
+    // console.log(letterFrequency, "useSelector was updated")
 
     return (
         <div className='bg-info rounded d-flex p-2'>

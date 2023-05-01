@@ -57,13 +57,12 @@ function removeLetters(letterFrequency, inputWord) {
     for (const letter in wordBank) {
         letterFrequency[letter] = letterFrequency[letter] - wordBank[letter];
     }
-    
+
     return letterFrequency;
 }
 
 function cleanText(input){
     input = input.toLowerCase();
     input = input.replace(/[^a-zA-Z]*/g, "");//only keeps letters
-    console.log("Cleaned input to: " + input);
     return input;
 }
