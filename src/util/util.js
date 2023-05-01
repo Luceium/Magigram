@@ -33,3 +33,19 @@ export function mapLetterFrequency(string) {
     })
     return letterFrequency
 }
+
+export function removeLetters(letterFrequency, inputWord) {
+    if (!inputWord) {return false;}
+    inputWord = cleanText(inputWord);
+
+    let wordLetterBank = mapLetterFrequency(inputWord);
+
+    if (!isSubset(wordLetterBank, letterFrequency)) {return false;}
+
+    //remove letters from word out of letter bank
+    for (const letter in wordLetterBank) {
+        letterFrequency[letter] = letterFrequency[letter] - wordLetterBank[letter];
+    }
+
+    return true;
+}

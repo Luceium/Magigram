@@ -9,7 +9,7 @@ export default function currentWords() {
         <>
             {words.map((word, i=0) => {
                 return (
-                    <Word key={i++} word={word}/>
+                    <Word key={i++} word={word} wordBank/>
                 )
             })}
         </>
