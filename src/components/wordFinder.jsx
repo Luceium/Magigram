@@ -4,9 +4,15 @@ import { useSelector, useDispatch } from 'react-redux';
 export default function WordFinder() {
     const dispatch = useDispatch();
     let words = useSelector(state => state.words);
-    const letterFrequency = useSelector(state => state.letterFrequency);
+    let letterFrequency = useSelector(state => state.letterFrequency);
     
     function handleBlur(word) {
+        let tmpLetterFreq = removeLetters(letterFrequency, word);
+        if (!tmpLetterFreq) {
+            console.log('word could not be extracted from letter bank');
+            return;
+        }
+        letterFrequency = tmpLetterFreq;
         words = [...words, word];
         let data = {letterFrequency, words}
         //update the state of the store with the new word in the words list
@@ -22,4 +28,42 @@ export default function WordFinder() {
             </div>
         </>
     )
+}
+
+function removeLetters(letterFrequency, inputWord) {
+    if (!inputWord) {return false;}
+    inputWord = cleanText(inputWord);
+
+    //build map of letters in input Word
+    var wordLetters = inputWord.split("");
+    var wordBank = {};
+    wordLetters.forEach(element => {
+        if (wordBank[element]){
+            wordBank[element]++;
+        } else {
+            wordBank[element] = 1;
+        }
+    });
+
+    //checks if word is able to be taken out of letter bank
+    for (const letter in wordBank) {
+        //if there are less of a letter than in the word to remove return false
+        if (!letterFrequency[letter] || letterFrequency[letter] < wordBank[letter]) {
+            return false;
+        }
+    }
+
+    //remove letters from word out of letter bank
+    for (const letter in wordBank) {
+        letterFrequency[letter] = letterFrequency[letter] - wordBank[letter];
+    }
+    
+    return letterFrequency;
+}
+
+function cleanText(input){
+    input = input.toLowerCase();
+    input = input.replace(/[^a-zA-Z]*/g, "");//only keeps letters
+    console.log("Cleaned input to: " + input);
+    return input;
 }

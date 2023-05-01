@@ -8,10 +8,8 @@ export default function Word(props) {
 
     
     function handleOnClick(word) {
-        console.log(words)
         const index = words.indexOf(word)
         words.splice(index, 1)
-        console.log(words)
         let data = {letterFrequency, words}
         //updates store to remove word from word list
         dispatch({type: 'UPDATE_DATA', payload: data})
