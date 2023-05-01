@@ -6,7 +6,8 @@ export default function WordFinder() {
     let words = useSelector(state => state.words);
     let letterFrequency = useSelector(state => state.letterFrequency);
     
-    function handleBlur(word) {
+    function handleBlur(element) {
+        var word = element.value;
         if (!removeLetters(letterFrequency, word)) {
             console.log('word could not be extracted from letter bank');
             return;
@@ -17,13 +18,14 @@ export default function WordFinder() {
         let data = {letterFrequency, words}
         //update the state of the store with the new word in the words list
         dispatch({type: 'UPDATE_DATA', payload: data})
+        element.value = "";
     }
 
     return (
         <>
             <h1>word finder</h1>
             <div>
-                <input type='text' onBlur={(e) => handleBlur(e.target.value)}/>
+                <input type='text' onBlur={(e) => handleBlur(e.target)}/>
                 {/* <button onClick={handleClick()}>Use word</button> */}
             </div>
         </>
