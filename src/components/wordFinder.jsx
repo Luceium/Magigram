@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Input, Button, ButtonGroup } from 'reactstrap';
+import { cleanText, mapLetterFrequency, isSubset } from '../util/util';
 
 export default function WordFinder() {
     const dispatch = useDispatch();
@@ -33,15 +34,15 @@ export default function WordFinder() {
     // TODO: use 'word' (value in input field) to further filter word choices
     // ie. word.startsWith(word) or word.includes(word)
     // TODO: populate word choices in real time so user can see progress
-    function getWordChoices() {
-        let wordChoices = [];
-        //make api call to link and store json response in response
-        const response = fetch(`https://github.com/Luceium/EpicAnagram/blob/main/tinyDictionary/JSON/${pos}.json`).then(response => response.json());
+    // function getWordChoices() {
+    //     let wordChoices = [];
+    //     //make api call to link and store json response in response
+    //     const response = fetch(`https://github.com/Luceium/EpicAnagram/blob/main/tinyDictionary/JSON/${pos}.json`).then(response => response.json());
     
-        //for each key in response, check if the key can be made from the letter bank
-        for (const key in response) {
-        }
-    }
+    //     //for each key in response, check if the key can be made from the letter bank
+    //     for (const key in response) {
+    //     }
+    // }
 
     return (
         <>
@@ -71,7 +72,7 @@ export default function WordFinder() {
                 </ButtonGroup>
             </div>
             <div>
-                {getWordChoices()}
+                {/* {getWordChoices()} */}
             </div>
         </>
     )
@@ -81,7 +82,7 @@ function removeLetters(letterFrequency, inputWord) {
     if (!inputWord) {return false;}
     inputWord = cleanText(inputWord);
 
-    wordLetterBank = mapLetterFrequency(inputWord);
+    let wordLetterBank = mapLetterFrequency(inputWord);
 
     if (!isSubset(wordLetterBank, letterFrequency)) {return false;}
 
