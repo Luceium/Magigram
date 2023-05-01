@@ -9,11 +9,7 @@ function Name(props) {
     
     //function that handles on blur event
     function handleBlur(text) {
-        let tmpLetterFrequency = mapLetterFrequency(text)
-        if (!deepEquals(letterFrequency, tmpLetterFrequency)) {
-            return;
-        }
-        letterFrequency = tmpLetterFrequency;
+        letterFrequency = mapLetterFrequency(text);
         const words = []; //reset all words in word list
         let data = { letterFrequency, words }
         // update the state of the store with the new letterFrequency object
