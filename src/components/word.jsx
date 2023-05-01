@@ -8,8 +8,13 @@ export default function Word(props) {
 
     
     function handleOnClick(word) {
-        const index = words.indexOf(word)
-        words.splice(index, 1)
+        //removes the first occurance of a specified word from a list of words and returns it as a new array
+        words = words.filter(element => element !== word)
+        //adds the letters from the word back into the letter bank
+        for (let i = 0; i < word.length; i++) {
+            letterFrequency[word[i]]++
+        }
+        letterFrequency = {...letterFrequency}
         let data = {letterFrequency, words}
         //updates store to remove word from word list
         dispatch({type: 'UPDATE_DATA', payload: data})
