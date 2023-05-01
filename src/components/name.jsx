@@ -5,11 +5,11 @@ import { Input } from 'reactstrap';
 
 function Name(props) {  
     const dispatch = useDispatch();
-    const words = useSelector(state => state.words);
     
     //function that handles on blur event
     function handleBlur(text) {
         let letterFrequency = mapLetterFrequency(text)
+        const words = []; //reset all words in word list
         let data = { letterFrequency, words }
         // update the state of the store with the new letterFrequency object
         dispatch({ type: 'UPDATE_DATA', payload: data })
@@ -22,7 +22,6 @@ function Name(props) {
         </div>
     );
 }
-
 
 // function that takes a string as an argument and returns an object with the frequency of each letter in the string
 function mapLetterFrequency(string) {
@@ -43,6 +42,5 @@ function mapLetterFrequency(string) {
     })
     return letterFrequency
 }
-
 
 export default Name;
