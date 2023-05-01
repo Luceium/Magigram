@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Input } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 
 
 function Name(props) {  
     const dispatch = useDispatch();
     let letterFrequency = useSelector(state => state.letterFrequency);
+    const [currentName, updateCurrentName] = useState('');
     
     //function that handles on blur event
-    function handleBlur(text) {
-        letterFrequency = mapLetterFrequency(text);
+    function handleChange(text) {
+        updateCurrentName(text);
+    }
+
+    function handleClick() {
+        letterFrequency = mapLetterFrequency(currentName);
         const words = []; //reset all words in word list
         let data = { letterFrequency, words }
         // update the state of the store with the new letterFrequency object
@@ -19,7 +24,8 @@ function Name(props) {
     return (
         <div className='d-flex rounded bg-info p-2'>
             <h2>Name:&nbsp;</h2>
-            <Input type='text' placeholder='Tom Marvollo Riddle' className='rounded' autoComplete='name' onBlur={(e) => handleBlur(e.target.value)}></Input>
+            <Input type='text' placeholder='Tom Marvollo Riddle' className='rounded' autoComplete='name' onChange={(e) => handleChange(e.target.value)}></Input>
+            <Button onClick={handleClick}>Submit</Button>
         </div>
     );
 }

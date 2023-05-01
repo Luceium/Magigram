@@ -5,28 +5,31 @@ export default function WordFinder() {
     const dispatch = useDispatch();
     let words = useSelector(state => state.words);
     let letterFrequency = useSelector(state => state.letterFrequency);
+    const [word, setWord] = React.useState('');
     
-    function handleBlur(element) {
-        var word = element.value;
+    function handleChange(word) {
+        setWord(word);
+    }
+
+    function handleClick() {
         if (!removeLetters(letterFrequency, word)) {
             console.log('word could not be extracted from letter bank');
             return;
         }
         words = [...words, word];
         letterFrequency = {...letterFrequency};
-        console.log(words)
         let data = {letterFrequency, words}
         //update the state of the store with the new word in the words list
         dispatch({type: 'UPDATE_DATA', payload: data})
-        element.value = "";
+        setWord(''); // clears input field
     }
 
     return (
         <>
             <h1>word finder</h1>
             <div>
-                <input type='text' onBlur={(e) => handleBlur(e.target)}/>
-                {/* <button onClick={handleClick()}>Use word</button> */}
+                <input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
+                <button onClick={handleClick}>Use word</button>
             </div>
         </>
     )
