@@ -13,7 +13,7 @@ export default function WordFinder() {
     const [wordChoices, setWordChoices] = useState([]);
     useEffect(() => {
         getWordChoices();
-    }, [letterFrequency, word])
+    }, [letterFrequency, word, pos])
     
     function handleChange(word) {
         setWord(word);
@@ -21,7 +21,6 @@ export default function WordFinder() {
 
     function handleClick() {
         if (!removeLetters(letterFrequency, word)) {
-            console.log('word could not be extracted from letter bank');
             return;
         }
         words = [...words, word];
@@ -40,19 +39,15 @@ export default function WordFinder() {
     // ie. word.startsWith(word) or word.includes(word)
     // TODO: populate word choices in real time so user can see progress
     function getWordChoices() {
-        console.log('getWordChoices()');
         let wordChoices = [];
-        //make api call to link and store json response in response
-        const response = fetch(`../..tinyDictionary/JSON/${pos}.json`).then(response => console.log(response)).then(response => response.json());
-        console.log('response', response)
+        //load JSON file for the part of speech from tinyDictionary/JSON into trie variable
+        let trie = require(`../../tinyDictionary/JSON/${pos}.json`);
     
-        //for each key in response, check if the key can be made from the letter bank
-        for (const key in response) {
-            console.log('prefix', key);
-            if (isSubset(mapLetterFrequency(key), letterFrequency)) {
-                for (const wordObj in response[key]) {
-                    let word = wordObj.keys()[0];
-                    let wordsLetterFrequency = wordObj[word];
+        //for each prefix in trie, check if the prefix can be made from the letter bank
+        for (const prefix in trie) {
+            if (isSubset(mapLetterFrequency(prefix), letterFrequency)) {
+                for (const word in trie[prefix]) {
+                    let wordsLetterFrequency = trie[prefix][word];
                     if (isSubset(wordsLetterFrequency, letterFrequency)){
                         wordChoices.push(word);
                     }
@@ -60,7 +55,6 @@ export default function WordFinder() {
             }
         }
         setWordChoices(wordChoices);
-        console.log('getWordChoices() finished', wordChoices);
     }
 
     return (
