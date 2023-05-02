@@ -9,6 +9,8 @@ export default function History() {
 
     function pop(index) {
         let data = index;
+        console.log(data)
+        console.log(history)
         dispatch({type: 'POP', payload: data});
     }
 
@@ -24,9 +26,11 @@ export default function History() {
                 <Button onClick={push}>Save</Button>
             </div>
             {
-                history.map((attempt, i=0) => {
+                history.map((attempt, index) => {
                     return(
-                        <WordGroup key={i++} onClick={(e) => pop(e.target.key)} src={attempt.words} type='history'/>
+                        <div key={index} onClick={() => pop(index)}>
+                            <WordGroup src={attempt.words} type='history' className='bg-warning'/>
+                        </div>
                     )
                 })
             }
