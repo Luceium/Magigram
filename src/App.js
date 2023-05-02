@@ -9,6 +9,7 @@ import Name from './components/name';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
               <WordFinder />
             </Row>
             <Row className='bg-info rounded mt-4' >
-              <WordGroup type='wordBank'/>
+              <WordGroup type='wordBank' src={useSelector(state => state.words)}/>
             </Row>
           </Col>
         </Row>
