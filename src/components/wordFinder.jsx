@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Input, Button, ButtonGroup } from 'reactstrap';
-import { mapLetterFrequency, isSubset, removeLetters } from '../util/util';
+import { mapLetterFrequency, isSubset, removeLetters, cleanText } from '../util/util';
 import WordGroup from './wordGroup';
 
 export default function WordFinder() {
@@ -47,14 +47,16 @@ export default function WordFinder() {
         let wordChoices = [];
         //load JSON file for the part of speech from tinyDictionary/JSON into trie variable
         let trie = require(`../../tinyDictionary/JSON/${pos}.json`);
+        //create copy of word that has been sanitized
+        let wordCopy = cleanText(word);
     
         //for each prefix in trie, check if the prefix can be made from the letter bank
         for (const prefix in trie) {
-            let passFilter = filter==="Starts With" ? prefix.startsWith(word) || word.startsWith(prefix) : true;
+            let passFilter = filter==="Starts With" ? prefix.startsWith(wordCopy) || wordCopy.startsWith(prefix) : true;
             console.log(prefix, passFilter);
             if (passFilter && isSubset(mapLetterFrequency(prefix), letterFrequency)) {
                 for (const wordObj in trie[prefix]) {
-                    let passFilter = filter==="Starts With" ? wordObj.startsWith(word) : wordObj.includes(word);
+                    let passFilter = filter==="Starts With" ? wordObj.startsWith(wordCopy) : wordObj.includes(wordCopy);
                     if (!passFilter){continue;}
                     let wordsLetterFrequency = trie[prefix][wordObj];
                     if (isSubset(wordsLetterFrequency, letterFrequency)){
