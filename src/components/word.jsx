@@ -11,7 +11,8 @@ export default function Word(props) {
     function handleOnClick(word) {
         if (props.type==='wordBank') {
             removeWordFromWordList(word)
-        } else {
+        }
+        if (props.type==='wordList') {
             addWordToWordList(word)
         }
     }

@@ -85,7 +85,7 @@ export default function WordFinder() {
                     </Button>
                 </ButtonGroup>
             </div>
-            <WordGroup src={wordChoices} type='potentialWords' />
+            <WordGroup src={wordChoices} type='wordList' />
         </>
     )
 }
