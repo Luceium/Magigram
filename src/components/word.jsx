@@ -9,7 +9,7 @@ export default function Word(props) {
 
     
     function handleOnClick(word) {
-        if (props.wordBank) {
+        if (props.type==='wordBank') {
             removeWordFromWordList(word)
         } else {
             addWordToWordList(word)
@@ -39,6 +39,6 @@ export default function Word(props) {
     }
 
     return (
-        <div className='bg-success rounded p-1' onClick={(e) => handleOnClick(e.target.innerText)}>{props.word}</div>
+        <div className='badge badge-pill badge-success' onClick={(e) => handleOnClick(e.target.innerText)}>{props.word}</div>
     )
 }

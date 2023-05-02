@@ -32,7 +32,7 @@ function App() {
               <WordFinder />
             </Row>
             <Row className='bg-info rounded mt-4' >
-              <CurrentWords />
+              <CurrentWords type='wordBank'/>
             </Row>
           </Col>
         </Row>

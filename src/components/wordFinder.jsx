@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Input, Button, ButtonGroup } from 'reactstrap';
 import { mapLetterFrequency, isSubset, removeLetters } from '../util/util';
-import Word from './word';
+import CurrentWords from './currentWords';
 
 export default function WordFinder() {
     const dispatch = useDispatch();
@@ -85,13 +85,7 @@ export default function WordFinder() {
                     </Button>
                 </ButtonGroup>
             </div>
-            <div>
-                {wordChoices.map((word, i=0) => {
-                    return (
-                        <Word key={i++} word={word}/>
-                    )
-                })}
-            </div>
+            <CurrentWords src={wordChoices} type='potentialWords' />
         </>
     )
 }
