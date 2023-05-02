@@ -40,6 +40,6 @@ export default function Word(props) {
     }
 
     return (
-        <div className='badge badge-pill badge-success' onClick={(e) => handleOnClick(e.target.innerText)}>{props.word}</div>
+        <div className='badge badge-pill bg-primary m-1' style={{fontSize: '15px'}} onClick={(e) => handleOnClick(e.target.innerText)}>{props.word}</div>
     )
 }

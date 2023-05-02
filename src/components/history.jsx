@@ -31,7 +31,7 @@ export default function History() {
                     return(
                         <div key={index} onClick={() => pop(index)}>
                             <WordGroup src={attempt.words} type='history' className='bg-warning'/>
-                            <p>{frequencyToString(attempt.letterFrequency)}</p>
+                            <p className="badge badge-pill bg-secondary">{frequencyToString(attempt.letterFrequency)}</p>
                         </div>
                     )
                 })

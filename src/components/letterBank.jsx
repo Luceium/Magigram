@@ -10,7 +10,7 @@ function LetterBank(props) {
     return (
         <div className='bg-info rounded d-flex p-2'>
             <h2>Letter Bank: &nbsp;</h2>
-            <h2>{frequencyToString(letterFrequency)}</h2>
+            <h2 className='rounded bg-secondary px-2'>{frequencyToString(letterFrequency)}</h2>
         </div>
     )
 }

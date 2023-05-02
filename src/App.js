@@ -24,22 +24,25 @@ function App() {
             <LetterBank />
           </Col>
         </Row>
-        <Row className='ps-5 pe-5'>
-          <Col className='col-3 bg-info rounded mt-4'>
+        <Row className=''>
+          <Col className='col-3 bg-info rounded mt-4 mx-auto'>
             <History />
           </Col>
-          <Col className='offset-sm-1'>
+          <Col className='mx-auto'>
             <Row className='bg-info rounded mt-4' >
               <WordFinder />
             </Row>
-            <Row className='bg-info rounded mt-4' >
+            <Row className='bg-info rounded' >
+              <h2>
+                Word Bank
+              </h2>
               <WordGroup type='wordBank' src={useSelector(state => state.words)}/>
             </Row>
           </Col>
         </Row>
-        <Row className='bg-info rounded mt-4' >
+        {/* <Row className='bg-info rounded mt-4' >
           <Foot />
-        </Row>
+        </Row> */}
       </Container >
     </>
   );
