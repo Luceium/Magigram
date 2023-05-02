@@ -45,11 +45,12 @@ export default function WordFinder() {
     
         //for each prefix in trie, check if the prefix can be made from the letter bank
         for (const prefix in trie) {
-            if (isSubset(mapLetterFrequency(prefix), letterFrequency)) {
-                for (const word in trie[prefix]) {
-                    let wordsLetterFrequency = trie[prefix][word];
+            if ( (prefix.startsWith(word) || word.startsWith(prefix)) && isSubset(mapLetterFrequency(prefix), letterFrequency)) {
+                for (const wordObj in trie[prefix]) {
+                    if (!wordObj.startsWith(word)){continue;}
+                    let wordsLetterFrequency = trie[prefix][wordObj];
                     if (isSubset(wordsLetterFrequency, letterFrequency)){
-                        wordChoices.push(word);
+                        wordChoices.push(wordObj);
                     }
                 }
             }
