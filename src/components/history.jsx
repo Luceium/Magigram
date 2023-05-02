@@ -30,6 +30,7 @@ export default function History() {
                     return(
                         <div key={index} onClick={() => pop(index)}>
                             <WordGroup src={attempt.words} type='history' className='bg-warning'/>
+                            
                         </div>
                     )
                 })
