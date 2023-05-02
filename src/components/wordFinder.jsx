@@ -10,6 +10,7 @@ export default function WordFinder() {
     let letterFrequency = useSelector(state => state.letterFrequency);
     const [word, setWord] = useState('');
     const [pos, setPos] = useState('noun'); // part of speech [noun, verb, adjective]
+    const [filter, setFilter] = useState('Starts With'); // filter word choices by prefix [word, prefix
     const [wordChoices, setWordChoices] = useState([]);
     useEffect(() => {
         getWordChoices();
@@ -35,6 +36,10 @@ export default function WordFinder() {
         setPos(pos.toLowerCase());
     }
 
+    function handleToggleFilter(filter) {
+        setFilter(filter);
+    }
+
     // TODO: use 'word' (value in input field) to further filter word choices
     // ie. word.startsWith(word) or word.includes(word)
     // TODO: populate word choices in real time so user can see progress
@@ -45,9 +50,12 @@ export default function WordFinder() {
     
         //for each prefix in trie, check if the prefix can be made from the letter bank
         for (const prefix in trie) {
-            if ( (prefix.startsWith(word) || word.startsWith(prefix)) && isSubset(mapLetterFrequency(prefix), letterFrequency)) {
+            let passFilter = filter==="Starts With" ? prefix.startsWith(word) || word.startsWith(prefix) : true;
+            console.log(prefix, passFilter);
+            if (passFilter && isSubset(mapLetterFrequency(prefix), letterFrequency)) {
                 for (const wordObj in trie[prefix]) {
-                    if (!wordObj.startsWith(word)){continue;}
+                    let passFilter = filter==="Starts With" ? wordObj.startsWith(word) : wordObj.includes(word);
+                    if (!passFilter){continue;}
                     let wordsLetterFrequency = trie[prefix][wordObj];
                     if (isSubset(wordsLetterFrequency, letterFrequency)){
                         wordChoices.push(wordObj);
@@ -63,6 +71,20 @@ export default function WordFinder() {
             <h1>word finder</h1>
             <div>
                 <Input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
+                <ButtonGroup>
+                    <Button
+                        onClick={(e) => handleToggleFilter(e.target.innerText)}
+                        active={filter==="Starts With"}
+                    >
+                        Starts With
+                    </Button>
+                    <Button
+                        onClick={(e) => handleToggleFilter(e.target.innerText)}
+                        active={filter==="Contains"}
+                    >
+                        Contains
+                    </Button>
+                </ButtonGroup>
                 <Button onClick={handleClick}>Use word</Button>
                 <ButtonGroup>
                     <Button
