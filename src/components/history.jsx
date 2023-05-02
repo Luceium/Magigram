@@ -1,6 +1,7 @@
 import { Button } from "reactstrap";
 import WordGroup from "./wordGroup";
 import { useSelector, useDispatch } from "react-redux";
+import { frequencyToString } from "../util/util";
 
 //alias to import functional react component
 export default function History() {
@@ -30,7 +31,7 @@ export default function History() {
                     return(
                         <div key={index} onClick={() => pop(index)}>
                             <WordGroup src={attempt.words} type='history' className='bg-warning'/>
-                            
+                            <p>{frequencyToString(attempt.letterFrequency)}</p>
                         </div>
                     )
                 })

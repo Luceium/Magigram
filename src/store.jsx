@@ -26,7 +26,8 @@ function reducer(state = initialState, action) {
     case 'PUSH':
       console.log(hist)
       hist = [...state.hist];
-      hist.push({words: state.words, letterFrequency: state.letterFrequency});
+      letterFrequency = {...state.letterFrequency};
+      hist.push({words: state.words, letterFrequency: letterFrequency});
       console.log(hist)
       return { ...state, hist: hist };
     default:
