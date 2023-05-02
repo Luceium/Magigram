@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from "./components/nav";
 import History from "./components/history";
 import WordFinder from "./components/wordFinder";
-import CurrentWords from "./components/currentWords";
+import WordGroup from "./components/wordGroup";
 import Foot from "./components/foot";
 import LetterBank from './components/letterBank';
 import Name from './components/name';
@@ -32,7 +32,7 @@ function App() {
               <WordFinder />
             </Row>
             <Row className='bg-info rounded mt-4' >
-              <CurrentWords type='wordBank'/>
+              <WordGroup type='wordBank'/>
             </Row>
           </Col>
         </Row>
