@@ -71,13 +71,9 @@ def sortDictionary():
                     try:
                         pos_tag = data.get("definitions", "Unknown")[0].get("partOfSpeech", "Unknown")
                     except:
-                        with open('dictionary/errors', 'w') as errors:
-                            errors.write(word + "\n")
-                        continue
+                        pos_tag = "errors"
                     if not pos_tag:
-                        with open('dictionary/errors', 'w') as errors:
-                            errors.write(word + "\n")
-                        continue
+                        pos_tag = "errors"
                     # cache api call
                     with open('dictionary/cachedAPICalls.txt', 'a') as cache:
                         cache.write(word + ":" + pos_tag + "\n")
