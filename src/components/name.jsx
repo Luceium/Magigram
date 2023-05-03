@@ -19,6 +19,7 @@ function Name(props) {
         const words = []; //reset all words in word list
         let data = { letterFrequency, words }
         // update the state of the store with the new letterFrequency object
+        dispatch({ type: 'CLEAR' })
         dispatch({ type: 'UPDATE_DATA', payload: data })
     }
     

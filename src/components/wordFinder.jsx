@@ -68,7 +68,7 @@ export default function WordFinder() {
 
     return (
         <>
-            <h1>word finder</h1>
+            <h1>Word Finder</h1>
             <div>
                 <Input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
                 <ButtonGroup>

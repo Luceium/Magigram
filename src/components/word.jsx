@@ -8,18 +8,20 @@ export default function Word(props) {
     let letterFrequency = useSelector(state => state.letterFrequency)
 
     
-    function handleOnClick(word) {
+    function handleOnClick(word, index) {
         if (props.type==='wordBank') {
-            removeWordFromWordList(word)
+            removeWordFromWordList(index)
         }
         if (props.type==='wordList') {
             addWordToWordList(word)
         }
     }
 
-    function removeWordFromWordList(word) {
+    function removeWordFromWordList(index) {
         //removes the first occurance of a specified word from a list of words and returns it as a new array
-        words = words.filter(element => element !== word)
+        let word = words.splice(index, 1)
+        console.log(index, words, word)
+        words = [...words]
         //adds the letters from the word back into the letter bank
         for (let i = 0; i < word.length; i++) {
             letterFrequency[word[i]]++
@@ -40,6 +42,6 @@ export default function Word(props) {
     }
 
     return (
-        <div className='badge badge-pill bg-primary m-1' style={{fontSize: '15px'}} onClick={(e) => handleOnClick(e.target.innerText)}>{props.word}</div>
+        <div className='badge badge-pill bg-primary m-1' style={{fontSize: '15px'}} onClick={(e) => handleOnClick(e.target.innerText, props.index)}>{props.word}</div>
     )
 }

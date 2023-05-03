@@ -6,9 +6,9 @@ export default function wordGroup(props) {
 
     return (
         <div>
-            {words.map((word, i=0) => {
+            {words.map((word, index) => {
                 return (
-                    <Word key={i++} word={word} type={props.type}/>
+                    <Word key={index} word={word} type={props.type} index={index} />
                 )
             })}
         </div>

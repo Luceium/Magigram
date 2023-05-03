@@ -28,6 +28,8 @@ function reducer(state = initialState, action) {
       letterFrequency = {...state.letterFrequency};
       hist.push({words: state.words, letterFrequency: letterFrequency});
       return { ...state, hist: hist };
+    case 'CLEAR':
+      return { ...state, letterFrequency: {}, words: [], hist: [] };
     default:
       return state;
   }
