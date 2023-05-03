@@ -20,7 +20,6 @@ export default function Word(props) {
     function removeWordFromWordList(index) {
         //removes the first occurance of a specified word from a list of words and returns it as a new array
         let word = words.splice(index, 1)
-        console.log(index, words, word)
         words = [...words]
         //adds the letters from the word back into the letter bank
         for (let i = 0; i < word.length; i++) {

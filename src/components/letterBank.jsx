@@ -5,8 +5,7 @@ import { frequencyToString } from '../util/util';
 function LetterBank(props) {
     // subscribe to the store
     const letterFrequency = useSelector(state => state.letterFrequency);
-    // console.log(letterFrequency, "useSelector was updated")
-
+    
     return (
         <div className='bg-info rounded d-flex p-2'>
             <h2>Letter Bank: &nbsp;</h2>

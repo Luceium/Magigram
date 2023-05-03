@@ -10,8 +10,6 @@ export default function History() {
 
     function pop(index) {
         let data = index;
-        console.log(data)
-        console.log(history)
         dispatch({type: 'POP', payload: data});
     }
 

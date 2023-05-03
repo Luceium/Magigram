@@ -51,7 +51,6 @@ export default function WordFinder() {
         //for each prefix in trie, check if the prefix can be made from the letter bank
         for (const prefix in trie) {
             let passFilter = filter==="Starts With" ? prefix.startsWith(word) || word.startsWith(prefix) : true;
-            console.log(prefix, passFilter);
             if (passFilter && isSubset(mapLetterFrequency(prefix), letterFrequency)) {
                 for (const wordObj in trie[prefix]) {
                     let passFilter = filter==="Starts With" ? wordObj.startsWith(word) : wordObj.includes(word);
