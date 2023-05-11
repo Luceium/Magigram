@@ -254,7 +254,7 @@ export default function WordFinder() {
         while (names.length < 20) {
             // choose random root, prefix, and suffix and remove the letters from the letter frequency
             let root = roots[i % roots.length];
-            letterFrequency = subtractLetterFrequency(letterFrequency, mapLetterFrequency(name));
+            letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(name));
 
             const prefixes = [
                 'a',
@@ -298,7 +298,7 @@ export default function WordFinder() {
                 'y'
               ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
             const prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
-            letterFrequency = subtractLetterFrequency(letterFrequency, mapLetterFrequency(prefix));
+            letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(prefix));
             
             const suffixes = [
                 'able',
@@ -336,7 +336,7 @@ export default function WordFinder() {
                 'y'
             ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
             const suffix = suffix.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
-            letterFrequency = subtractLetterFrequency(letterFrequency, mapLetterFrequency(suffix));
+            letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(suffix));
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
             let leftPad, rightPad = makePadding(letterFrequency);
