@@ -8,7 +8,6 @@ export default function WordFinder() {
     const dispatch = useDispatch();
     let words = useSelector(state => state.words);
     let letterFrequency = useSelector(state => state.letterFrequency);
-    const lettersSize = getLetterFrequencySize(letterFrequency);
     const [word, setWord] = useState('');
     const [pos, setPos] = useState('noun'); // part of speech [noun, verb, adjective]
     const [filter, setFilter] = useState('Starts With'); // filter word choices by prefix [word, prefix
@@ -76,6 +75,7 @@ export default function WordFinder() {
     
     // takes the letter frequency and creates generates 20 random permutations of the letters such that the vowels are evenly distributed
     function generateNames() {
+        let lettersSize = getLetterFrequencySize(letterFrequency);
         console.log(lettersSize)
         if (5 > lettersSize || lettersSize > 10) {
             alert('Please have 5 to 10 letters in your letter bank.');
@@ -301,8 +301,9 @@ export default function WordFinder() {
                     'tive',
                     'y'
                 ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
-                suffix = suffix.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
-                letterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(suffix));
+                console.log(suffixes, suffixes.length);
+                suffix = suffixes.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
+                letterFrequency = removeLetters(tmpLetterFrequency, suffix);
 
                 const prefixes = [
                     'a',
@@ -346,7 +347,7 @@ export default function WordFinder() {
                     'y'
                   ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
                 prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
-                letterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(prefix));
+                letterFrequency = removeLetters(tmpLetterFrequency, prefix);
             } else {                
                 const prefixes = [
                     'a',
@@ -390,7 +391,7 @@ export default function WordFinder() {
                     'y'
                 ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
                 prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
-                letterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(prefix));
+                letterFrequency = removeLetters(tmpLetterFrequency, prefix);
                 
                 const suffixes = [
                     'able',
@@ -427,15 +428,15 @@ export default function WordFinder() {
                     'tive',
                     'y'
                 ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
-                suffix = suffix.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
-                letterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(suffix));
+                suffix = suffixes.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
+                letterFrequency = removeLetters(tmpLetterFrequency, suffix);
             }
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
             let leftPad, rightPad = makePadding(tmpLetterFrequency);
             let name = prefix + leftPad + root + rightPad + suffix;
             
-            names.add(name)
+            names.push(name)
             i++;
         }
 
@@ -456,7 +457,7 @@ export default function WordFinder() {
         let lettersSize = getLetterFrequencySize(letterFrequency);
         while (lettersSize > 0) {
             let letter = letterFrequency[Math.floor(Math.random()*letterFrequency.length)];
-            letterFrequency = letterFrequency.removeLetters(letter);
+            letterFrequency = removeLetters(letterFrequency, letter);
             if (Math.random() < 0.5) {
                 leftPad += letter;
             } else {
