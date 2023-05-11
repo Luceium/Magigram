@@ -76,22 +76,23 @@ export default function WordFinder() {
     
     // takes the letter frequency and creates generates 20 random permutations of the letters such that the vowels are evenly distributed
     function generateNames() {
-        if (4 < lettersSize && lettersSize < 10) {
-            alert('Please have 5 to 9 letters in your letter bank.');
+        console.log(lettersSize)
+        if (5 > lettersSize || lettersSize > 10) {
+            alert('Please have 5 to 10 letters in your letter bank.');
             return;
         }
 
         let names = [];
-        // let vowels = ['a', 'e', 'i', 'o', 'u'];
-        // let vowelFrequency = 0;
-        // let consonantFrequency = 0;
-        // for (const letter in letterFrequency) {
-        //     if (vowels.includes(letter)) {
-        //         vowelFrequency += letterFrequency[letter];
-        //     } else {
-        //         consonantFrequency += letterFrequency[letter];
-        //     }
-        // }
+        let vowels = ['a', 'e', 'i', 'o', 'u'];
+        let vowelFrequency = 0;
+        let consonantFrequency = 0;
+        for (const letter in letterFrequency) {
+            if (vowels.includes(letter)) {
+                vowelFrequency += letterFrequency[letter];
+            } else {
+                consonantFrequency += letterFrequency[letter];
+            }
+        }
         
         // try to make better names by use of roots, prefix, sufix, common sounds
         // TODO: sort the lists in a topological ordering such that if A.letterFrequency is a subset of B.letterFrequency, then B comes before A
@@ -441,6 +442,7 @@ export default function WordFinder() {
         // generate remaining amount of names with equal distribution of vowels between consonants
         for (let i = names.length; i < 20; i++) {
             let name = '';
+            let min, max = vowelFrequency < consonantFrequency ? [vowels, consonant] : [consonant, vowels];
 
             names.push(name);
         }
