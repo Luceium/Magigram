@@ -82,16 +82,16 @@ export default function WordFinder() {
         }
 
         let names = [];
-        let vowels = ['a', 'e', 'i', 'o', 'u'];
-        let vowelFrequency = 0;
-        let consonantFrequency = 0;
-        for (const letter in letterFrequency) {
-            if (vowels.includes(letter)) {
-                vowelFrequency += letterFrequency[letter];
-            } else {
-                consonantFrequency += letterFrequency[letter];
-            }
-        }
+        // let vowels = ['a', 'e', 'i', 'o', 'u'];
+        // let vowelFrequency = 0;
+        // let consonantFrequency = 0;
+        // for (const letter in letterFrequency) {
+        //     if (vowels.includes(letter)) {
+        //         vowelFrequency += letterFrequency[letter];
+        //     } else {
+        //         consonantFrequency += letterFrequency[letter];
+        //     }
+        // }
         
         // try to make better names by use of roots, prefix, sufix, common sounds
         // TODO: sort the lists in a topological ordering such that if A.letterFrequency is a subset of B.letterFrequency, then B comes before A
@@ -234,29 +234,35 @@ export default function WordFinder() {
             'vit',
             'volut',
         ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency)).sort(()=>Math.random()-0.5);
-        const commonSounds = [
-            'ch',
-            'sh',
-            'th',
-            'ph',
-            'wh',
-            'wr',
-            'ck',
-            'gn',
-            'kn',
-            'ng',
-            'qu',
-            'sc',
-        ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
+        // const commonSounds = [
+        //     'ch',
+        //     'sh',
+        //     'th',
+        //     'ph',
+        //     'wh',
+        //     'wr',
+        //     'ck',
+        //     'gn',
+        //     'kn',
+        //     'ng',
+        //     'qu',
+        //     'sc',
+        // ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
 
         // generate names by trying to use roots and suffixes and prefixes
         let i = 0;
         while (names.length < 20) {
             let tmpLetterFrequency = { ...letterFrequency };
             // choose random root, prefix, and suffix and remove the letters from the letter frequency
-            let root = roots[i % roots.length];
-            tmpLetterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(name));
+            let root;
+            if (roots.length > 0){
+                root = roots[i % roots.length];
+                tmpLetterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(root));
+            } else {
+                root = '';
+            }
 
+            let prefix, suffix;
             //randomly chooses to prioritize suffix or prefix
             if (Math.random() < 0.5) {
                 const suffixes = [
@@ -293,9 +299,9 @@ export default function WordFinder() {
                     'tion',
                     'tive',
                     'y'
-                ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
-                const suffix = suffix.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
-                letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(suffix));
+                ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
+                suffix = suffix.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
+                letterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(suffix));
 
                 const prefixes = [
                     'a',
@@ -337,9 +343,9 @@ export default function WordFinder() {
                     'up',
                     'with',
                     'y'
-                  ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
-                const prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
-                letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(prefix));
+                  ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
+                prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
+                letterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(prefix));
             } else {                
                 const prefixes = [
                     'a',
@@ -381,9 +387,9 @@ export default function WordFinder() {
                     'up',
                     'with',
                     'y'
-                ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
-                const prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
-                letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(prefix));
+                ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
+                prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
+                letterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(prefix));
                 
                 const suffixes = [
                     'able',
@@ -419,9 +425,9 @@ export default function WordFinder() {
                     'tion',
                     'tive',
                     'y'
-                ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
-                const suffix = suffix.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
-                letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(suffix));
+                ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
+                suffix = suffix.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
+                letterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(suffix));
             }
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
