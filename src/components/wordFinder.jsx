@@ -76,7 +76,6 @@ export default function WordFinder() {
     // takes the letter frequency and creates generates 20 random permutations of the letters such that the vowels are evenly distributed
     function generateNames() {
         let lettersSize = getLetterFrequencySize(letterFrequency);
-        console.log(lettersSize)
         if (5 > lettersSize || lettersSize > 10) {
             alert('Please have 5 to 10 letters in your letter bank.');
             return;
@@ -99,6 +98,7 @@ export default function WordFinder() {
         // this would favor longer and rarer roots/prefixes/suffixes over shorter ones
         // also randomize the order of the roots/prefixes/suffixes so that the same ones don't always appear first
         const roots = [
+            '',
             'ab',
             'abs',
             'ad',
@@ -255,18 +255,14 @@ export default function WordFinder() {
         while (names.length < 20) {
             let tmpLetterFrequency = { ...letterFrequency };
             // choose random root, prefix, and suffix and remove the letters from the letter frequency
-            let root;
-            if (roots.length > 0){
-                root = roots[i % roots.length];
-                tmpLetterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(root));
-            } else {
-                root = '';
-            }
+            let root = roots[i % roots.length];
+            removeLetters(tmpLetterFrequency, root);
 
             let prefix, suffix;
             //randomly chooses to prioritize suffix or prefix
             if (Math.random() < 0.5) {
                 const suffixes = [
+                    '',
                     'able',
                     'age',
                     'al',
@@ -301,11 +297,11 @@ export default function WordFinder() {
                     'tive',
                     'y'
                 ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
-                console.log(suffixes, suffixes.length);
-                suffix = suffixes.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
-                letterFrequency = removeLetters(tmpLetterFrequency, suffix);
+                suffix = suffixes[Math.floor(Math.random()*suffixes.length)];
+                removeLetters(tmpLetterFrequency, suffix);
 
                 const prefixes = [
+                    '',
                     'a',
                     'ab',
                     'ad',
@@ -346,10 +342,11 @@ export default function WordFinder() {
                     'with',
                     'y'
                   ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
-                prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
-                letterFrequency = removeLetters(tmpLetterFrequency, prefix);
+                prefix = prefixes[Math.floor(Math.random()*prefixes.length)];
+                removeLetters(tmpLetterFrequency, prefix);
             } else {                
                 const prefixes = [
+                    '',
                     'a',
                     'ab',
                     'ad',
@@ -390,10 +387,11 @@ export default function WordFinder() {
                     'with',
                     'y'
                 ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
-                prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
-                letterFrequency = removeLetters(tmpLetterFrequency, prefix);
+                prefix = prefixes[Math.floor(Math.random()*prefixes.length)];
+                removeLetters(tmpLetterFrequency, prefix);
                 
                 const suffixes = [
+                    '',
                     'able',
                     'age',
                     'al',
@@ -428,12 +426,14 @@ export default function WordFinder() {
                     'tive',
                     'y'
                 ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
-                suffix = suffixes.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
-                letterFrequency = removeLetters(tmpLetterFrequency, suffix);
+                suffix = suffixes[Math.floor(Math.random()*suffixes.length)];
+                removeLetters(tmpLetterFrequency, suffix);
             }
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
+            console.log('tmpLetterFrequency: ', tmpLetterFrequency);
             let leftPad, rightPad = makePadding(tmpLetterFrequency);
+            // console.log('prefix: ' + prefix, 'leftPad: ' + leftPad, 'root: ' + root, 'rightPad: ' + rightPad, 'suffix: ' + suffix);
             let name = prefix + leftPad + root + rightPad + suffix;
             
             names.push(name)
@@ -441,27 +441,32 @@ export default function WordFinder() {
         }
 
         // generate remaining amount of names with equal distribution of vowels between consonants
-        for (let i = names.length; i < 20; i++) {
-            let name = '';
-            let min, max = vowelFrequency < consonantFrequency ? [vowels, consonant] : [consonant, vowels];
+        // for (let i = names.length; i < 20; i++) {
+        //     let name = '';
+        //     let min, max = vowelFrequency < consonantFrequency ? [vowels, consonant] : [consonant, vowels];
 
-            names.push(name);
-        }
+        //     names.push(name);
+        // }
         setWordChoices(names);
     }
 
     // evenly splits the remaining letters in the letter frequency between the left and right padding and randomly organizes the letters in each
     function makePadding(letterFrequency) {
+        console.log('letterFrequency: ' + letterFrequency)
         let leftPad = '';
         let rightPad = '';
         let lettersSize = getLetterFrequencySize(letterFrequency);
         while (lettersSize > 0) {
             let letter = letterFrequency[Math.floor(Math.random()*letterFrequency.length)];
+            // console.log('letter: ' + letter);
             letterFrequency = removeLetters(letterFrequency, letter);
+            // console.log('letterFrequency: ' + letterFrequency);
             if (Math.random() < 0.5) {
                 leftPad += letter;
+                // console.log('leftPad: ' + leftPad);
             } else {
                 rightPad += letter;
+                // console.log('rightPad: ' + rightPad);
             }
             lettersSize--;
         }
