@@ -73,7 +73,7 @@ export default function WordFinder() {
         }
         setWordChoices(wordChoices);
     }
-
+    
     // takes the letter frequency and creates generates 20 random permutations of the letters such that the vowels are evenly distributed
     function generateNames() {
         if (4 < lettersSize && lettersSize < 10) {
@@ -92,7 +92,7 @@ export default function WordFinder() {
                 consonantFrequency += letterFrequency[letter];
             }
         }
-
+        
         // try to make better names by use of roots, prefix, sufix, common sounds
         // TODO: sort the lists in a topological ordering such that if A.letterFrequency is a subset of B.letterFrequency, then B comes before A
         // this would favor longer and rarer roots/prefixes/suffixes over shorter ones
@@ -256,87 +256,172 @@ export default function WordFinder() {
             let root = roots[i % roots.length];
             letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(name));
 
-            const prefixes = [
-                'a',
-                'ab',
-                'ad',
-                'an',
-                'ante',
-                'ap',
-                'ar',
-                'as',
-                'at',
-                'auto',
-                'be',
-                'by',
-                'co',
-                'com',
-                'con',
-                'de',
-                'dis',
-                'e',
-                'en',
-                'ex',
-                'extra',
-                'ge',
-                'in',
-                'inter',
-                'ir',
-                'mis',
-                'non',
-                'per',
-                'pre',
-                'pro',
-                're',
-                'semi',
-                'sub',
-                'super',
-                'un',
-                'under',
-                'up',
-                'with',
-                'y'
-              ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
-            const prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
-            letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(prefix));
-            
-            const suffixes = [
-                'able',
-                'age',
-                'al',
-                'an',
-                'and',
-                'ary',
-                'ate',
-                'ation',
-                'ative',
-                'ed',
-                'ee',
-                'er',
-                'es',
-                'et',
-                'ful',
-                'ible',
-                'ion',
-                'ish',
-                'ist',
-                'ity',
-                'ize',
-                'less',
-                'ly',
-                'ment',
-                'ness',
-                'on',
-                'or',
-                'ous',
-                's',
-                'th',
-                'tion',
-                'tive',
-                'y'
-            ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
-            const suffix = suffix.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
-            letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(suffix));
+            //randomly chooses to prioritize suffix or prefix
+            if (Math.random() < 0.5) {
+                const suffixes = [
+                    'able',
+                    'age',
+                    'al',
+                    'an',
+                    'and',
+                    'ary',
+                    'ate',
+                    'ation',
+                    'ative',
+                    'ed',
+                    'ee',
+                    'er',
+                    'es',
+                    'et',
+                    'ful',
+                    'ible',
+                    'ion',
+                    'ish',
+                    'ist',
+                    'ity',
+                    'ize',
+                    'less',
+                    'ly',
+                    'ment',
+                    'ness',
+                    'on',
+                    'or',
+                    'ous',
+                    's',
+                    'th',
+                    'tion',
+                    'tive',
+                    'y'
+                ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
+                const suffix = suffix.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
+                letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(suffix));
+
+                const prefixes = [
+                    'a',
+                    'ab',
+                    'ad',
+                    'an',
+                    'ante',
+                    'ap',
+                    'ar',
+                    'as',
+                    'at',
+                    'auto',
+                    'be',
+                    'by',
+                    'co',
+                    'com',
+                    'con',
+                    'de',
+                    'dis',
+                    'e',
+                    'en',
+                    'ex',
+                    'extra',
+                    'ge',
+                    'in',
+                    'inter',
+                    'ir',
+                    'mis',
+                    'non',
+                    'per',
+                    'pre',
+                    'pro',
+                    're',
+                    'semi',
+                    'sub',
+                    'super',
+                    'un',
+                    'under',
+                    'up',
+                    'with',
+                    'y'
+                  ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
+                const prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
+                letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(prefix));
+            } else {                
+                const prefixes = [
+                    'a',
+                    'ab',
+                    'ad',
+                    'an',
+                    'ante',
+                    'ap',
+                    'ar',
+                    'as',
+                    'at',
+                    'auto',
+                    'be',
+                    'by',
+                    'co',
+                    'com',
+                    'con',
+                    'de',
+                    'dis',
+                    'e',
+                    'en',
+                    'ex',
+                    'extra',
+                    'ge',
+                    'in',
+                    'inter',
+                    'ir',
+                    'mis',
+                    'non',
+                    'per',
+                    'pre',
+                    'pro',
+                    're',
+                    'semi',
+                    'sub',
+                    'super',
+                    'un',
+                    'under',
+                    'up',
+                    'with',
+                    'y'
+                ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
+                const prefix = prefixes.length > 0 ? prefixes[Math.floor(Math.random()*prefixes.length)] : '';
+                letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(prefix));
+                
+                const suffixes = [
+                    'able',
+                    'age',
+                    'al',
+                    'an',
+                    'and',
+                    'ary',
+                    'ate',
+                    'ation',
+                    'ative',
+                    'ed',
+                    'ee',
+                    'er',
+                    'es',
+                    'et',
+                    'ful',
+                    'ible',
+                    'ion',
+                    'ish',
+                    'ist',
+                    'ity',
+                    'ize',
+                    'less',
+                    'ly',
+                    'ment',
+                    'ness',
+                    'on',
+                    'or',
+                    'ous',
+                    's',
+                    'th',
+                    'tion',
+                    'tive',
+                    'y'
+                ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
+                const suffix = suffix.length > 0 ? suffixes[Math.floor(Math.random()*suffixes.length)] : ''; 
+                letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(suffix));
+            }
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
             let leftPad, rightPad = makePadding(letterFrequency);
