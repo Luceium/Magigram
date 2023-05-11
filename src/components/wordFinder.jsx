@@ -359,17 +359,15 @@ export default function WordFinder() {
     function makePadding(letterFrequency) {
         let leftPad = '';
         let rightPad = '';
-        let left = true;
         let lettersSize = getLetterFrequencySize(letterFrequency);
         while (lettersSize > 0) {
             let letter = letterFrequency[Math.floor(Math.random()*letterFrequency.length)];
             letterFrequency = letterFrequency.removeLetters(letter);
-            if (left) {
+            if (Math.random() < 0.5) {
                 leftPad += letter;
             } else {
                 rightPad += letter;
             }
-            left = !left;
             lettersSize--;
         }
         return [leftPad, rightPad];
