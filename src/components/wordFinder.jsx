@@ -252,9 +252,10 @@ export default function WordFinder() {
         // generate names by trying to use roots and suffixes and prefixes
         let i = 0;
         while (names.length < 20) {
+            let tmpLetterFrequency = { ...letterFrequency };
             // choose random root, prefix, and suffix and remove the letters from the letter frequency
             let root = roots[i % roots.length];
-            letterFrequency = removeLetters(letterFrequency, mapLetterFrequency(name));
+            tmpLetterFrequency = removeLetters(tmpLetterFrequency, mapLetterFrequency(name));
 
             //randomly chooses to prioritize suffix or prefix
             if (Math.random() < 0.5) {
@@ -424,7 +425,7 @@ export default function WordFinder() {
             }
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
-            let leftPad, rightPad = makePadding(letterFrequency);
+            let leftPad, rightPad = makePadding(tmpLetterFrequency);
             let name = prefix + leftPad + root + rightPad + suffix;
             
             names.add(name)
