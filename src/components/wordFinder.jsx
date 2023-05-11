@@ -339,7 +339,7 @@ export default function WordFinder() {
             letterFrequency = subtractLetterFrequency(letterFrequency, mapLetterFrequency(suffix));
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
-            let left, right = makePadding(letterFrequency);
+            let leftPad, rightPad = makePadding(letterFrequency);
             let name = prefix + leftPad + root + rightPad + suffix;
             
             names.add(name)
