@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Input, Button, ButtonGroup } from 'reactstrap';
-import { mapLetterFrequency, isSubset, removeLetters, cleanText } from '../util/util';
+import { mapLetterFrequency, isSubset, removeLetters, cleanText, frequencyToString } from '../util/util';
 import WordGroup from './wordGroup';
 
 export default function WordFinder() {
@@ -432,8 +432,10 @@ export default function WordFinder() {
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
             console.log('tmpLetterFrequency: ', tmpLetterFrequency);
-            let leftPad, rightPad = makePadding(tmpLetterFrequency);
-            // console.log('prefix: ' + prefix, 'leftPad: ' + leftPad, 'root: ' + root, 'rightPad: ' + rightPad, 'suffix: ' + suffix);
+            let padding = makePadding(frequencyToString(tmpLetterFrequency));
+            let leftPad = padding[0];
+            let rightPad = padding[1];
+            console.log('prefix: ' + prefix, 'leftPad: ' + leftPad, 'root: ' + root, 'rightPad: ' + rightPad, 'suffix: ' + suffix);
             let name = prefix + leftPad + root + rightPad + suffix;
             
             names.push(name)
@@ -451,15 +453,17 @@ export default function WordFinder() {
     }
 
     // evenly splits the remaining letters in the letter frequency between the left and right padding and randomly organizes the letters in each
-    function makePadding(letterFrequency) {
-        console.log('letterFrequency: ' + letterFrequency)
+    function makePadding(input) {
         let leftPad = '';
         let rightPad = '';
-        let lettersSize = getLetterFrequencySize(letterFrequency);
+        let lettersSize = input.length;
+        console.log('lettersSize: ', lettersSize, 'input: ', input);
         while (lettersSize > 0) {
-            let letter = letterFrequency[Math.floor(Math.random()*letterFrequency.length)];
+            // pick random letter from input
+            let letter = input[Math.floor(Math.random()*input.length)];
             // console.log('letter: ' + letter);
-            letterFrequency = removeLetters(letterFrequency, letter);
+            //remove first instance of letter from input
+            input = input.replace(letter, '');
             // console.log('letterFrequency: ' + letterFrequency);
             if (Math.random() < 0.5) {
                 leftPad += letter;
