@@ -454,27 +454,12 @@ export default function WordFinder() {
 
     // evenly splits the remaining letters in the letter frequency between the left and right padding and randomly organizes the letters in each
     function makePadding(input) {
-        let leftPad = '';
-        let rightPad = '';
-        let lettersSize = input.length;
-        console.log('lettersSize: ', lettersSize, 'input: ', input);
-        while (lettersSize > 0) {
-            // pick random letter from input
-            let letter = input[Math.floor(Math.random()*input.length)];
-            // console.log('letter: ' + letter);
-            //remove first instance of letter from input
-            input = input.replace(letter, '');
-            // console.log('letterFrequency: ' + letterFrequency);
-            if (Math.random() < 0.5) {
-                leftPad += letter;
-                // console.log('leftPad: ' + leftPad);
-            } else {
-                rightPad += letter;
-                // console.log('rightPad: ' + rightPad);
-            }
-            lettersSize--;
-        }
-        return [leftPad, rightPad];
+        //randomly reorder string
+        let shuffled = input.split('').sort(() => 0.5 - Math.random()).join('');
+        //choose random index to split string
+        let splitIndex = Math.floor(Math.random() * shuffled.length);
+
+        return [shuffled.slice(0, splitIndex), shuffled.slice(splitIndex)];
     }
     
     return (
