@@ -28,12 +28,12 @@ export default function WordFinder() {
         setWord(word);
     }
 
-    function handleClick() {
+    function useWord() {
         if (!removeLetters(letterFrequency, word)) {
             return;
         }
-        word = word.split(' ');
-        words = [...words, ...word];
+        console.log(word.split(' '));
+        words = [...words, ...word.split(' ')];
         letterFrequency = {...letterFrequency};
         let data = {letterFrequency, words}
         //update the state of the store with the new word in the words list
@@ -482,7 +482,7 @@ export default function WordFinder() {
                         Contains
                     </Button>
                 </ButtonGroup>
-                <Button onClick={handleClick}>Use word</Button>
+                <Button onClick={useWord}>Use word</Button>
                 <ButtonGroup>
                     <Button
                         onClick={(e) => handleToggle(e.target.innerText)}
