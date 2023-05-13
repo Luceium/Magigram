@@ -32,7 +32,8 @@ export default function WordFinder() {
         if (!removeLetters(letterFrequency, word)) {
             return;
         }
-        words = [...words, word];
+        word = word.split(' ');
+        words = [...words, ...word];
         letterFrequency = {...letterFrequency};
         let data = {letterFrequency, words}
         //update the state of the store with the new word in the words list
