@@ -4,12 +4,12 @@ import { Input, Button, ButtonGroup } from 'reactstrap';
 import { mapLetterFrequency, isSubset, removeLetters, cleanText, frequencyToString } from '../util/util';
 import WordGroup from './wordGroup';
 
-export default function WordFinder() {
+export default function WordFinder(props) {
     const dispatch = useDispatch();
     let words = useSelector(state => state.words);
     let letterFrequency = useSelector(state => state.letterFrequency);
     const [word, setWord] = useState('');
-    const [pos, setPos] = useState('noun'); // part of speech [noun, verb, adjective]
+    const [pos, setPos] = useState(props.types[0]); // part of speech [noun, verb, adjective]
     const [filter, setFilter] = useState('Starts With'); // filter word choices by prefix [word, prefix
     const [wordChoices, setWordChoices] = useState([]);
     useEffect(() => {
@@ -94,7 +94,7 @@ export default function WordFinder() {
             }
         }
         
-        // try to make better names by use of roots, prefix, sufix, common sounds
+        // try to make better names by use of roots, prefix, suffix, common sounds
         // TODO: sort the lists in a topological ordering such that if A.letterFrequency is a subset of B.letterFrequency, then B comes before A
         // this would favor longer and rarer roots/prefixes/suffixes over shorter ones
         // also randomize the order of the roots/prefixes/suffixes so that the same ones don't always appear first
@@ -236,24 +236,9 @@ export default function WordFinder() {
             'vit',
             'volut',
         ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency)).sort(()=>Math.random()-0.5);
-        // const commonSounds = [
-        //     'ch',
-        //     'sh',
-        //     'th',
-        //     'ph',
-        //     'wh',
-        //     'wr',
-        //     'ck',
-        //     'gn',
-        //     'kn',
-        //     'ng',
-        //     'qu',
-        //     'sc',
-        // ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency));
 
         // generate names by trying to use roots and suffixes and prefixes
-        let i = 0;
-        while (names.length < 20) {
+        for (let i = 0; i < 20; i++) {
             let tmpLetterFrequency = { ...letterFrequency };
             // choose random root, prefix, and suffix and remove the letters from the letter frequency
             let root = roots[i % roots.length];
@@ -439,8 +424,9 @@ export default function WordFinder() {
             console.log('prefix: ' + prefix, 'leftPad: ' + leftPad, 'root: ' + root, 'rightPad: ' + rightPad, 'suffix: ' + suffix);
             let name = prefix + leftPad + root + rightPad + suffix;
             
-            names.push(name)
-            i++;
+            if (!names.includes(name)) {
+                names.push(name)
+            }
         }
 
         // generate remaining amount of names with equal distribution of vowels between consonants
@@ -465,7 +451,7 @@ export default function WordFinder() {
     
     return (
         <>
-            <h1>Word Finder</h1>
+            <h2>{props.name}</h2>
             <div>
                 <Input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
                 <ButtonGroup>
@@ -486,24 +472,25 @@ export default function WordFinder() {
                 <ButtonGroup>
                     <Button
                         onClick={(e) => handleToggle(e.target.innerText)}
-                        active={pos==="noun"}
+                        active={pos===props.types[0]}
                     >
-                        Noun
+                        {props.types[0]}
                     </Button>
                     <Button
                         onClick={(e) => handleToggle(e.target.innerText)}
-                        active={pos==="verb"}
+                        active={pos===props.types[1]}
                     >
-                        Verb
+                        {props.types[1]}
                     </Button>
                     <Button
                         onClick={(e) => handleToggle(e.target.innerText)}
-                        active={pos==="adjective"}
+                        active={pos===props.types[2]}
                     >
-                        Adjective
+                        {props.types[2]}
                     </Button>
                 </ButtonGroup>
-                <Button onClick={generateNames}>Generate Names</Button>
+            
+                {props.word || <Button onClick={generateNames}>Generate Names</Button>}
             </div>
             <WordGroup src={wordChoices} type='wordList' />
         </>
