@@ -5,8 +5,8 @@ import json
 def buildTrie():
     st = time.time()
 
-    sortDictionary() # separates parts of speech
-    sanitize()
+    # sortDictionary() # separates parts of speech
+    # sanitize()
     makeJsonFiles()
     
     et = time.time()
