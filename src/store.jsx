@@ -15,10 +15,12 @@ function reducer(state = initialState, action) {
     case 'UPDATE_DATA':
       return { ...state, letterFrequency: action.payload.letterFrequency, words: action.payload.words };
     case 'POP':
-      words = hist[action.payload].words;
-      letterFrequency = hist[action.payload].letterFrequency;
       hist.splice(action.payload, 1);
       hist = [...hist];
+      return { ...state, hist: hist };
+    case 'PULL':
+      words = [...hist[action.payload].words];
+      letterFrequency = {...hist[action.payload].letterFrequency};
       return { ...state, hist: hist, words: words, letterFrequency: letterFrequency };
     case 'PUSH':
       hist = [...state.hist];

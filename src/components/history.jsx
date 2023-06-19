@@ -12,7 +12,11 @@ export default function History() {
         let data = index;
         dispatch({type: 'POP', payload: data});
     }
-
+    
+    function pull(index) {
+        let data = index;
+        dispatch({type: 'PULL', payload: data});
+    }
 
     function push() {
         dispatch({type: 'PUSH'});
@@ -27,9 +31,12 @@ export default function History() {
             {
                 history.map((attempt, index) => {
                     return(
-                        <div key={index} onClick={() => pop(index)}>    
-                            <WordGroup src={attempt.words} type='history' className='bg-warning'/>
-                            <p className="badge badge-pill bg-secondary">{frequencyToString(attempt.letterFrequency)}</p>
+                        <div className="flex">
+                            <div key={index} onClick={() => pull(index)}>
+                                <WordGroup src={attempt.words} type='history' className='bg-warning'/>
+                                <p className="badge badge-pill bg-secondary">{frequencyToString(attempt.letterFrequency)}</p>
+                            </div>
+                            <Button className="danger" onClick={() => pop(index)}>Delete</Button>
                         </div>
                     )
                 })

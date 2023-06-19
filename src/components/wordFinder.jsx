@@ -98,6 +98,7 @@ export default function WordFinder(props) {
         // TODO: sort the lists in a topological ordering such that if A.letterFrequency is a subset of B.letterFrequency, then B comes before A
         // this would favor longer and rarer roots/prefixes/suffixes over shorter ones
         // also randomize the order of the roots/prefixes/suffixes so that the same ones don't always appear first
+        // TODO: possibly refactor this to use the trie's
         const roots = [
             '',
             'ab',
