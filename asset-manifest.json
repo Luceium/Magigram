@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/EpicAnagram/static/css/main.756af292.css",
-    "main.js": "/EpicAnagram/static/js/main.0ffcf656.js",
+    "main.css": "/EpicAnagram/static/css/main.f161583d.css",
+    "main.js": "/EpicAnagram/static/js/main.8b44606a.js",
     "static/js/787.832f1daa.chunk.js": "/EpicAnagram/static/js/787.832f1daa.chunk.js",
     "index.html": "/EpicAnagram/index.html",
-    "main.756af292.css.map": "/EpicAnagram/static/css/main.756af292.css.map",
-    "main.0ffcf656.js.map": "/EpicAnagram/static/js/main.0ffcf656.js.map",
+    "main.f161583d.css.map": "/EpicAnagram/static/css/main.f161583d.css.map",
+    "main.8b44606a.js.map": "/EpicAnagram/static/js/main.8b44606a.js.map",
     "787.832f1daa.chunk.js.map": "/EpicAnagram/static/js/787.832f1daa.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.756af292.css",
-    "static/js/main.0ffcf656.js"
+    "static/css/main.f161583d.css",
+    "static/js/main.8b44606a.js"
   ]
 }
