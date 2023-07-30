@@ -252,7 +252,7 @@ export default function WordFinder() {
 
         // generate names by trying to use roots and suffixes and prefixes
         let i = 0;
-        while (names.length < 20) {
+        while (names.length < 1) {
             let tmpLetterFrequency = { ...letterFrequency };
             // choose random root, prefix, and suffix and remove the letters from the letter frequency
             let root = roots[i % roots.length];
@@ -431,9 +431,8 @@ export default function WordFinder() {
             }
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
-            console.log('tmpLetterFrequency: ', tmpLetterFrequency);
             let leftPad, rightPad = makePadding(tmpLetterFrequency);
-            // console.log('prefix: ' + prefix, 'leftPad: ' + leftPad, 'root: ' + root, 'rightPad: ' + rightPad, 'suffix: ' + suffix);
+            console.log('prefix: ' + prefix, 'leftPad: ' + leftPad, 'root: ' + root, 'rightPad: ' + rightPad, 'suffix: ' + suffix);
             let name = prefix + leftPad + root + rightPad + suffix;
             
             names.push(name)
@@ -452,21 +451,20 @@ export default function WordFinder() {
 
     // evenly splits the remaining letters in the letter frequency between the left and right padding and randomly organizes the letters in each
     function makePadding(letterFrequency) {
-        console.log('letterFrequency: ' + letterFrequency)
         let leftPad = '';
         let rightPad = '';
         let lettersSize = getLetterFrequencySize(letterFrequency);
         while (lettersSize > 0) {
             let letter = letterFrequency[Math.floor(Math.random()*letterFrequency.length)];
-            // console.log('letter: ' + letter);
+            console.log('letter: ' + letter);
             letterFrequency = removeLetters(letterFrequency, letter);
-            // console.log('letterFrequency: ' + letterFrequency);
+            console.log('letterFrequency: ' + letterFrequency);
             if (Math.random() < 0.5) {
                 leftPad += letter;
-                // console.log('leftPad: ' + leftPad);
+                console.log('leftPad: ' + leftPad);
             } else {
                 rightPad += letter;
-                // console.log('rightPad: ' + rightPad);
+                console.log('rightPad: ' + rightPad);
             }
             lettersSize--;
         }
