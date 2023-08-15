@@ -18,8 +18,8 @@ export default function Word(props) {
     }
 
     function removeWordFromWordList(index) {
-        //removes the first occurance of a specified word from a list of words and returns it as a new array
-        let word = words.splice(index, 1)[0]
+        //removes the first occurrence of a specified word from a list of words and returns it as a new array
+        let word = words.splice(index, 1)[0].toLowerCase()
         console.log(word)
         words = [...words]
         //adds the letters from the word back into the letter bank
