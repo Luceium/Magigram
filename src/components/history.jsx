@@ -32,11 +32,11 @@ export default function History() {
                 history.map((attempt, index) => {
                     return(
                         <div className="flex">
-                            <div key={index} onClick={() => pull(index)}>
-                                <WordGroup src={attempt.words} type='history' className='bg-warning'/>
+                            <div key={index} onClick={() => pull(index)} className="bg-warning rounded-3 rounded-start-pill p-1 m-1">
+                                <WordGroup src={attempt.words} type='history' />
                                 <p className="badge badge-pill bg-secondary">{frequencyToString(attempt.letterFrequency)}</p>
                             </div>
-                            <Button className="danger" onClick={() => pop(index)}>Delete</Button>
+                            <Button className="bg-danger rounded-end-circle" onClick={() => pop(index)}>Delete</Button>
                         </div>
                     )
                 })
