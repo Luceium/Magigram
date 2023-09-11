@@ -59,3 +59,11 @@ export function frequencyToString(letterFrequency) {
     }
     return letterBank
 }
+
+export function getLetterFrequencySize(letterFrequency) {
+    let size = 0;
+    for (const letter in letterFrequency) {
+        size += letterFrequency[letter];
+    }
+    return size;
+}

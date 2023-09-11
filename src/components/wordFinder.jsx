@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Input, Button, ButtonGroup } from 'reactstrap';
-import { mapLetterFrequency, isSubset, removeLetters, cleanText, frequencyToString } from '../util/util';
+import { mapLetterFrequency, isSubset, removeLetters, cleanText, frequencyToString, getLetterFrequencySize } from '../util/frequencyUtils';
 import WordGroup from './wordGroup';
 
 export default function WordFinder(props) {
@@ -17,14 +17,6 @@ export default function WordFinder(props) {
     }, [letterFrequency, word, pos])
 
     let clearInput = () => {setWord('');};
-
-    function getLetterFrequencySize(letterFrequency) {
-        let size = 0;
-        for (const letter in letterFrequency) {
-            size += letterFrequency[letter];
-        }
-        return size;
-    }
     
     function handleChange(word) {
         setWord(word);

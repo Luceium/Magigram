@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { frequencyToString } from '../util/util';
+import { frequencyToString } from '../util/frequencyUtils';
 
 function LetterBank(props) {
     // subscribe to the store

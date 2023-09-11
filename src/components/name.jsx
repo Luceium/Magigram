@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Input } from 'reactstrap';
-import { mapLetterFrequency } from '../util/util';
+import { mapLetterFrequency } from '../util/frequencyUtils';
 
 
 function Name(props) {  

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { removeLetters } from '../util/util'
+import { removeLetters } from '../util/frequencyUtils'
 
 export default function Word(props) {
     const dispatch = useDispatch();
