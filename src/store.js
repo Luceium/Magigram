@@ -14,7 +14,7 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case 'UPDATE_DATA':
       return { ...state, letterFrequency: action.payload.letterFrequency, words: action.payload.words };
-    case 'POP':
+    case 'POP': // TODO: refactor to delete
       hist.splice(action.payload, 1);
       hist = [...hist];
       return { ...state, hist: hist };
