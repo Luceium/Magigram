@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeLetters } from '../util/frequencyUtils'
 
@@ -6,7 +6,7 @@ export default function Word(props) {
     const dispatch = useDispatch();
     let words = useSelector(state => state.words)
     let letterFrequency = useSelector(state => state.letterFrequency)
-    let isBeingDragged = false
+    const [isBeingDragged, setIsBeingDragged]= useState(false)
 
     
     function handleOnClick(word, index) {
@@ -43,15 +43,15 @@ export default function Word(props) {
     }
 
     function handleDragStart(e) {
-        isBeingDragged = true;
+        setIsBeingDragged(true);
     }
 
     function handleDragEnd(e) {
-        isBeingDragged = false;
+        setIsBeingDragged(false);
     }
 
     return (
-        <div className={'badge badge-pill bg-primary m-1' + (isBeingDragged ? 'opacity-50' : '')}
+        <div className={'badge badge-pill bg-primary m-1 ' + (isBeingDragged ? 'opacity-50' : '')}
                 style={{fontSize: '15px'}}
                 onClick={(e) => handleOnClick(e.target.innerText, props.index)}
                 draggable={props.type==="wordBank"}
