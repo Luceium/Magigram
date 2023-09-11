@@ -16,6 +16,8 @@ export default function WordFinder(props) {
         getWordChoices();
     }, [letterFrequency, word, pos])
 
+    let clearInput = () => {setWord('');};
+
     function getLetterFrequencySize(letterFrequency) {
         let size = 0;
         for (const letter in letterFrequency) {
@@ -497,7 +499,7 @@ export default function WordFinder(props) {
             
                 {props.word || <Button onClick={generateNames}>Generate Names</Button>}
             </div>
-            <WordGroup src={wordChoices} type='wordList' />
+            <WordGroup src={wordChoices} type='wordList' clearInput={clearInput}/>
         </>
     )
 }

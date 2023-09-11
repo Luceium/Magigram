@@ -14,6 +14,7 @@ export default function Word(props) {
         }
         if (props.type==='wordList') {
             addWordToWordList(word)
+            props.clearInput();
         }
     }
 

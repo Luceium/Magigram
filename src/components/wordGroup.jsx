@@ -8,7 +8,7 @@ export default function wordGroup(props) {
         <div>
             {words.map((word, index) => {
                 return (
-                    <Word key={index} word={word} type={props.type} index={index} />
+                    <Word key={index} word={word} type={props.type} index={index} clearInput={props.clearInput}/>
                 )
             })}
         </div>
