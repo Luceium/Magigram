@@ -4,6 +4,7 @@ import requests
 from config import API_KEY
 import enchant
 import inflect
+import json
 
 # formatted API URL
 url = "https://wordsapiv1.p.rapidapi.com/words/{}/definitions"
@@ -26,11 +27,35 @@ def buildTrie():
     sortDictionary() # separates parts of speech
         
     # pos == part of speech
-    for posWords in os.listdir('sortedPOSLists'):
-        makeJsonFile(posWords)
+    makeJsonFiles()
 
     et = time.time()
     print(f'buildTrie finished in {et - st:.3f}')
+
+trie = {}
+def makeJsonFiles():
+    st = time.time()
+
+    rmDirFiles('dictionary/JSON')
+    for posFile in os.listdir('dictionary/sorted'):
+        with open(f'dictionary/sorted/{posFile}') as pos, open(f'dictionary/JSON/{posFile[:-4]}.json', 'w') as jsonFile:
+            for word in pos:
+                add_word_to_trie(word.strip())
+            json.dump(trie, jsonFile)
+            trie.clear()
+
+    et = time.time()
+    print(f'makeJsonFile finished in {et - st:.3f}')
+
+def add_word_to_trie(word):
+    first_three_letters = word[:3]
+    if first_three_letters not in trie:
+        trie[first_three_letters] = {}
+    if word not in trie[first_three_letters]:
+        letterFrequency = {}
+        for letter in word:
+            letterFrequency[letter] = letterFrequency.get(letter, 0) + 1
+        trie[first_three_letters][word] = letterFrequency
 
 # removes: length < 4, plurals, useless words, scientific language, proper noun, conjunction, preposition, interjection, sounds effects
 def sanitizeDictionary():
@@ -59,24 +84,27 @@ def sortDictionary():
             for word in words:
                 word = word.strip()
                 print(word)
-                # TODO: check if we've cached the api call before calling api
                 pos_tag = cachedAPICall(word)
                 if not pos_tag:
-                    print(word, "was not in cache")
-                    response = requests.request("GET", url.format(word), headers=headers)
-                    data = response.json()
-                    print('going to sleep', data)
-                    time.sleep(35) # prevents paying
+                    # print(word, "was not in cache")
+                    # response = requests.request("GET", url.format(word), headers=headers)
+                    # data = response.json()
+                    # print('going to sleep', data)
+                    # time.sleep(35) # prevents paying
 
-                    try:
-                        pos_tag = data.get("definitions", "Unknown")[0].get("partOfSpeech", "Unknown")
-                    except:
-                        pos_tag = "errors"
-                    if not pos_tag:
-                        pos_tag = "errors"
-                    # cache api call
-                    with open('dictionary/cachedAPICalls.txt', 'a') as cache:
-                        cache.write(word + ":" + pos_tag + "\n")
+                    # try:
+                    #     pos_tag = data.get("definitions", "Unknown")[0].get("partOfSpeech", "Unknown")
+                    # except:
+                    #     pos_tag = "errors"
+                    # if not pos_tag:
+                    #     pos_tag = "errors"
+                    # # cache api call
+                    # with open('dictionary/cachedAPICalls.txt', 'a') as cache:
+                    #     cache.write(word + ":" + pos_tag + "\n")
+
+                    # all words have been categorized so none categorized words will be marked as null
+                    with open(f'dictionary/sorted/null.txt', 'a') as sortedFile:
+                        sortedFile.write(word + "\n")
                 
 
                 with open(f'dictionary/sorted/{pos_tag}.txt', 'a') as sortedFile:
@@ -103,4 +131,5 @@ def rmDirFiles(dir_path):
 # def makeJsonFile(inputFile):
 
 # sanitizeDictionary()
-sortDictionary()
+# sortDictionary()
+buildTrie()
