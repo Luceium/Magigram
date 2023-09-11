@@ -52,8 +52,8 @@ export default function WordFinder(props) {
     // TODO: populate word choices in real time so user can see progress
     function getWordChoices() {
         let wordChoices = [];
-        //load JSON file for the part of speech from tinyDictionary/JSON into trie variable
-        let trie = require(`../../tinyDictionary/JSON/${pos}.json`);
+        //load JSON file for the part of speech from dictionary/JSON into trie variable
+        let trie = require(`../../dictionary/JSON/${pos}.json`);
         //create copy of word that has been sanitized
         let wordCopy = cleanText(word);
     
@@ -62,9 +62,13 @@ export default function WordFinder(props) {
             let passFilter = filter==="Starts With" ? prefix.startsWith(wordCopy) || wordCopy.startsWith(prefix) : true;
             if (passFilter && isSubset(mapLetterFrequency(prefix), letterFrequency)) {
                 for (const wordObj in trie[prefix]) {
-                    let passFilter = filter==="Starts With" ? wordObj.startsWith(wordCopy) : wordObj.includes(wordCopy);
-                    if (!passFilter){continue;}
-                    let wordsLetterFrequency = trie[prefix][wordObj];
+                    if (filter==="Starts With" && !wordObj.startsWith(wordCopy)) continue;
+                    let wordsLetterFrequency = trie[prefix][wordObj]; 
+                    // get frequency of input (word)
+                    if (filter==="Contains") {
+                        let inputLetterFrequency = mapLetterFrequency(wordCopy);
+                        if (!isSubset(inputLetterFrequency, wordsLetterFrequency)) continue;
+                    }
                     if (isSubset(wordsLetterFrequency, letterFrequency)){
                         wordChoices.push(wordObj);
                     }
