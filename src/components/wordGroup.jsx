@@ -1,11 +1,12 @@
 import React from 'react'
 import Word from './word';
 import { useState } from 'react';
-import { type } from '@testing-library/user-event/dist/type';
+import { useDispatch } from 'react-redux';
 
 export default function wordGroup(props) {
     const words = props.src;
     const [draggedIndex, setDraggedIndex] = useState(-1);
+    const dispatch = useDispatch();
     // const 
 
     function handleDragOver(e) {
@@ -13,13 +14,15 @@ export default function wordGroup(props) {
         let wordRemoved = words.splice(draggedIndex, 1)[0]
 
         //TODO: add logic to determine where to insert the dragged word
-
-        words.splice(0, 0, wordRemoved)
+        const insertIndex = 0;
+        words.splice(insertIndex, 0, wordRemoved)
+        setDraggedIndex(insertIndex)
     }
 
     function handleDragEnd() {
         setDraggedIndex(-1)
         //TODO: add logic to update the store with the new word order
+        dispatch({type: 'REORDER_WORDS', payload: words})
     }
 
 
