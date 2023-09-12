@@ -6,7 +6,6 @@ export default function Word(props) {
     const dispatch = useDispatch();
     let words = useSelector(state => state.words)
     let letterFrequency = useSelector(state => state.letterFrequency)
-    const [isBeingDragged, setIsBeingDragged]= useState(false)
 
     
     function handleOnClick(word, index) {
@@ -42,21 +41,13 @@ export default function Word(props) {
         dispatch({type: 'UPDATE_DATA', payload: data})
     }
 
-    function handleDragStart(e) {
-        setIsBeingDragged(true);
-    }
-
-    function handleDragEnd(e) {
-        setIsBeingDragged(false);
-    }
-
     return (
-        <div className={'badge badge-pill bg-primary m-1 ' + (isBeingDragged ? 'opacity-50' : '')}
+        <div className={'badge badge-pill bg-primary m-1 ' + (props.isBeingDragged ? 'opacity-50' : '')}
                 style={{fontSize: '15px'}}
                 onClick={(e) => handleOnClick(e.target.innerText, props.index)}
-                draggable={props.type==="wordBank"}
-                onDragStart={(e) => handleDragStart(e)}
-                onDragEnd={(e) => handleDragEnd(e)}
+                onDragStart={() => props.setDraggedIndex(props.index)}
+                onDragEnd={() => props.setDraggedIndex(-1)}
+                draggable={props.type==='wordBank'}
         >
             {props.word}
         </div>
