@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeLetters } from '../util/frequencyUtils'
+import './word.css'
 
 export default function Word(props) {
     const dispatch = useDispatch();
@@ -42,7 +43,7 @@ export default function Word(props) {
     }
 
     return (
-        <div className={'badge badge-pill bg-primary m-1 ' + (props.isBeingDragged ? 'opacity-50' : '')}
+        <div className={'badge badge-pill bg-primary m-1 ' + (props.isBeingDragged && !props.isInsertPoint? 'opacity-50' : '') + (props.isInsertPoint && !props.isBeingDragged ? 'bounce-right' : '')}
                 style={{fontSize: '15px'}}
                 onClick={(e) => handleOnClick(e.target.innerText, props.index)}
                 onDragStart={() => props.setDraggedIndex(props.index)}
