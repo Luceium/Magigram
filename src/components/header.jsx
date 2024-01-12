@@ -5,9 +5,6 @@ function Header(){
         <>
             <h1>Magigram</h1>
             <select data-choose-theme>
-                <option value="">Default</option>
-                <option value="dark">Dark</option>
-                <option value="pink">Pink</option>
                 {[  "cyberpunk",
                     "synthwave",
                     "lemonade",
@@ -17,7 +14,7 @@ function Header(){
                     "forest",
                     "luxury",]
                 .map((theme) =>
-                    {<option value={theme}>{theme.toUpperCase()}</option>})}
+                    {return <option value={theme}>{theme[0].toUpperCase() + theme.slice(1)}</option>})}
             </select>
         </>
     );

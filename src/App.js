@@ -9,10 +9,15 @@ import Name from './components/name';
 import Instructions from './components/Instructions';
 import './CompiledApp.css';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react'
 import { themeChange } from 'theme-change'
-themeChange()
 
 function App() {
+  useEffect(() => {
+    themeChange(false)
+  }, [])
+
+  
   return (
     <>
       <Header />
