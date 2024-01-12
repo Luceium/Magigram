@@ -7,8 +7,7 @@ import Foot from "./components/foot";
 import LetterBank from './components/letterBank';
 import Name from './components/name';
 import Instructions from './components/Instructions';
-import './App.css';
-// import { Nav.Link, NavItem}
+import './CompiledApp.css';
 import { useSelector } from 'react-redux';
 
 function App() {
