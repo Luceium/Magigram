@@ -1,5 +1,5 @@
 import React from 'react';
-import header from "./components/header";
+import Header from "./components/header";
 import History from "./components/history";
 import WordFinder from "./components/wordFinder";
 import WordGroup from "./components/wordGroup";
@@ -9,11 +9,13 @@ import Name from './components/name';
 import Instructions from './components/Instructions';
 import './CompiledApp.css';
 import { useSelector } from 'react-redux';
+import { themeChange } from 'theme-change'
+themeChange()
 
 function App() {
   return (
     <>
-      <header />
+      <Header />
       <div fluid className='m-auto'>
         <div >
           <div md className='mt-4 bg-info rounded'>
