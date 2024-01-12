@@ -15,27 +15,27 @@ import { themeChange } from 'theme-change'
 function App() {
   useEffect(() => {
     themeChange(false)
+    // 👆 false parameter is required for react project
   }, [])
 
-  
   return (
     <>
       <Header />
-      <div fluid className='m-auto'>
+      <div className='m-3'>
         <div >
-          <div md className='mt-4 bg-info rounded'>
+          <div md className='mt-3 bg-primary rounded'>
             <Name />
           </div>
-          <div md className='mt-4 bg-info rounded'>
+          <div md className='mt-3 bg-primary rounded'>
             <LetterBank />
           </div>
         </div>
         <div className=''>
-          <div className='col-3 bg-info rounded mt-4 mx-auto'>
+          <div className='col-3 bg-primary rounded mt-4 mx-auto'>
             <History />
           </div>
           <div className='mx-auto'>
-            <div className='bg-info rounded mt-4' >
+            <div className=' bg-primary rounded mt-4' >
               <div id="tabs"
                 variant="tabs"
                 defaultActiveKey="anagramBuilder"
@@ -56,18 +56,18 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className='bg-info rounded' >
+            <div className=' bg-primary rounded' >
               <h2>
                 Word Bank
               </h2>
               <WordGroup type='wordBank' src={useSelector(state => state.words)}/>
             </div>
           </div>
-          <div className='col-3 bg-info rounded mt-4 mx-auto'>
+          <div className='col-3  bg-primary rounded mt-4 mx-auto'>
             <Instructions />
           </div>
         </div>
-        {/* <div className='bg-info rounded mt-4' >
+        {/* <div className=' bg-primary rounded mt-4' >
           <Foot />
         </div> */}
       </div >

@@ -2,21 +2,23 @@ import React from 'react';
 
 function Header(){
     return (
-        <>
-            <h1>Magigram</h1>
-            <select data-choose-theme>
-                {[  "cyberpunk",
-                    "synthwave",
-                    "lemonade",
-                    "retro",
-                    "dark",
-                    "night",
-                    "forest",
-                    "luxury",]
-                .map((theme) =>
-                    {return <option value={theme}>{theme[0].toUpperCase() + theme.slice(1)}</option>})}
+        <div className='navbar bg-base-100'>
+            <div className="flex-1">
+                <h1 className="text-3xl">Magigram</h1>
+            </div>
+            <select data-choose-theme class="select select-primary max-w-xs">
+            {[
+                        "cyberpunk",
+                        "synthwave",
+                        "lemonade",
+                        "retro",
+                        "dark",
+                        "night",
+                        "forest",
+                        "luxury",
+                    ].map((theme) => { return <option value={theme}>{theme[0].toUpperCase() + theme.slice(1)}</option>})}
             </select>
-        </>
+        </div>
     );
 }
  
