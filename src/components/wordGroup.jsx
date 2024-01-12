@@ -50,10 +50,13 @@ export default function WordGroup(props) {
         dispatch({type: 'REORDER_WORDS', payload: words})
     }
 
-
+    function handleDragLeave(e) {
+        e.preventDefault();
+        setInsertIndex(-1)
+    }
 
     return (
-        <div onDragOver={(e) => handleDragOver(e)} onDragEnd={(e) => handleDragEnd(e)} ref={containerRef} >
+        <div onDragOver={(e) => handleDragOver(e)} onDragEnd={(e) => handleDragEnd(e)} onDragLeave={(e) => handleDragLeave(e)} ref={containerRef} >
             {words.map((word, index) => {
                 return (
                     <Word
