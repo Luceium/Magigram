@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Input } from 'reactstrap';
 import { mapLetterFrequency } from '../util/frequencyUtils';
 
 
@@ -26,8 +25,8 @@ function Name(props) {
     return (
         <div className='d-flex rounded bg-info p-2'>
             <h2>Name:&nbsp;</h2>
-            <Input type='text' placeholder='Tom Marvollo Riddle' className='rounded' autoComplete='name' onChange={(e) => handleChange(e.target.value)}></Input>
-            <Button onClick={handleClick}>Submit</Button>
+            <input type='text' placeholder='Tom Marvollo Riddle' className='rounded' autoComplete='name' onChange={(e) => handleChange(e.target.value)}/>
+            <button onClick={handleClick}>Submit</button>
         </div>
     );
 }
