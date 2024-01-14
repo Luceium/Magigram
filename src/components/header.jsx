@@ -4,6 +4,7 @@ import Instructions from './Instructions';
 function Header(){
     // local storage only stores strings and with 2 bytes per character so t is used to represent true.
     const [isInfoNeverClicked, infoClicked] = useState(localStorage.getItem('isInfoNeverClicked') == null);
+    if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'cyberpunk');
 
     return (
         <div className='navbar bg-primary'>
