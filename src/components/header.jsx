@@ -24,7 +24,7 @@ function Header(){
                     <div className="modal-action">
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
-                        <button className="btn" onClick={() => {infoClicked(false); localStorage.setItem("isInfoNeverClicked", "f"); console.log(`modal closed. state: ${isInfoNeverClicked}. storage: ${localStorage.getItem("isInfoNeverClicked")}`)}}>Close</button>
+                        <button className="btn" onClick={() => {infoClicked(false); localStorage.setItem("isInfoNeverClicked", "f");}}>Close</button>
                     </form>
                     </div>
                 </div>

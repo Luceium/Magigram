@@ -32,7 +32,6 @@ export default function WordGroup(props) {
                 {offset: Number.NEGATIVE_INFINITY}
             ).insertIndex
         )
-        console.log(insertIndex);
     }
 
     function handleDragEnd(e) {

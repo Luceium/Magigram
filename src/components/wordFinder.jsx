@@ -25,7 +25,6 @@ export default function WordFinder(props) {
         if (!removeLetters(letterFrequency, word)) {
             return;
         }
-        console.log(word.split(' '));
         words = [...words, ...word.split(' ')];
         letterFrequency = {...letterFrequency};
         let data = {letterFrequency, words}
@@ -415,11 +414,9 @@ export default function WordFinder(props) {
             }
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
-            console.log('tmpLetterFrequency: ', tmpLetterFrequency);
             let padding = makePadding(frequencyToString(tmpLetterFrequency));
             let leftPad = padding[0];
             let rightPad = padding[1];
-            console.log('prefix: ' + prefix, 'leftPad: ' + leftPad, 'root: ' + root, 'rightPad: ' + rightPad, 'suffix: ' + suffix);
             let name = prefix + leftPad + root + rightPad + suffix;
             
             if (!names.includes(name)) {
