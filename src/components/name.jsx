@@ -3,12 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { mapLetterFrequency } from '../util/frequencyUtils';
 
 
-function Name(props) {  
+function Name(props) {
     const dispatch = useDispatch();
     let letterFrequency = useSelector(state => state.letterFrequency);
     const [currentName, updateCurrentName] = useState('');
     
-    //function that handles on blur event
     function handleChange(text) {
         updateCurrentName(text);
     }
@@ -23,10 +22,12 @@ function Name(props) {
     }
     
     return (
-        <div className='d-flex rounded bg-info p-2'>
+        <div className='p-2 bg-neutral text-neutral-content rounded flex items-center'>
             <h2>Name:&nbsp;</h2>
-            <input type='text' placeholder='Tom Marvollo Riddle' className='rounded' autoComplete='name' onChange={(e) => handleChange(e.target.value)}/>
-            <button onClick={handleClick}>Submit</button>
+            <div className="join">
+                <input type='text' placeholder='Tom Marvollo Riddle' className='input w-full max-w-xs join-item' autoComplete='name' onChange={(e) => handleChange(e.target.value)}/>
+                <button className='btn join-item' onClick={handleClick}>Submit</button>
+            </div>
         </div>
     );
 }

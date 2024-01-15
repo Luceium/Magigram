@@ -22,10 +22,11 @@ export default function History() {
     }
 
     return (
-        <>
-            <div>
+        <div className="mt-3 p-2 flex-1 bg-neutral text-neutral-content rounded">
+            <div className="flex items-center">
                 <h1>History</h1>
-                <button onClick={push}>Save</button>
+                <div className="flex-1"/>
+                <button className="btn" onClick={push}>Save</button>
             </div>
             {
                 history.map((attempt, index) => {
@@ -40,6 +41,6 @@ export default function History() {
                     )
                 })
             }
-        </>
+        </div>
     );
 }
