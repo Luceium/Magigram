@@ -10,7 +10,9 @@ function LetterBank(props) {
         <div className='p-2 bg-neutral rounded flex flex-1 items-center text-neutral-content'>
             <h2>Letter Bank: &nbsp;</h2>
             {/* The input class is added to have the same size and styling as the Name input section */}
-            <h2 className='rounded bg-primary input text-primary-content px-2'>{frequencyToString(letterFrequency)}</h2>
+            <div className='rounded bg-primary input text-primary-content px-2 flex items-center justify-center'>
+                <h2 className='text-2xl text-center'>{frequencyToString(letterFrequency)}</h2>
+            </div>
         </div>
     )
 }
