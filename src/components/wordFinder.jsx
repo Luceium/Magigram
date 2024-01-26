@@ -447,41 +447,35 @@ export default function WordFinder(props) {
     return (
         <>
             <div>
-                <input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
-                <div id="btnGroup">
+                <div className="join">
+                    <input className="join-item input input-sm" type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
+                    <button className="join-item btn btn-sm"  onClick={useWord}>Use word</button>
+                </div>
+                <div className='join'>
                     <button
+                        className='join-item btn btn-sm'
                         onClick={(e) => handleToggleFilter(e.target.innerText)}
                         active={filter==="Starts With"}
                     >
                         Starts With
                     </button>
                     <button
+                        className='join-item btn btn-sm'
                         onClick={(e) => handleToggleFilter(e.target.innerText)}
                         active={filter==="Contains"}
                     >
                         Contains
                     </button>
                 </div>
-                <button onClick={useWord}>Use word</button>
-                <div id="btnGroup">
-                    <button
-                        onClick={(e) => handleToggle(e.target.innerText)}
-                        active={pos===props.types[0]}
-                    >
-                        {props.types[0]}
-                    </button>
-                    <button
-                        onClick={(e) => handleToggle(e.target.innerText)}
-                        active={pos===props.types[1]}
-                    >
-                        {props.types[1]}
-                    </button>
-                    <button
-                        onClick={(e) => handleToggle(e.target.innerText)}
-                        active={pos===props.types[2]}
-                    >
-                        {props.types[2]}
-                    </button>
+                <div className='join'>
+                    {props.types.map(type =>
+                        <button key={type} className='join-item btn btn-sm'
+                            onClick={(e) => handleToggle(e.target.innerText)}
+                            active={pos===type}
+                        >
+                            {type}
+                        </button>
+                    )}
                 </div>
             
                 {props.word || <button onClick={generateNames}>Generate Names</button>}
