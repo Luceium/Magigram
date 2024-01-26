@@ -446,7 +446,6 @@ export default function WordFinder(props) {
     
     return (
         <>
-            <h2>{props.name}</h2>
             <div>
                 <input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
                 <div id="btnGroup">
