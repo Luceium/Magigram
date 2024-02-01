@@ -41,7 +41,7 @@ function Header(){
                             "night",
                             "forest",
                             "luxury",
-                        ].map((theme) => { return <option value={theme}>{theme[0].toUpperCase() + theme.slice(1)}</option>})}
+                        ].map((theme) => { return <option key={theme} value={theme}>{theme[0].toUpperCase() + theme.slice(1)}</option>})}
                 </select>
             </div>
             <div className="divider divider-neutral m-0 h-0"></div>
