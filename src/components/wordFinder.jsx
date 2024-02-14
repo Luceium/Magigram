@@ -13,14 +13,11 @@ export default function WordFinder(props) {
     const [filter, setSearch] = useState('Starts With'); // filter word choices by prefix [word, prefix
     const [wordChoices, setWordChoices] = useState([]);
     useEffect(() => {
+        console.log('wordFinder useEffect')
         getWordChoices();
-    }, [letterFrequency, word, type])
+    }, [letterFrequency, word, type, filter])
 
     let clearInput = () => {setWord('');};
-    
-    function handleChange(word) {
-        setWord(word);
-    }
 
     function useWord() {
         if (!removeLetters(letterFrequency, word)) {
@@ -72,16 +69,16 @@ export default function WordFinder(props) {
         }
 
         let names = [];
-        let vowels = ['a', 'e', 'i', 'o', 'u'];
-        let vowelFrequency = 0;
-        let consonantFrequency = 0;
-        for (const letter in letterFrequency) {
-            if (vowels.includes(letter)) {
-                vowelFrequency += letterFrequency[letter];
-            } else {
-                consonantFrequency += letterFrequency[letter];
-            }
-        }
+        // let vowels = ['a', 'e', 'i', 'o', 'u'];
+        // let vowelFrequency = 0;
+        // let consonantFrequency = 0;
+        // for (const letter in letterFrequency) {
+        //     if (vowels.includes(letter)) {
+        //         vowelFrequency += letterFrequency[letter];
+        //     } else {
+        //         consonantFrequency += letterFrequency[letter];
+        //     }
+        // }
         
         // try to make better names by use of roots, prefix, suffix, common sounds
         // TODO: sort the lists in a topological ordering such that if A.letterFrequency is a subset of B.letterFrequency, then B comes before A
@@ -152,7 +149,7 @@ export default function WordFinder(props) {
         <>
             <div>
                 <div className="join text-base-content">
-                    <input className="join-item input input-sm w-20" type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
+                    <input className="join-item input input-sm w-20" type='text' value={word} onChange={(e) => setWord(e.target.value)}/>
                     <select onChange={(e) => setFilter(e.target.value)} defaultValue="Filter" className="select select-bordered join-item select-sm">
                         <option disabled>Filter</option>
                         <option>{props.types[0]}</option>

@@ -13,8 +13,8 @@ const NameBuilder = () => {
             <button role="tab" className={`tab ${!isAnagramBuilder ? "tab-active" : "text-neutral-content"}`} onClick={() => switchBuilder(false)}>Name Builder</button>
         </div>
         {isAnagramBuilder ?
-        <WordFinder types={['noun', 'verb', 'adjective']} word /> :
-        <WordFinder types={['prefix', 'root', 'suffix']}/>}
+        <WordFinder key="wordlist" types={['noun', 'verb', 'adjective']} word /> :
+        <WordFinder key="nameBuilder" types={['prefix', 'root', 'suffix']}/>}
         <div className=' bg-neutral rounded' >
             <h2> Word Bank </h2>
             <WordGroup type='wordBank' src={useSelector(state => state.words)}/>
