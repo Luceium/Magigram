@@ -67,3 +67,7 @@ export function getLetterFrequencySize(letterFrequency) {
     }
     return size;
 }
+
+export function isEmpty(letterFrequency) {
+    return getLetterFrequencySize(letterFrequency) === 0;
+}
