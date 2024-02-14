@@ -161,7 +161,7 @@ export default function WordFinder(props) {
                     <button className="join-item btn btn-sm"  onClick={useWord}>Use word</button>
                 </div>
             
-                {props.name || <button onClick={generateNames}>Generate Names</button>}
+                {props.nameBuilder || <button onClick={generateNames}>Generate Names</button>}
             </div>
             <WordGroup src={wordChoices} type='wordList' clearInput={clearInput}/>
         </>
