@@ -7,7 +7,7 @@ const NameBuilder = () => {
     const [isAnagramBuilder, switchBuilder] = useState(true)
 
   return (
-    <div class="mt-3 p-2 flex-1 bg-neutral text-neutral-content rounded flex flex-col gap-2">
+    <div className="mt-3 p-2 flex-1 bg-neutral text-neutral-content rounded flex flex-col gap-2">
         <div role="tablist" className="tabs tabs-lifted tabs-lg">
             <button role="tab" className={`tab ${isAnagramBuilder ? "tab-active" : "text-neutral-content"}`} onClick={() => switchBuilder(true)}>Word Finder</button>
             <button role="tab" className={`tab ${!isAnagramBuilder ? "tab-active" : "text-neutral-content"}`} onClick={() => switchBuilder(false)}>Name Builder</button>

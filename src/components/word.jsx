@@ -43,7 +43,7 @@ export default function Word(props) {
     }
 
     return (
-        <div className={'badge badge-pill bg-primary m-1 ' + (props.isBeingDragged && !props.isInsertPoint? 'opacity-50' : '') + (props.isInsertPoint && !props.isBeingDragged ? 'bounce-right' : '')}
+        <div className={'badge badge-pill bg-primary text-primary-content m-1 ' + (props.isBeingDragged && !props.isInsertPoint? 'opacity-50' : '') + (props.isInsertPoint && !props.isBeingDragged ? 'bounce-right' : '')}
                 style={{fontSize: '15px'}}
                 onClick={(e) => handleOnClick(e.target.innerText, props.index)}
                 onDragStart={() => props.setDraggedIndex(props.index)}
