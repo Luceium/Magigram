@@ -1,4 +1,3 @@
-import { Button } from "reactstrap";
 import WordGroup from "./wordGroup";
 import { useSelector, useDispatch } from "react-redux";
 import { frequencyToString } from "../util/frequencyUtils";
@@ -23,10 +22,11 @@ export default function History() {
     }
 
     return (
-        <>
-            <div>
+        <div className="mt-3 p-2 flex-1 bg-neutral text-neutral-content rounded">
+            <div className="flex items-center">
                 <h1>History</h1>
-                <Button onClick={push}>Save</Button>
+                <div className="flex-1"/>
+                <button className="btn" onClick={push}>Save</button>
             </div>
             {
                 history.map((attempt, index) => {
@@ -36,11 +36,11 @@ export default function History() {
                                 <WordGroup src={attempt.words} type='history' />
                                 <p className="badge badge-pill bg-secondary">{frequencyToString(attempt.letterFrequency)}</p>
                             </div>
-                            <Button className="bg-danger rounded-end-circle" onClick={() => pop(index)}>Delete</Button>
+                            <button className="bg-danger rounded-end-circle" onClick={() => pop(index)}>Delete</button>
                         </div>
                     )
                 })
             }
-        </>
+        </div>
     );
 }

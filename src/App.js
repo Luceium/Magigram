@@ -1,5 +1,5 @@
 import React from 'react';
-import header from "./components/header";
+import Header from "./components/header";
 import History from "./components/history";
 import WordFinder from "./components/wordFinder";
 import WordGroup from "./components/wordGroup";
@@ -7,66 +7,33 @@ import Foot from "./components/foot";
 import LetterBank from './components/letterBank';
 import Name from './components/name';
 import Instructions from './components/Instructions';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Container, Nav, Row, Tab, Tabs } from 'react-bootstrap';
-// import { Nav.Link, NavItem}
-import { useSelector } from 'react-redux';
+import './CompiledApp.css';
+import { useEffect } from 'react'
+import { themeChange } from 'theme-change'
+import NameBuilder from './components/nameBuilder';
 
 function App() {
+  useEffect(() => {
+    themeChange(false)
+    // 👆 false parameter is required for react project
+  }, [])
+
   return (
     <>
-      <header />
-      <Container fluid className='m-auto'>
-        <Row >
-          <Col md className='mt-4 bg-info rounded'>
-            <Name />
-          </Col>
-          <Col md className='mt-4 bg-info rounded'>
-            <LetterBank />
-          </Col>
-        </Row>
-        <Row className=''>
-          <Col className='col-3 bg-info rounded mt-4 mx-auto'>
-            <History />
-          </Col>
-          <Col className='mx-auto'>
-            <Row className='bg-info rounded mt-4' >
-              <Tabs
-                variant="tabs"
-                defaultActiveKey="anagramBuilder"
-                title="Anagram builder"
-              >
-                <Tab eventKey='anagramBuilder' title="Anagram Builder">
-                  <WordFinder
-                    types={['noun', 'verb', 'adjective']}
-                    name='Word Finder'
-                    word
-                  />
-                </Tab>
-                <Tab eventKey='nameBuilder' title="Name Builder">
-                  <WordFinder
-                    types={['prefix', 'root', 'suffix']}
-                    name='Part Finder'
-                  />
-                </Tab>
-              </Tabs>
-            </Row>
-            <Row className='bg-info rounded' >
-              <h2>
-                Word Bank
-              </h2>
-              <WordGroup type='wordBank' src={useSelector(state => state.words)}/>
-            </Row>
-          </Col>
-          <Col className='col-3 bg-info rounded mt-4 mx-auto'>
-            <Instructions />
-          </Col>
-        </Row>
-        {/* <Row className='bg-info rounded mt-4' >
-          <Foot />
-        </Row> */}
-      </Container >
+      <Header />
+        <div className='flex m-3'>
+            <div class="flex flex-col mr-3">
+              <Name />
+              <History />
+            </div>
+            <div class="flex flex-col flex-1">
+              <LetterBank />
+              <NameBuilder />
+            </div>
+        </div>
+      {/* <div className=' bg-neutral rounded mt-3' >
+        <Foot />
+      </div> */}
     </>
   );
 }

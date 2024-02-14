@@ -32,14 +32,17 @@ export default function WordGroup(props) {
                 {offset: Number.NEGATIVE_INFINITY}
             ).insertIndex
         )
-        console.log(insertIndex);
     }
 
     function handleDragEnd(e) {
         e.preventDefault();
+        if (insertIndex === -1) {
+            return;
+        }
+
         // move dragged word to new position
         let wordRemoved = words.splice(draggedIndex, 1)[0]
-        if (insertIndex) {
+        if (insertIndex != null) {
             words.splice(insertIndex, 0, wordRemoved)
         } else {
             words.push(wordRemoved)

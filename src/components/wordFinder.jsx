@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Input, Button, ButtonGroup } from 'reactstrap';
 import { mapLetterFrequency, isSubset, removeLetters, cleanText, frequencyToString, getLetterFrequencySize } from '../util/frequencyUtils';
 import WordGroup from './wordGroup';
 
@@ -26,7 +25,6 @@ export default function WordFinder(props) {
         if (!removeLetters(letterFrequency, word)) {
             return;
         }
-        console.log(word.split(' '));
         words = [...words, ...word.split(' ')];
         letterFrequency = {...letterFrequency};
         let data = {letterFrequency, words}
@@ -416,11 +414,9 @@ export default function WordFinder(props) {
             }
             
             // generate name by stringing together root, prefix, and suffix and padding with the remaining letters from the letter frequency
-            console.log('tmpLetterFrequency: ', tmpLetterFrequency);
             let padding = makePadding(frequencyToString(tmpLetterFrequency));
             let leftPad = padding[0];
             let rightPad = padding[1];
-            console.log('prefix: ' + prefix, 'leftPad: ' + leftPad, 'root: ' + root, 'rightPad: ' + rightPad, 'suffix: ' + suffix);
             let name = prefix + leftPad + root + rightPad + suffix;
             
             if (!names.includes(name)) {
@@ -452,44 +448,44 @@ export default function WordFinder(props) {
         <>
             <h2>{props.name}</h2>
             <div>
-                <Input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
-                <ButtonGroup>
-                    <Button
+                <input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
+                <div id="btnGroup">
+                    <button
                         onClick={(e) => handleToggleFilter(e.target.innerText)}
                         active={filter==="Starts With"}
                     >
                         Starts With
-                    </Button>
-                    <Button
+                    </button>
+                    <button
                         onClick={(e) => handleToggleFilter(e.target.innerText)}
                         active={filter==="Contains"}
                     >
                         Contains
-                    </Button>
-                </ButtonGroup>
-                <Button onClick={useWord}>Use word</Button>
-                <ButtonGroup>
-                    <Button
+                    </button>
+                </div>
+                <button onClick={useWord}>Use word</button>
+                <div id="btnGroup">
+                    <button
                         onClick={(e) => handleToggle(e.target.innerText)}
                         active={pos===props.types[0]}
                     >
                         {props.types[0]}
-                    </Button>
-                    <Button
+                    </button>
+                    <button
                         onClick={(e) => handleToggle(e.target.innerText)}
                         active={pos===props.types[1]}
                     >
                         {props.types[1]}
-                    </Button>
-                    <Button
+                    </button>
+                    <button
                         onClick={(e) => handleToggle(e.target.innerText)}
                         active={pos===props.types[2]}
                     >
                         {props.types[2]}
-                    </Button>
-                </ButtonGroup>
+                    </button>
+                </div>
             
-                {props.word || <Button onClick={generateNames}>Generate Names</Button>}
+                {props.word || <button onClick={generateNames}>Generate Names</button>}
             </div>
             <WordGroup src={wordChoices} type='wordList' clearInput={clearInput}/>
         </>
