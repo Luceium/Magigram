@@ -2,24 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { mapLetterFrequency, isSubset, removeLetters, cleanText, frequencyToString, getLetterFrequencySize } from '../util/frequencyUtils';
 import WordGroup from './wordGroup';
+import { prefixes, roots, suffixes } from '../util/nameComponents';
 
 export default function WordFinder(props) {
     const dispatch = useDispatch();
     let words = useSelector(state => state.words);
     let letterFrequency = useSelector(state => state.letterFrequency);
     const [word, setWord] = useState('');
-    const [pos, setPos] = useState(props.types[0]); // part of speech [noun, verb, adjective]
-    const [filter, setFilter] = useState('Starts With'); // filter word choices by prefix [word, prefix
     const [wordChoices, setWordChoices] = useState([]);
     useEffect(() => {
         getWordChoices();
-    }, [letterFrequency, word, pos])
+    }, [letterFrequency, word, props.type, props.filter])
 
     let clearInput = () => {setWord('');};
-    
-    function handleChange(word) {
-        setWord(word);
-    }
 
     function useWord() {
         if (!removeLetters(letterFrequency, word)) {
@@ -33,31 +28,23 @@ export default function WordFinder(props) {
         setWord(''); // clears input field
     }
 
-    function handleToggle(pos) {
-        setPos(pos.toLowerCase());
-    }
-
-    function handleToggleFilter(filter) {
-        setFilter(filter);
-    }
-
     // TODO: populate word choices in real time so user can see progress
     function getWordChoices() {
         let wordChoices = [];
         //load JSON file for the part of speech from dictionary/JSON into trie variable
-        let trie = require(`../../dictionary/JSON/${pos}.json`);
+        let trie = require(`../../dictionary/JSON/${props.type}.json`);
         //create copy of word that has been sanitized
         let wordCopy = cleanText(word);
     
         //for each prefix in trie, check if the prefix can be made from the letter bank
         for (const prefix in trie) {
-            let passFilter = filter==="Starts With" ? prefix.startsWith(wordCopy) || wordCopy.startsWith(prefix) : true;
+            let passFilter = props.filter==="Starts With" ? prefix.startsWith(wordCopy) || wordCopy.startsWith(prefix) : true;
             if (passFilter && isSubset(mapLetterFrequency(prefix), letterFrequency)) {
                 for (const wordObj in trie[prefix]) {
-                    if (filter==="Starts With" && !wordObj.startsWith(wordCopy)) continue;
+                    if (props.filter==="Starts With" && !wordObj.startsWith(wordCopy)) continue;
                     let wordsLetterFrequency = trie[prefix][wordObj]; 
                     // get frequency of input (word)
-                    if (filter==="Contains") {
+                    if (props.filter==="Contains") {
                         let inputLetterFrequency = mapLetterFrequency(wordCopy);
                         if (!isSubset(inputLetterFrequency, wordsLetterFrequency)) continue;
                     }
@@ -79,337 +66,48 @@ export default function WordFinder(props) {
         }
 
         let names = [];
-        let vowels = ['a', 'e', 'i', 'o', 'u'];
-        let vowelFrequency = 0;
-        let consonantFrequency = 0;
-        for (const letter in letterFrequency) {
-            if (vowels.includes(letter)) {
-                vowelFrequency += letterFrequency[letter];
-            } else {
-                consonantFrequency += letterFrequency[letter];
-            }
-        }
+        // let vowels = ['a', 'e', 'i', 'o', 'u'];
+        // let vowelFrequency = 0;
+        // let consonantFrequency = 0;
+        // for (const letter in letterFrequency) {
+        //     if (vowels.includes(letter)) {
+        //         vowelFrequency += letterFrequency[letter];
+        //     } else {
+        //         consonantFrequency += letterFrequency[letter];
+        //     }
+        // }
         
         // try to make better names by use of roots, prefix, suffix, common sounds
         // TODO: sort the lists in a topological ordering such that if A.letterFrequency is a subset of B.letterFrequency, then B comes before A
         // this would favor longer and rarer roots/prefixes/suffixes over shorter ones
         // also randomize the order of the roots/prefixes/suffixes so that the same ones don't always appear first
         // TODO: possibly refactor this to use the trie's
-        const roots = [
-            '',
-            'ab',
-            'abs',
-            'ad',
-            'ac',
-            'af',
-            'ag',
-            'al',
-            'an',
-            'ap',
-            'ar',
-            'as',
-            'at',
-            'auto',
-            'bi',
-            'cap',
-            'capt',
-            'ced',
-            'cess',
-            'chron',
-            'circum',
-            'clam',
-            'clamor',
-            'cogn',
-            'cognosc',
-            'corp',
-            'corpor',
-            'cred',
-            'credit',
-            'cycl',
-            'dem',
-            'demos',
-            'dict',
-            'duc',
-            'duct',
-            'equi',
-            'fac',
-            'fact',
-            'fer',
-            'port',
-            'fid',
-            'fide',
-            'fil',
-            'fili',
-            'flex',
-            'flect',
-            'fort',
-            'gen',
-            'gener',
-            'grad',
-            'gress',
-            'gravit',
-            'hab',
-            'habit',
-            'hydr',
-            'in',
-            'inter',
-            'jud',
-            'judici',
-            'lat',
-            'later',
-            'liber',
-            'loc',
-            'loc',
-            'luc',
-            'luc',
-            'man',
-            'manu',
-            'mar',
-            'marit',
-            'medi',
-            'morph',
-            'mut',
-            'nat',
-            'nat',
-            'nec',
-            'mort',
-            'nov',
-            'nov',
-            'omni',
-            'oper',
-            'pac',
-            'pac',
-            'path',
-            'path',
-            'phil',
-            'phon',
-            'phys',
-            'plan',
-            'plan',
-            'poss',
-            'pot',
-            'prim',
-            'pro',
-            'psych',
-            'radi',
-            'rupt',
-            'sci',
-            'scien',
-            'sect',
-            'sec',
-            'sem',
-            'semi',
-            'sent',
-            'sens',
-            'serv',
-            'sign',
-            'sign',
-            'sol',
-            'sol',
-            'spec',
-            'spect',
-            'spi',
-            'spir',
-            'stat',
-            'statu',
-            'ster',
-            'ster',
-            'sub',
-            'super',
-            'tac',
-            'tacit',
-            'temp',
-            'temp',
-            'ter',
-            'terr',
-            'therm',
-            'thes',
-            'thes',
-            'trans',
-            'tri',
-            'vid',
-            'vis',
-            'viv',
-            'vit',
-            'volut',
-        ].filter(word => isSubset(mapLetterFrequency(word), letterFrequency)).sort(()=>Math.random()-0.5);
+        const validRoots = roots.filter(word => isSubset(mapLetterFrequency(word), letterFrequency)).sort(()=>Math.random()-0.5);
 
         // generate names by trying to use roots and suffixes and prefixes
         for (let i = 0; i < 20; i++) {
             let tmpLetterFrequency = { ...letterFrequency };
             // choose random root, prefix, and suffix and remove the letters from the letter frequency
-            let root = roots[i % roots.length];
+            let root = validRoots[i % roots.length];
             removeLetters(tmpLetterFrequency, root);
 
             let prefix, suffix;
             //randomly chooses to prioritize suffix or prefix
             if (Math.random() < 0.5) {
-                const suffixes = [
-                    '',
-                    'able',
-                    'age',
-                    'al',
-                    'an',
-                    'and',
-                    'ary',
-                    'ate',
-                    'ation',
-                    'ative',
-                    'ed',
-                    'ee',
-                    'er',
-                    'es',
-                    'et',
-                    'ful',
-                    'ible',
-                    'ion',
-                    'ish',
-                    'ist',
-                    'ity',
-                    'ize',
-                    'less',
-                    'ly',
-                    'ment',
-                    'ness',
-                    'on',
-                    'or',
-                    'ous',
-                    's',
-                    'th',
-                    'tion',
-                    'tive',
-                    'y'
-                ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
+                const validSuffixes = suffixes.filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
                 suffix = suffixes[Math.floor(Math.random()*suffixes.length)];
                 removeLetters(tmpLetterFrequency, suffix);
 
-                const prefixes = [
-                    '',
-                    'a',
-                    'ab',
-                    'ad',
-                    'an',
-                    'ante',
-                    'ap',
-                    'ar',
-                    'as',
-                    'at',
-                    'auto',
-                    'be',
-                    'by',
-                    'co',
-                    'com',
-                    'con',
-                    'de',
-                    'dis',
-                    'e',
-                    'en',
-                    'ex',
-                    'extra',
-                    'ge',
-                    'in',
-                    'inter',
-                    'ir',
-                    'mis',
-                    'non',
-                    'per',
-                    'pre',
-                    'pro',
-                    're',
-                    'semi',
-                    'sub',
-                    'super',
-                    'un',
-                    'under',
-                    'up',
-                    'with',
-                    'y'
-                  ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
-                prefix = prefixes[Math.floor(Math.random()*prefixes.length)];
+                const validPrefixes = prefixes.filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
+                prefix = validPrefixes[Math.floor(Math.random()*validPrefixes.length)];
                 removeLetters(tmpLetterFrequency, prefix);
             } else {                
-                const prefixes = [
-                    '',
-                    'a',
-                    'ab',
-                    'ad',
-                    'an',
-                    'ante',
-                    'ap',
-                    'ar',
-                    'as',
-                    'at',
-                    'auto',
-                    'be',
-                    'by',
-                    'co',
-                    'com',
-                    'con',
-                    'de',
-                    'dis',
-                    'e',
-                    'en',
-                    'ex',
-                    'extra',
-                    'ge',
-                    'in',
-                    'inter',
-                    'ir',
-                    'mis',
-                    'non',
-                    'per',
-                    'pre',
-                    'pro',
-                    're',
-                    'semi',
-                    'sub',
-                    'super',
-                    'un',
-                    'under',
-                    'up',
-                    'with',
-                    'y'
-                ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
-                prefix = prefixes[Math.floor(Math.random()*prefixes.length)];
+                const validPrefixes = prefixes.filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
+                prefix = validPrefixes[Math.floor(Math.random()*validPrefixes.length)];
                 removeLetters(tmpLetterFrequency, prefix);
                 
-                const suffixes = [
-                    '',
-                    'able',
-                    'age',
-                    'al',
-                    'an',
-                    'and',
-                    'ary',
-                    'ate',
-                    'ation',
-                    'ative',
-                    'ed',
-                    'ee',
-                    'er',
-                    'es',
-                    'et',
-                    'ful',
-                    'ible',
-                    'ion',
-                    'ish',
-                    'ist',
-                    'ity',
-                    'ize',
-                    'less',
-                    'ly',
-                    'ment',
-                    'ness',
-                    'on',
-                    'or',
-                    'ous',
-                    's',
-                    'th',
-                    'tion',
-                    'tive',
-                    'y'
-                ].filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
-                suffix = suffixes[Math.floor(Math.random()*suffixes.length)];
+                const validSuffixes = suffixes.filter(word => isSubset(mapLetterFrequency(word), tmpLetterFrequency));
+                suffix = validSuffixes[Math.floor(Math.random()*validSuffixes.length)];
                 removeLetters(tmpLetterFrequency, suffix);
             }
             
@@ -446,46 +144,24 @@ export default function WordFinder(props) {
     
     return (
         <>
-            <h2>{props.name}</h2>
             <div>
-                <input type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
-                <div id="btnGroup">
-                    <button
-                        onClick={(e) => handleToggleFilter(e.target.innerText)}
-                        active={filter==="Starts With"}
-                    >
-                        Starts With
-                    </button>
-                    <button
-                        onClick={(e) => handleToggleFilter(e.target.innerText)}
-                        active={filter==="Contains"}
-                    >
-                        Contains
-                    </button>
-                </div>
-                <button onClick={useWord}>Use word</button>
-                <div id="btnGroup">
-                    <button
-                        onClick={(e) => handleToggle(e.target.innerText)}
-                        active={pos===props.types[0]}
-                    >
-                        {props.types[0]}
-                    </button>
-                    <button
-                        onClick={(e) => handleToggle(e.target.innerText)}
-                        active={pos===props.types[1]}
-                    >
-                        {props.types[1]}
-                    </button>
-                    <button
-                        onClick={(e) => handleToggle(e.target.innerText)}
-                        active={pos===props.types[2]}
-                    >
-                        {props.types[2]}
-                    </button>
+                <div className="join text-base-content">
+                    <input className="join-item input input-sm w-20" type='text' value={word} onChange={(e) => setWord(e.target.value)}/>
+                    <select onChange={(e) => props.setType(e.target.value)} defaultValue="Filter" className="select select-bordered join-item select-sm">
+                        <option disabled>Filter</option>
+                        <option>{props.types[0]}</option>
+                        <option>{props.types[1]}</option>
+                        <option>{props.types[2]}</option>
+                    </select>
+                    <select onChange={(e) => props.setSearch(e.target.value)} defaultValue="Search" className="select select-bordered join-item select-sm ">
+                        <option disabled>Search</option>
+                        <option>Starts With</option>
+                        <option>Contains</option>
+                    </select>
+                    <button className="join-item btn btn-sm"  onClick={useWord}>Use word</button>
                 </div>
             
-                {props.word || <button onClick={generateNames}>Generate Names</button>}
+                {props.nameBuilder || <button onClick={generateNames}>Generate Names</button>}
             </div>
             <WordGroup src={wordChoices} type='wordList' clearInput={clearInput}/>
         </>

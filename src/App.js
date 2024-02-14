@@ -22,11 +22,11 @@ function App() {
     <>
       <Header />
         <div className='flex m-3'>
-            <div class="flex flex-col mr-3">
+            <div className="flex flex-col mr-3">
               <Name />
               <History />
             </div>
-            <div class="flex flex-col flex-1">
+            <div className="flex flex-col flex-1">
               <LetterBank />
               <NameBuilder />
             </div>

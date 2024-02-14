@@ -1,10 +1,11 @@
 import WordGroup from "./wordGroup";
 import { useSelector, useDispatch } from "react-redux";
-import { frequencyToString } from "../util/frequencyUtils";
+import { frequencyToString, isEmpty } from "../util/frequencyUtils";
 
 //alias to import functional react component
 export default function History() {
     let history = useSelector(state => state.hist);
+    let letterFrequency = useSelector(state => state.letterFrequency);
     const dispatch = useDispatch();
 
     function pop(index) {
@@ -18,6 +19,7 @@ export default function History() {
     }
 
     function push() {
+        if (isEmpty(letterFrequency)) return;
         dispatch({type: 'PUSH'});
     }
 
@@ -31,12 +33,12 @@ export default function History() {
             {
                 history.map((attempt, index) => {
                     return(
-                        <div className="flex">
-                            <div key={index} onClick={() => pull(index)} className="bg-warning rounded-3 rounded-start-pill p-1 m-1">
+                        <div className="flex join m-3">
+                            <div key={index} onClick={() => pull(index)} className="join-item p-1 bg-base-100">
                                 <WordGroup src={attempt.words} type='history' />
-                                <p className="badge badge-pill bg-secondary">{frequencyToString(attempt.letterFrequency)}</p>
+                                <p className="badge badge-pill bg-secondary text-secondary-content">{frequencyToString(attempt.letterFrequency)}</p>
                             </div>
-                            <button className="bg-danger rounded-end-circle" onClick={() => pop(index)}>Delete</button>
+                            <button className="bg-error join-item" onClick={() => pop(index)}>Delete</button>
                         </div>
                     )
                 })
