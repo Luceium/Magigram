@@ -1,0 +1,453 @@
+Aker
+Amun
+Anhur
+Aten
+Atum
+Bennu
+Geb
+Hapi
+Horus
+Khepri
+Khnum
+Khonsu
+Maahes
+Montu
+Nefertum
+Nemty
+Neper
+Osiris
+Ptah
+Set
+Shu
+Sobek
+Sopdu
+Thoth
+Wadj-wer
+Amunet
+Anuket
+Bastet
+Bat
+Hathor
+Hatmehit
+Heqet
+Hesat
+Imentet
+Isis
+Maat
+Menhit
+Mut
+Neith
+Nekhbet
+Nephthys
+Nepit
+Nut
+Pakhet
+Renenutet
+Satet
+Sekhmet
+Tefnut
+Wadjet
+Wosret
+Anubis
+Anput
+Hapi
+Heh
+Kek
+Nu
+Ra
+Tatenen
+Aani
+Aati
+Abu
+Am-heh
+Amenhotep I
+Amenhotep
+Amu-Aa
+An-a-f
+An-hetep-f
+An-mut-f
+An-tcher-f
+Andjety
+Ani
+Anti
+Apedemak
+Apep
+Āpesh
+Apis
+Arensnuphis
+Asclepius
+Ash
+Astennu
+Ba
+Ba-Ra
+Baal
+Babi
+Banebdjedet
+Ba-Pef
+Bes
+Buchis
+Dedun
+Denwen
+Djebuty
+Djefa
+Dionysus-Osiris
+Fa
+Fetket
+Gengen Wer
+Ha
+Hapy
+Hapy-Wet
+Hardedef
+Harmachis
+Harsomtus
+Haurun
+Heka
+Heneb
+Henkhisesui
+Heru-Khu
+Hery-sha-duat
+Heryshaf
+Hu
+Iah
+Ihy
+Imhotep
+Jupiter-Amun
+Kagemni
+Khentekhtai
+Khenti-Amenti
+Khenti-qerer
+Kherty
+Khesfu
+Kneph
+Mandulis
+Mehen
+Mestȧ
+Min
+Mnevis
+Nefer Hor
+Neferhotep
+Nefertum
+Nehebu-Kau
+Panebtawy
+Petbe
+Peteese
+Pihor
+Ptah-hotep
+Qebeḥsenuf
+Qebui
+Ra-ateni
+Rā-Herakhty
+Reshep
+Sah
+Sebeg
+Sebiumeker
+Sed
+Seker
+Sekhemus
+Sepa
+Sepes
+Sepṭu
+Serapis
+Seta-Ta
+Setcheh
+Setem
+Shed
+Shehbui
+Shezmu
+Sia
+Sopd
+Ṭuamutef
+Tutu
+Uneg
+Weneg
+Wenenu
+Wepwawet
+Yam
+Ahti
+Amathaunta
+Ammit
+Amn
+Anat
+Anhefta
+Anit
+Anuke
+Ảpet
+Astarte
+Ba'alat Gebal
+Beset
+Besna
+Esna
+Hatmehit
+Hedetet
+Heptet
+Heret-Kau
+Hert-ketit-s
+Hert-Nemmat-Set
+Hert-sefu-s
+Heru-pa-kaut
+Heset
+Hetepes-Sekhus
+Iabet
+Iat
+Ipy
+Ishtar
+Iusaaset
+Iw
+Kebehut
+Ken
+Khefthernebes
+Mafdet
+Matit
+Mehet-Weret
+Mehit
+Menhit
+Meretseger
+Meret
+Meskhenet
+Nakith
+Naunet
+Nebethetepet
+Nebt-Ankhiu
+Nebt-Khu
+Nebt-Mat
+Nebt-Setau
+Nebt-Shat
+Nebt-Shefshefet
+Nefertari
+Nehmetawy
+Pelican
+Perit
+Pesi
+Qererti
+Qerhet
+Qetesh
+Raet-Tawy
+Rekhit
+Renenet
+Renpet
+Sait
+Satis
+Sefkhet-Abwy
+Sehith
+Sekhat-Hor
+Sekhet-Metu
+Seret
+Serket
+Sesenet-Khu
+Seshat
+Shemat-Khu
+Shentayet
+Shenty
+Shesmetet
+Sopdet
+Swenet
+Ta-Bitjet
+Tafner
+Ta-Sent-Nefert
+Taweret
+Tayt
+Temet
+Temtith
+Tenenet
+Themath
+Thermuthis
+Thmei
+Tjenmyt
+Unut
+Usit
+Wepset
+Werethekau
+Hedjhotep
+Shai
+Objects
+Semi
+Ȧakhu
+Ảakhu
+Ảakhu-ḥetch-t
+Ảakhu-ra
+Ảakhu-sa-ta-f
+Ảakhui
+Ȧmi-beq
+Ảmi-haf
+Ami-He-t-Serqet-Ka-hetep-t
+Ảmi-kar
+Ảmi-keḥau
+Ảmi-naut-f
+Ảmi-nehţ-f
+Ảmi-neter
+Ảmi-Nu
+Ȧmi-Pe
+Ảmi-reţ
+Ảmi-seḥseḩ
+Ảmi-sekhet-f
+Ảmi-sepa-f
+Ảmi-suḥt-f
+Ảmi-ta
+Ảmi-ut
+Ảnmut-făbesh
+Antywy
+Aqen
+Ảri
+Ảri-em-ăua
+Ảri-en-ȧb-f
+Ảri-ḥetch-f
+Ảri-ren-f-tehesef
+Ảri-tchet-f
+Ảrit-Ảmen
+Athpi
+Aati
+Ba
+Ba-ảakhu-hā-f
+Ba-em-uār-ur
+Ba-ta
+Ba-tau
+Ba-utcha-hāu-f
+Heb
+Hun-sāḥu
+Hutchai
+Khenti-en-Sa-t
+Khenti-heh-f
+Khenti-ḥenthau
+Khenti-Het Ȧnes
+Khenti-kha-t-ảnes
+Khenti-Khas
+Maa-ảb-khenti-ảḥ-t-f
+Maa-ảtht-f
+Maa-en-Rā
+Maa-f-ur
+Maa-ḥa-f
+Maa-mer-f
+Men-t
+Meni
+Menu
+Menu-nesu-Ḩeru
+Menu-qeṭ
+Meţ-en-Ảsảr
+Meţ-ḥer
+Meṭes
+Meţes
+Meţes-ảb
+Meṭes-neshen
+Meţi
+Meţni
+Meţu-ta-f
+Neb
+Neb ảa
+Neb ảmakh
+Neb ankh
+Neb āq-t
+Neb Kheper-Khenti-Ṭuat
+Neb Khert-ta
+Neb pāt
+Neb seb-t
+Neb Uast
+Neb-Un
+Neb user
+Neb utchat-ti
+Nebti
+Nekenher
+Neter
+Neterti
+Neter bah
+Neter neferu
+Neter-hāu
+Neter-ka-qetqet
+Neter-kha
+Netrit-ta-meh
+Netrit-Then
+Serq
+Unnti
+Untả
+Up
+Up-hai
+Up-shāt-taui
+Up-uatu
+Upi-sekhemti
+Upt-heka
+Upȧst
+Upu
+Ur
+Ur-ȧres
+Ur-at
+Ur-heka
+Ur-henhenu
+Ur-henu
+Ur-khert
+Ur-maati-f
+Ur-metuu-ḩer-ȧat-f
+Ur-peḥti
+Ur-peḩui-f
+Urrtȧ
+Ảmi-khent-āat
+Ảmi-pet-seshem-neterit
+Ảmi-urt
+Ảmi-utchat-sảakhu-Ảtemt
+Ảmit-Qeţem
+Ảmit-she-t-urt
+Āpertra
+Ảrit-ȧakhu
+Ảriti
+Ba-khati
+Baiut-s-ảmiu-heh
+Hebit
+Hetemit
+Hunit
+Hunit Pe
+Hunit urit
+Huntheth
+Hurit urit
+Maa-ā
+Maa-neter-s
+Neb Ȧa-t
+Neb Ȧa-t-Then
+Neb āāu
+Neb-ābui
+Neb ȧkeb
+Neb Ȧnit
+Neb ảri-t-qerr-t
+Neb ảrit-tcheṭflu
+Neb ảs-ḥatt
+Neb ȧs-ur
+Neb Ȧter
+Neb ȧter-Shemā
+Neb ảur
+Neb Aut
+Neb Bȧa-t
+Neb ḥekau
+Neb ḥetep
+Neb Khasa
+Neb Khebit
+Neb peḥti
+Neb Per-res
+Neb petti
+Neb Sa
+Neb Sam
+Neb sau-ta
+Neb sebu
+Neb Septi
+Neb-t ȧakhu
+Neb-t ȧnemit
+Neb-t ānkh
+Neb-t ānkhiu
+Neb-t Ảţu
+Nebt-Āu-Khenti-Ṭuat
+Neb-t au-t-ȧb
+Neb-t Kheper
+Neb-t usha
+Neb Un
+Nebt Ānnu
+Neterit-nekhenit-Rā
+Un-baiusit
+Unnit
+Unnuit
+Upit
+Ur-ā
+Urit
+Urit-ȧmi-t-Ṭuat
+Urit-em-sekhemu-s
+Urit-en-kru
+Urit-ḥekau
+Urti-ḥethati
+Medjed
+Neb au-t-ȧb
+Netrit fent
