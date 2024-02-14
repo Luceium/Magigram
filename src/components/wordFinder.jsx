@@ -8,12 +8,12 @@ export default function WordFinder(props) {
     let words = useSelector(state => state.words);
     let letterFrequency = useSelector(state => state.letterFrequency);
     const [word, setWord] = useState('');
-    const [pos, setPos] = useState(props.types[0]); // part of speech [noun, verb, adjective]
-    const [filter, setFilter] = useState('Starts With'); // filter word choices by prefix [word, prefix
+    const [type, setFilter] = useState(props.types[0]); // part of speech [noun, verb, adjective]
+    const [filter, setSearch] = useState('Starts With'); // filter word choices by prefix [word, prefix
     const [wordChoices, setWordChoices] = useState([]);
     useEffect(() => {
         getWordChoices();
-    }, [letterFrequency, word, pos])
+    }, [letterFrequency, word, type])
 
     let clearInput = () => {setWord('');};
     
@@ -33,19 +33,11 @@ export default function WordFinder(props) {
         setWord(''); // clears input field
     }
 
-    function handleToggle(pos) {
-        setPos(pos.toLowerCase());
-    }
-
-    function handleToggleFilter(filter) {
-        setFilter(filter);
-    }
-
     // TODO: populate word choices in real time so user can see progress
     function getWordChoices() {
         let wordChoices = [];
         //load JSON file for the part of speech from dictionary/JSON into trie variable
-        let trie = require(`../../dictionary/JSON/${pos}.json`);
+        let trie = require(`../../dictionary/JSON/${type}.json`);
         //create copy of word that has been sanitized
         let wordCopy = cleanText(word);
     
@@ -447,35 +439,20 @@ export default function WordFinder(props) {
     return (
         <>
             <div>
-                <div className="join">
-                    <input className="join-item input input-sm" type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
+                <div className="join text-base-content">
+                    <input className="join-item input input-sm w-20" type='text' value={word} onChange={(e) => handleChange(e.target.value)}/>
+                    <select onChange={(e) => setFilter(e.target.value)} defaultValue="Filter" className="select select-bordered join-item select-sm">
+                        <option disabled>Filter</option>
+                        <option>{props.types[0]}</option>
+                        <option>{props.types[1]}</option>
+                        <option>{props.types[2]}</option>
+                    </select>
+                    <select onChange={(e) => setSearch(e.target.value)} defaultValue="Search" className="select select-bordered join-item select-sm ">
+                        <option disabled>Search</option>
+                        <option>Starts With</option>
+                        <option>Contains</option>
+                    </select>
                     <button className="join-item btn btn-sm"  onClick={useWord}>Use word</button>
-                </div>
-                <div className='join'>
-                    <button
-                        className='join-item btn btn-sm'
-                        onClick={(e) => handleToggleFilter(e.target.innerText)}
-                        active={filter==="Starts With"}
-                    >
-                        Starts With
-                    </button>
-                    <button
-                        className='join-item btn btn-sm'
-                        onClick={(e) => handleToggleFilter(e.target.innerText)}
-                        active={filter==="Contains"}
-                    >
-                        Contains
-                    </button>
-                </div>
-                <div className='join'>
-                    {props.types.map(type =>
-                        <button key={type} className='join-item btn btn-sm'
-                            onClick={(e) => handleToggle(e.target.innerText)}
-                            active={pos===type}
-                        >
-                            {type}
-                        </button>
-                    )}
                 </div>
             
                 {props.word || <button onClick={generateNames}>Generate Names</button>}
