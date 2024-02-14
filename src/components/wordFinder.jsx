@@ -9,13 +9,10 @@ export default function WordFinder(props) {
     let words = useSelector(state => state.words);
     let letterFrequency = useSelector(state => state.letterFrequency);
     const [word, setWord] = useState('');
-    const [type, setFilter] = useState(props.types[0]); // part of speech [noun, verb, adjective]
-    const [filter, setSearch] = useState('Starts With'); // filter word choices by prefix [word, prefix
     const [wordChoices, setWordChoices] = useState([]);
     useEffect(() => {
-        console.log('wordFinder useEffect')
         getWordChoices();
-    }, [letterFrequency, word, type, filter])
+    }, [letterFrequency, word, props.type, props.filter])
 
     let clearInput = () => {setWord('');};
 
@@ -35,19 +32,19 @@ export default function WordFinder(props) {
     function getWordChoices() {
         let wordChoices = [];
         //load JSON file for the part of speech from dictionary/JSON into trie variable
-        let trie = require(`../../dictionary/JSON/${type}.json`);
+        let trie = require(`../../dictionary/JSON/${props.type}.json`);
         //create copy of word that has been sanitized
         let wordCopy = cleanText(word);
     
         //for each prefix in trie, check if the prefix can be made from the letter bank
         for (const prefix in trie) {
-            let passFilter = filter==="Starts With" ? prefix.startsWith(wordCopy) || wordCopy.startsWith(prefix) : true;
+            let passFilter = props.filter==="Starts With" ? prefix.startsWith(wordCopy) || wordCopy.startsWith(prefix) : true;
             if (passFilter && isSubset(mapLetterFrequency(prefix), letterFrequency)) {
                 for (const wordObj in trie[prefix]) {
-                    if (filter==="Starts With" && !wordObj.startsWith(wordCopy)) continue;
+                    if (props.filter==="Starts With" && !wordObj.startsWith(wordCopy)) continue;
                     let wordsLetterFrequency = trie[prefix][wordObj]; 
                     // get frequency of input (word)
-                    if (filter==="Contains") {
+                    if (props.filter==="Contains") {
                         let inputLetterFrequency = mapLetterFrequency(wordCopy);
                         if (!isSubset(inputLetterFrequency, wordsLetterFrequency)) continue;
                     }
@@ -150,13 +147,13 @@ export default function WordFinder(props) {
             <div>
                 <div className="join text-base-content">
                     <input className="join-item input input-sm w-20" type='text' value={word} onChange={(e) => setWord(e.target.value)}/>
-                    <select onChange={(e) => setFilter(e.target.value)} defaultValue="Filter" className="select select-bordered join-item select-sm">
+                    <select onChange={(e) => props.setType(e.target.value)} defaultValue="Filter" className="select select-bordered join-item select-sm">
                         <option disabled>Filter</option>
                         <option>{props.types[0]}</option>
                         <option>{props.types[1]}</option>
                         <option>{props.types[2]}</option>
                     </select>
-                    <select onChange={(e) => setSearch(e.target.value)} defaultValue="Search" className="select select-bordered join-item select-sm ">
+                    <select onChange={(e) => props.setSearch(e.target.value)} defaultValue="Search" className="select select-bordered join-item select-sm ">
                         <option disabled>Search</option>
                         <option>Starts With</option>
                         <option>Contains</option>
@@ -164,7 +161,7 @@ export default function WordFinder(props) {
                     <button className="join-item btn btn-sm"  onClick={useWord}>Use word</button>
                 </div>
             
-                {props.word || <button onClick={generateNames}>Generate Names</button>}
+                {props.name || <button onClick={generateNames}>Generate Names</button>}
             </div>
             <WordGroup src={wordChoices} type='wordList' clearInput={clearInput}/>
         </>
