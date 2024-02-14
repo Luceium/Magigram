@@ -17,9 +17,12 @@ const NameBuilder = () => {
             <button role="tab" className={`tab ${isAnagramBuilder ? "tab-active" : "text-neutral-content"}`} onClick={() => switchBuilder(true)}>Word Finder</button>
             <button role="tab" className={`tab ${!isAnagramBuilder ? "tab-active" : "text-neutral-content"}`} onClick={() => switchBuilder(false)}>Name Builder</button>
         </div>
-        {isAnagramBuilder ?
-        <WordFinder key="wordList" types={['noun', 'verb', 'adjective']} type={posType} setType={(type) => setPos(type)} filter={filter} setSearch={(filter) => setSearch(filter)} name/> :
-        <WordFinder key="nameBuilder" types={['prefix', 'root', 'suffix']} type={componentType} setType={(type) => setComponentType(type)} filter={filter} setSearch={(filter) => setSearch(filter)}/>}
+        <WordFinder
+          key={isAnagramBuilder ? "wordList" : "nameBuilder"}
+          types={isAnagramBuilder ? ['noun', 'verb', 'adjective'] : ['prefix', 'root', 'suffix']}
+          type={isAnagramBuilder ? posType : componentType}
+          setType={isAnagramBuilder ? (type) => setPos(type) : (type) => setComponentType(type)}
+          filter={filter} setSearch={(filter) => setSearch(filter)} name/>
         <div className=' bg-neutral rounded' >
             <h2> Word Bank </h2>
             <WordGroup type='wordBank' src={useSelector(state => state.words)}/>
