@@ -1,0 +1,245 @@
+Acca Larentia
+Acis
+Aerecura
+Aequitas
+Aesculapius
+Aeternitas
+Agenoria
+Aion
+Aeon
+Aius Locutius
+Alernus
+Elernus
+Helernus
+Angerona
+Angitia
+Anna Perenna
+Annona
+Antevorta
+Apollo
+Arimanius
+Aura
+Aurora
+Averruncus
+Bacchus
+Bellona
+Duellona
+Bona Dea
+Bonus Eventus
+Bubona
+Caca
+Cacus
+Caelus
+Camenae
+Cardea
+Carmenta
+Carmentes
+Carna
+Ceres
+Clementia
+Cloacina
+Concordia
+Consus
+Cupid
+Cura
+Cybele
+Dea Dia
+Dea Tacita
+Dea Tertiana
+Dea Quartana
+Decima
+Diana Nemorensis
+denarius
+Devera
+Deverra
+Diana
+Diana Nemorensis
+Discordia
+Dius Fidius
+Di inferi
+Disciplina
+Dis Pater
+Dispater
+Epona
+Egeria
+Empanda
+Panda
+Epona
+Falacer
+Fama
+Fascinus
+Fauna
+Faunus
+Faustitas
+Febris
+Februus
+Fecunditas
+Felicitas
+Ferentina
+Feronia
+Fides
+Flora
+Fornax
+Fontus
+Fons
+Fortuna
+Fufluns
+Fulgora
+Furrina
+Genius
+Gratiae
+Hercules
+Hermaphroditus
+Honos
+Hora
+Indiges
+Intercidona
+Inuus
+Invidia
+Janus
+Juno
+Jupiter
+Justitia
+Juturna
+Juventas
+Lares
+Latona
+Laverna
+Lemures
+Levana
+Letum
+Liber
+Libera
+Liberalitas
+Libertas
+Libitina
+Lua
+Lucifer
+Lucina
+Luna
+Lupercus
+Lympha
+Mana Genita
+Manes
+Mania
+Mantus
+Mars
+Mater Matuta
+Meditrina
+Mefitis
+Mephitis
+Mellona
+Mellonia
+Mena
+Mene
+Mercury
+Minerva
+Mithras
+Molae
+Moneta
+Mors
+Morta
+Murcia
+Murtia
+Mutunus Tutunus
+----------------------------
+Naenia
+Nascio
+Necessitas
+Nemesis
+Neptune
+Nerio
+Neverita
+Nixi
+Nona
+Nortia
+Nox
+----------------------------
+Ops
+Opis
+Orcus
+----------------------------
+Palatua
+Pales
+Panda
+Parcae
+Pax
+Aeneas
+the Penates
+Penates
+Di Penates
+Picumnus
+Picus
+Pietas
+Pilumnus
+Pluto
+Pomona
+Porrima
+Portunus
+Postverta
+Prorsa Postverta
+Priapus
+Proserpina
+Providentia
+Pudicitia
+----------------------------
+Querquetulanae
+Quirinus
+Quiritis
+----------------------------
+Robigo
+Robigus
+Roma
+Rumina
+----------------------------
+Sol Invictus
+Salacia
+Salus
+Sancus
+Saturn
+Scotus
+Securitas
+Silvanus
+Somnus
+Soranus
+Sors
+Spes
+Stata Mater
+Sterquilinus
+Suadela
+Summanus
+Sulis Minerva
+----------------------------
+Talasius
+Tellumo
+Tellurus
+Tempestas
+Terra Mater
+Tellus
+Terminus
+Tiberinus
+Tibertus
+Tranquillitas
+Trivia
+----------------------------
+Venus
+Vacuna
+Vagitanus
+Vediovus
+Veiovis
+Venilia
+Venelia
+Venti
+Venus
+Veritas
+Verminus
+Vertumnus
+Vesta
+Vica Pota
+Victoria
+Viduus
+Virbius
+Virtus
+Volturnus
+Voluptas
+Vulcan
