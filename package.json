@@ -1,7 +1,7 @@
 {
-  "name": "epic-react",
+  "name": "Magigramnp",
   "version": "0.1.0",
-  "homepage": "https://swemau.me/EpicAnagram/",
+  "homepage": "https://swemau.me/Magigram/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

@@ -144,21 +144,21 @@ export default function WordFinder(props) {
     
     return (
         <>
-            <div>
-                <div className="join text-base-content">
-                    <input className="join-item input input-sm w-20" type='text' value={word} onChange={(e) => setWord(e.target.value)}/>
-                    <select onChange={(e) => props.setType(e.target.value)} defaultValue="Filter" className="select select-bordered join-item select-sm">
+            <div className=' mt-1'>
+                <div className="join text-base-content w-full">
+                    <input className="join-item input input-md w-full" type='text' value={word} onChange={(e) => setWord(e.target.value)}/>
+                    <select onChange={(e) => props.setType(e.target.value)} defaultValue="Filter" className="select select-bordered join-item select-md">
                         <option disabled>Filter</option>
                         <option>{props.types[0]}</option>
                         <option>{props.types[1]}</option>
                         <option>{props.types[2]}</option>
                     </select>
-                    <select onChange={(e) => props.setSearch(e.target.value)} defaultValue="Search" className="select select-bordered join-item select-sm ">
+                    <select onChange={(e) => props.setSearch(e.target.value)} defaultValue="Search" className="select select-bordered join-item select-md ">
                         <option disabled>Search</option>
                         <option>Starts With</option>
                         <option>Contains</option>
                     </select>
-                    <button className="join-item btn btn-sm"  onClick={useWord}>Use word</button>
+                    <button className="join-item btn btn-md"  onClick={useWord}>Use word</button>
                 </div>
             
                 {props.nameBuilder || <button onClick={generateNames}>Generate Names</button>}
