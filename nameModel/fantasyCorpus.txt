@@ -178,3 +178,10 @@ Scylla
 Umbra
 Sirena
 Tethys
+Phalaris
+Arkas
+Swiftwind
+Stonestep
+Forestborn
+Silvermane
+Sagehoof
