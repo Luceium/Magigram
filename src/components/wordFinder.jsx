@@ -28,7 +28,6 @@ export default function WordFinder(props) {
         setWord(''); // clears input field
     }
 
-    // TODO: populate word choices in real time so user can see progress
     function getWordChoices() {
         let wordChoices = [];
         //load JSON file for the part of speech from dictionary/JSON into trie variable
