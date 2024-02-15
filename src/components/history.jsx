@@ -38,7 +38,7 @@ export default function History() {
                                 <WordGroup src={attempt.words} type='history' />
                                 <p className="badge badge-pill bg-secondary text-secondary-content">{frequencyToString(attempt.letterFrequency)}</p>
                             </div>
-                            <button className="bg-error join-item" onClick={() => pop(index)}>Delete</button>
+                            <button className="bg-error text-error-content join-item p-1" onClick={() => pop(index)}>Delete</button>
                         </div>
                     )
                 })
