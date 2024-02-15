@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/EpicAnagram/static/css/main.4e949761.css",
-    "main.js": "/EpicAnagram/static/js/main.8f1ba1a1.js",
-    "static/js/787.832f1daa.chunk.js": "/EpicAnagram/static/js/787.832f1daa.chunk.js",
-    "index.html": "/EpicAnagram/index.html",
-    "main.4e949761.css.map": "/EpicAnagram/static/css/main.4e949761.css.map",
-    "main.8f1ba1a1.js.map": "/EpicAnagram/static/js/main.8f1ba1a1.js.map",
-    "787.832f1daa.chunk.js.map": "/EpicAnagram/static/js/787.832f1daa.chunk.js.map"
+    "main.css": "/Magigram/static/css/main.7d2d54ab.css",
+    "main.js": "/Magigram/static/js/main.8439021f.js",
+    "static/js/787.85acb1f4.chunk.js": "/Magigram/static/js/787.85acb1f4.chunk.js",
+    "index.html": "/Magigram/index.html",
+    "main.7d2d54ab.css.map": "/Magigram/static/css/main.7d2d54ab.css.map",
+    "main.8439021f.js.map": "/Magigram/static/js/main.8439021f.js.map",
+    "787.85acb1f4.chunk.js.map": "/Magigram/static/js/787.85acb1f4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4e949761.css",
-    "static/js/main.8f1ba1a1.js"
+    "static/css/main.7d2d54ab.css",
+    "static/js/main.8439021f.js"
   ]
 }
