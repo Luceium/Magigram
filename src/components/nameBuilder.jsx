@@ -4,7 +4,7 @@ import WordFinder from './wordFinder'
 import { useSelector } from 'react-redux';
 
 const NameBuilder = () => {
-    const [nameBuilder, switchBuilder] = useState(true)
+    const [nameBuilder, switchBuilder] = useState(false)
 
     // to persist the filter and part of speech / component of name we store them in state above which never unmounts
     const [posType, setPos] = useState("noun"); // part of speech [noun, verb, adjective]
@@ -14,8 +14,8 @@ const NameBuilder = () => {
   return (
     <div className="mt-3 p-2 flex-1 bg-neutral text-neutral-content rounded flex flex-col gap-2">
         <div role="tablist" className="tabs tabs-lifted tabs-lg">
-            <button role="tab" className={`tab ${nameBuilder ? "tab-active" : "text-neutral-content"}`} onClick={() => switchBuilder(true)}>Word Finder</button>
-            <button role="tab" className={`tab ${!nameBuilder ? "tab-active" : "text-neutral-content"}`} onClick={() => switchBuilder(false)}>Name Builder</button>
+            <button role="tab" className={`tab ${!nameBuilder ? "tab-active" : "text-neutral-content"}`} onClick={() => switchBuilder(false)}>Word Finder</button>
+            <button role="tab" className={`tab ${nameBuilder ? "tab-active" : "text-neutral-content"}`} onClick={() => switchBuilder(true)}>Name Builder</button>
         </div>
         <WordFinder
           key={nameBuilder ? "wordList" : "nameBuilder"}
