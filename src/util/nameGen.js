@@ -2,7 +2,8 @@ import { cleanFrequency, getLetterFrequencySize, removeLetter } from "./frequenc
 
 function getModel() {
     // TODO: get All models and user weights from store to generate model
-    const model = require(`../nameModel/models/masterModel.json`);
+    // load json model from ../src/nameModel/models/masterModel.json
+    const model = fetch('luceium.github.io/Magigram/nameModel/models/masterModel.json')
     console.log(model, model['a']);
     return model;
 }
