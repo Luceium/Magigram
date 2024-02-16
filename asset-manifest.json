@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Magigram/static/css/main.e4cfbbc4.css",
-    "main.js": "/Magigram/static/js/main.3fd3e579.js",
-    "static/js/787.85acb1f4.chunk.js": "/Magigram/static/js/787.85acb1f4.chunk.js",
+    "main.css": "/Magigram/static/css/main.69ddf61a.css",
+    "main.js": "/Magigram/static/js/main.0fbd42a8.js",
+    "static/js/787.e21880d6.chunk.js": "/Magigram/static/js/787.e21880d6.chunk.js",
     "index.html": "/Magigram/index.html",
-    "main.e4cfbbc4.css.map": "/Magigram/static/css/main.e4cfbbc4.css.map",
-    "main.3fd3e579.js.map": "/Magigram/static/js/main.3fd3e579.js.map",
-    "787.85acb1f4.chunk.js.map": "/Magigram/static/js/787.85acb1f4.chunk.js.map"
+    "main.69ddf61a.css.map": "/Magigram/static/css/main.69ddf61a.css.map",
+    "main.0fbd42a8.js.map": "/Magigram/static/js/main.0fbd42a8.js.map",
+    "787.e21880d6.chunk.js.map": "/Magigram/static/js/787.e21880d6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e4cfbbc4.css",
-    "static/js/main.3fd3e579.js"
+    "static/css/main.69ddf61a.css",
+    "static/js/main.0fbd42a8.js"
   ]
 }
