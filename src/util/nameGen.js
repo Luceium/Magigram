@@ -1,4 +1,4 @@
-import { getLetterFrequencySize } from "./frequencyUtils";
+import { cleanFrequency, getLetterFrequencySize } from "./frequencyUtils";
 
 // takes the letter frequency and creates generates 20 random permutations of the letters such that the vowels are evenly distributed
 function generateNames() {
@@ -129,10 +129,7 @@ function generateName(model, lettersForName) {
     // Selects random first letter from lettersForName
     const keys = Object.keys(lettersForName);
     let name = keys[Math.floor(Math.random()*keys.length)];
-    lettersForName[name] -= 1;
-    if (lettersForName[name] < 1) {
-        delete lettersForName[name];
-    }
+    lettersForName = removeLetter(lettersForName, name); // name at this point is 1 character long
 
     for (let i = 0; i < getLetterFrequencySize(lettersForName); i++) {
         letter, lettersForName = selectNextLetter(0.5, lettersForName, model[name[i]]);
