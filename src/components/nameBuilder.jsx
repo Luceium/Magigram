@@ -18,10 +18,10 @@ const NameBuilder = () => {
             <button role="tab" className={`tab ${nameBuilder ? "tab-active" : "text-neutral-content"}`} onClick={() => switchBuilder(true)}>Name Builder</button>
         </div>
         <WordFinder
-          key={nameBuilder ? "wordList" : "nameBuilder"}
-          types={nameBuilder ? ['noun', 'verb', 'adjective'] : ['prefix', 'root', 'suffix']}
-          type={nameBuilder ? posType : componentType}
-          setType={nameBuilder ? (type) => setPos(type) : (type) => setComponentType(type)}
+          key={!nameBuilder ? "wordList" : "nameBuilder"}
+          types={!nameBuilder ? ['noun', 'verb', 'adjective'] : ['prefix', 'root', 'suffix']}
+          type={!nameBuilder ? posType : componentType}
+          setType={!nameBuilder ? (type) => setPos(type) : (type) => setComponentType(type)}
           filter={filter} setSearch={(filter) => setSearch(filter)}
           nameBuilder={nameBuilder}
         />

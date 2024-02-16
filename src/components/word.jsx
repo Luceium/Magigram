@@ -25,7 +25,7 @@ export default function Word(props) {
         words = [...words]
         //adds the letters from the word back into the letter bank
         for (let i = 0; i < word.length; i++) {
-            letterFrequency[word[i]]++
+            letterFrequency[word[i]] = letterFrequency[word[i]] ? letterFrequency[word[i]] + 1 : 1;
         }
         letterFrequency = {...letterFrequency}
         let data = {letterFrequency, words}
