@@ -1,34 +1,36 @@
 import { cleanFrequency, getLetterFrequencySize, removeLetter } from "./frequencyUtils";
 
-function getModel() {
+async function getModel() {
     // TODO: get All models and user weights from store to generate model
-    // load json model from ../src/nameModel/models/masterModel.json
-    const model = fetch('luceium.github.io/Magigram/nameModel/models/masterModel.json').then(response => response.json());
-    console.log(model, model['a']);
+    const model = await fetch('https://luceium.github.io/Magigram/nameModel/models/masterModel.json').then(response => response.json());
+    console.log(model);
     return model;
 }
 
 // removes letters which cannot be used in the name from the letter frequency
 function validateModel(model, letterFrequency) {
-    console.log(model);
     // remove letters from model that are not in the letter frequency
+    console.log(model);
     let validModel = {}
-    console.log(validModel);
     for (const letter in letterFrequency) {
-        if (letterFrequency[letter] > 0) {
-            validModel[letter] = model[letter];
-            console.log(validModel);
+        const validNextLetters = {};
+
+        for (const nextLetter in letterFrequency) {
+            if (model[letter][nextLetter] !== undefined) {
+                validNextLetters[nextLetter] = model[letter][nextLetter];
+            }
         }
+
+        validModel[letter] = validNextLetters;
     }
-    console.log(validModel);
     
     return validModel;
 }
 
-export function generateTransformerPoweredNames(letterFrequency) {
-    const lettersForName = cleanFrequency({ ...letterFrequency });
-    const model = validateModel(getModel(), lettersForName)
-    console.log(model, model['a']);
+export async function generateTransformerPoweredNames(letterFrequency) {
+    const lettersForName = cleanFrequency({ ...letterFrequency }); // should not be needed if letterFrequency is maintained properly
+    const model = validateModel(await getModel(), lettersForName)
+    console.log(model, model['e']);
     let names = [];
     for (let i = 0; i < 20; i++) {
         names.push(generateName(model, lettersForName));
@@ -46,7 +48,7 @@ function generateName(model, lettersForName) {
     
     for (let i = 0; i < getLetterFrequencySize(lettersForName); i++) {
         console.log(name, model, model[name[i]])
-        letter, lettersForName = selectNextLetter(0.5, lettersForName, model[name[i]]);
+        [letter, lettersForName] = selectNextLetter(0.5, lettersForName, model[name[i]]);
         console.log(lettersForName);
         name += letter;
     }
@@ -55,7 +57,7 @@ function generateName(model, lettersForName) {
 
 function selectNextLetter(temperature, lettersForName, nextLetterProbability) {
     let chosenLetter;
-
+    nextLetterProbability = { ...nextLetterProbability };
     // create percentages for each letter adding up to 1
     console.log(nextLetterProbability);
     let sum = 0;
@@ -69,10 +71,14 @@ function selectNextLetter(temperature, lettersForName, nextLetterProbability) {
     
     // sort valid letters by probability
     let validLetters = [];
+    console.log(lettersForName);
     for (const letter in lettersForName) {
-        validLetters.push([letter, nextLetterProbability[letter]]);
+        console.log(letter);
+        validLetters.push(letter);
     }
+    console.log(validLetters);
     validLetters.sort((a, b) => nextLetterProbability[a] - nextLetterProbability[b]);
+    console.log(validLetters);
 
     // select a random number between 0 and 1 * temperature
     // works by selecting a random number and checking if it is in the range of the probability of the letter
@@ -80,7 +86,9 @@ function selectNextLetter(temperature, lettersForName, nextLetterProbability) {
     let random = 1 - Math.random() * temperature;
     // console.log(random,validLetters, nextLetterProbability);
     sum = 1;
-    for (const letter in validLetters) {
+    for (const i in validLetters) {
+        const letter = validLetters[i];
+        console.log(letter, nextLetterProbability[letter], sum, random, sum < random);
         sum -= nextLetterProbability[letter];
         if (random > sum) {
             chosenLetter = letter;
@@ -90,8 +98,10 @@ function selectNextLetter(temperature, lettersForName, nextLetterProbability) {
 
     // remove letter from letters left for name
     // console.log(chosenLetter);
+    console.log(chosenLetter, lettersForName);
     lettersForName = removeLetter(lettersForName, chosenLetter);
     // console.log(lettersForName);
     // return letter and new lettersForName
+    console.log(chosenLetter, lettersForName);
     return [chosenLetter, lettersForName];
 }
