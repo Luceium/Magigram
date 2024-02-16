@@ -14,19 +14,40 @@ function validateModel(model, letterFrequency) {
 }
 
 function selectNextLetter(temperature, lettersForName, nextLetterProbability) {
+    let chosenLetter;
+
     // create percentages for each letter adding up to 1
+    let sum = 0;
     for (const letter in nextLetterProbability) {
-        
+        sum += nextLetterProbability[letter];
+    }
+    for (const letter in nextLetterProbability) {
+        nextLetterProbability[letter] = nextLetterProbability[letter] / sum;
     }
 
-
     // sort valid letters by probability
+    let validLetters = [];
+    for (const letter in lettersForName) {
+        validLetters.push([letter, nextLetterProbability[letter]]);
+    }
+    validLetters.sort((a, b) => nextLetterProbability[a] - nextLetterProbability[b]);
 
     // select a random number between 0 and 1 * temperature
+    // works by selecting a random number and checking if it is in the range of the probability of the letter
+    // the temperature is used to limit the range of the probability to the top x% of the probability
+    let random = 1 - Math.random() * temperature;
+    sum = 1;
+    for (const letter in validLetters) {
+        sum -= nextLetterProbability[letter];
+        if (random > sum) {
+            chosenLetter = letter;
+            break;
+        }
+    }
 
     // remove letter from letters left for name
-
-    // return letter
+    lettersForName = removeLetter(lettersForName, chosenLetter);
+    // return letter and new lettersForName
     return [letter, lettersForName];
 }
 
