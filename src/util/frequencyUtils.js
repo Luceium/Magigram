@@ -60,6 +60,7 @@ export function frequencyToString(letterFrequency) {
     for (let letter in letterFrequency) {
         letterBank += letter.repeat(letterFrequency[letter])
     }
+    letterBank = letterBank.split('').sort().join('')
     return letterBank
 }
 
