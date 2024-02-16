@@ -81,7 +81,7 @@ export default function WordFinder(props) {
                 </div>
             
                 {/* swap true for a conditional that checks if there are the right amount of letters for a name */}
-                {(props.nameBuilder && (5 < lettersSize && lettersSize < 12)) ? <button className='btn btn-md rounded-md ml-2' onClick={() => setWordChoices(generateTransformerPoweredNames(letterFrequency))}>Generate Names</button> : ''}
+                {(props.nameBuilder && (5 < lettersSize && lettersSize < 12)) ? <button className='btn btn-md rounded-md ml-2' onClick={async () => setWordChoices(await generateTransformerPoweredNames(letterFrequency))}>Generate Names</button> : ''}
             </div>
             <WordGroup src={wordChoices} type='wordList' clearInput={clearInput}/>
         </>

@@ -10,15 +10,12 @@ async function getModel() {
 // removes letters which cannot be used in the name from the letter frequency
 function validateModel(model, letterFrequency) {
     // remove letters from model that are not in the letter frequency
-    console.log(model);
     let validModel = {}
     for (const letter in letterFrequency) {
         const validNextLetters = {};
 
         for (const nextLetter in letterFrequency) {
-            if (model[letter][nextLetter] !== undefined) {
-                validNextLetters[nextLetter] = model[letter][nextLetter];
-            }
+            validNextLetters[nextLetter] = model[letter][nextLetter] ?? 0;
         }
 
         validModel[letter] = validNextLetters;
@@ -30,7 +27,7 @@ function validateModel(model, letterFrequency) {
 export async function generateTransformerPoweredNames(letterFrequency) {
     const lettersForName = cleanFrequency({ ...letterFrequency }); // should not be needed if letterFrequency is maintained properly
     const model = validateModel(await getModel(), lettersForName)
-    console.log(model, model['e']);
+    console.log(model);
     let names = [];
     for (let i = 0; i < 20; i++) {
         names.push(generateName(model, lettersForName));
@@ -47,7 +44,6 @@ function generateName(model, lettersForName) {
     lettersForName = removeLetter(lettersForName, name); // name at this point is 1 character long
     
     for (let i = 0; i < getLetterFrequencySize(lettersForName); i++) {
-        console.log(name, model, model[name[i]])
         [letter, lettersForName] = selectNextLetter(0.5, lettersForName, model[name[i]]);
         console.log(lettersForName);
         name += letter;
