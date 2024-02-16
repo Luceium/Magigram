@@ -84,3 +84,11 @@ export function cleanFrequency(letterFrequency) {
     }
     return letterFrequency;
 }
+
+export function removeLetter(letterFrequency, letter) {
+    letterFrequency[letter] -= 1;
+    if (letterFrequency[letter] < 1) {
+        delete letterFrequency[letter];
+    }
+    return letterFrequency;
+}
