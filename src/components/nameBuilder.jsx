@@ -25,8 +25,9 @@ const NameBuilder = () => {
           filter={filter} setSearch={(filter) => setSearch(filter)}
           nameBuilder={nameBuilder}
         />
+        <div className="divider p-0 m-0"></div> 
         <div className=' bg-neutral rounded' >
-            <h2> Word Bank </h2>
+            <h1> Word Bank </h1>
             <WordGroup type='wordBank' src={useSelector(state => state.words)}/>
         </div>
     </div>
