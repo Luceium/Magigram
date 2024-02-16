@@ -45,6 +45,9 @@ export function removeLetters(letterFrequency, inputWord) {
     //remove letters from word out of letter bank
     for (const letter in wordLetterBank) {
         letterFrequency[letter] = letterFrequency[letter] - wordLetterBank[letter];
+        if (letterFrequency[letter] < 1) {
+            delete letterFrequency[letter];
+        }
     }
 
     return true;
@@ -70,4 +73,14 @@ export function getLetterFrequencySize(letterFrequency) {
 
 export function isEmpty(letterFrequency) {
     return getLetterFrequencySize(letterFrequency) === 0;
+}
+
+export function cleanFrequency(letterFrequency) {
+    // remove letters with frequency less than 1
+    for (const letter in letterFrequency) {
+        if (letterFrequency[letter] < 1) {
+            delete letterFrequency[letter];
+        }
+    }
+    return letterFrequency;
 }

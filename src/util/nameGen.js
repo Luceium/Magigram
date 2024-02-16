@@ -1,3 +1,5 @@
+import { getLetterFrequencySize } from "./frequencyUtils";
+
 // takes the letter frequency and creates generates 20 random permutations of the letters such that the vowels are evenly distributed
 function generateNames() {
 
@@ -91,9 +93,13 @@ function validateModel(model, letterFrequency) {
     return validateModel
 }
 
-function selectNextLetter(temperature) {
+function selectNextLetter(temperature, lettersForName, nextLetterProbability) {
     // create percentages for each letter adding up to 1
-    
+    for (const letter in nextLetterProbability) {
+        
+    }
+
+
     // sort valid letters by probability
 
     // select a random number between 0 and 1 * temperature
@@ -101,7 +107,7 @@ function selectNextLetter(temperature) {
     // remove letter from letters left for name
 
     // return letter
-    return letter;
+    return [letter, lettersForName];
 }
 
 function getModel() {
@@ -110,13 +116,27 @@ function getModel() {
 }
 
 export function generateTransformerPoweredNames() {
-    let lettersForName = { ...letterFrequency };
+    let lettersForName = cleanFrequency({ ...letterFrequency });
     model = validateModel(getModel(), lettersForName)
     for (let i = 0; i < 20; i++) {
         names.push(generateName(model, lettersForName));
     }
 }
 
-function generateName() {
+function generateName(model, lettersForName) {
+    let lettersForName = { ...lettersForName };
+    let letter;
+    // Selects random first letter from lettersForName
+    const keys = Object.keys(lettersForName);
+    let name = keys[Math.floor(Math.random()*keys.length)];
+    lettersForName[name] -= 1;
+    if (lettersForName[name] < 1) {
+        delete lettersForName[name];
+    }
 
+    for (let i = 0; i < getLetterFrequencySize(lettersForName); i++) {
+        letter, lettersForName = selectNextLetter(0.5, lettersForName, model[name[i]]);
+        name += letter;
+    }
+    return name;
 }

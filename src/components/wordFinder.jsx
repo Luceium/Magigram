@@ -59,16 +59,6 @@ export default function WordFinder(props) {
         }
         setWordChoices(wordChoices);
     }
-
-    function generateNames() {
-        let lettersSize = getLetterFrequencySize(letterFrequency);
-        if (5 > lettersSize || lettersSize > 10) {
-            alert('Please have 5 to 10 letters in your letter bank.');
-            return;
-        }
-
-        setWordChoices(generateTransformerPoweredNames())
-    }
     
     return (
         <>
@@ -91,7 +81,7 @@ export default function WordFinder(props) {
                 </div>
             
                 {/* swap true for a conditional that checks if there are the right amount of letters for a name */}
-                {(props.nameBuilder && (5 < lettersSize && lettersSize < 12)) ? <button className='btn btn-md rounded-md ml-2' onClick={generateNames}>Generate Names</button> : ''}
+                {(props.nameBuilder && (5 < lettersSize && lettersSize < 12)) ? <button className='btn btn-md rounded-md ml-2' onClick={() => setWordChoices(generateTransformerPoweredNames())}>Generate Names</button> : ''}
             </div>
             <WordGroup src={wordChoices} type='wordList' clearInput={clearInput}/>
         </>
