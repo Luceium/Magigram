@@ -1,5 +1,5 @@
 {
-  "name": "Magigramnp",
+  "name": "Magigram",
   "version": "0.1.0",
   "homepage": "https://swemau.me/Magigram/",
   "private": true,
@@ -22,6 +22,7 @@
     "start-react": "react-scripts start",
     "start-tailwind": "npx tailwindcss -i ./src/App.css -o ./src/CompiledApp.css --watch",
     "build": "react-scripts build",
+    "postbuild": "cp -r ./nameModel ./build/nameModel",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

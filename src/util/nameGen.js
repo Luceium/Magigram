@@ -73,7 +73,7 @@ function selectNextLetter(temperature, lettersForName, nextLetterProbability) {
         validLetters.push(letter);
     }
     console.log(validLetters);
-    validLetters.sort((a, b) => nextLetterProbability[a] - nextLetterProbability[b]);
+    validLetters.sort((a, b) => nextLetterProbability[b] - nextLetterProbability[a]);
     console.log(validLetters);
 
     // select a random number between 0 and 1 * temperature
