@@ -40,7 +40,8 @@ function generateName(model, lettersForName) {
     // Selects random first letter from lettersForName
     const keys = Object.keys(lettersForName);
     let name = keys[Math.floor(Math.random()*keys.length)];
-    lettersForName = removeLetter(lettersForName, name); // name at this point is 1 character long
+    removeSelectedLetter(name, lettersForName, model); // name is 1 char long
+
     const frequencySize = getLetterFrequencySize(lettersForName);
     for (let i = 0; i < frequencySize; i++) {
         letter = selectNextLetter(1, lettersForName, model[name[i]]);
