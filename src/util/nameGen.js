@@ -26,7 +26,6 @@ function validateModel(model, letterFrequency) {
 export async function generateTransformerPoweredNames(letterFrequency) {
     const lettersForName = cleanFrequency({ ...letterFrequency }); // should not be needed if letterFrequency is maintained properly
     const model = validateModel(await getModel(), lettersForName)
-    console.log(model);
     let names = [];
     for (let i = 0; i < 20; i++) {
         names.push(generateName(model, lettersForName));
@@ -36,7 +35,7 @@ export async function generateTransformerPoweredNames(letterFrequency) {
 
 function generateName(model, lettersForName) {
     lettersForName = { ...lettersForName };
-    model = {...model}
+    model = structuredClone(model);
     let letter;
     // Selects random first letter from lettersForName
     const keys = Object.keys(lettersForName);
@@ -44,13 +43,10 @@ function generateName(model, lettersForName) {
     lettersForName = removeLetter(lettersForName, name); // name at this point is 1 character long
     const frequencySize = getLetterFrequencySize(lettersForName);
     for (let i = 0; i < frequencySize; i++) {
-        console.log(i);
-        [letter, lettersForName] = selectNextLetter(0.5, lettersForName, model[name[i]]);
-        console.log(lettersForName, frequencyToString(lettersForName));
+        [letter, lettersForName] = selectNextLetter(1, lettersForName, model[name[i]]);
         name += letter;
         if (!lettersForName[letter]) {
             model = removeLetterFromModel(model, letter);
-            console.log(model);
         }
     }
     return name;
@@ -59,7 +55,6 @@ function generateName(model, lettersForName) {
 function selectNextLetter(temperature, lettersForName, nextLetterFrequency) {
     let chosenLetter;
     const nextLetterProbability = { ...nextLetterFrequency };
-    console.log(nextLetterProbability);
     // create percentages for each letter adding up to 1
     let sum = 0;
     for (const letter in nextLetterProbability) {
@@ -75,7 +70,6 @@ function selectNextLetter(temperature, lettersForName, nextLetterFrequency) {
         validLetters.push(letter);
     }
     validLetters.sort((a, b) => nextLetterProbability[b] - nextLetterProbability[a]);
-    console.log(validLetters);
 
     // select a random number between 0 and 1 * temperature
     // works by selecting a random number and checking if it is in the range of the probability of the letter
@@ -85,7 +79,6 @@ function selectNextLetter(temperature, lettersForName, nextLetterFrequency) {
     for (const i in validLetters) {
         const letter = validLetters[i];
         sum -= nextLetterProbability[letter];
-        console.log(letter, nextLetterProbability[letter], sum, random, sum < random);
         if (random > sum) {
             chosenLetter = letter;
             break;
