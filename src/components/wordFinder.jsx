@@ -24,7 +24,8 @@ export default function WordFinder(props) {
         if (!removeLetters(letterFrequency, word)) {
             return;
         }
-        words = [...words, ...word.split(' ')];
+        const wordsToAdd = word.split(' ').map(word => cleanText(word)).filter(word => word.length > 0);
+        words = [...words, ...wordsToAdd];
         letterFrequency = {...letterFrequency};
         let data = {letterFrequency, words}
         //update the state of the store with the new word in the words list
