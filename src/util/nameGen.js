@@ -43,8 +43,9 @@ function generateName(model, lettersForName) {
     lettersForName = removeLetter(lettersForName, name); // name at this point is 1 character long
     const frequencySize = getLetterFrequencySize(lettersForName);
     for (let i = 0; i < frequencySize; i++) {
-        [letter, lettersForName] = selectNextLetter(1, lettersForName, model[name[i]]);
+        letter = selectNextLetter(1, lettersForName, model[name[i]]);
         name += letter;
+        lettersForName = removeLetter(lettersForName, letter);
         if (!lettersForName[letter]) {
             model = removeLetterFromModel(model, letter);
         }
@@ -89,10 +90,8 @@ function selectNextLetter(temperature, lettersForName, nextLetterFrequency) {
         console.log(`random: ${random}\nsum: ${sum}\nvalidLetters: ${validLetters}\nnextLetterProbability: `, nextLetterProbability); // eslint-disable-line no-console
     }
 
-    // remove letter from letters left for name
-    lettersForName = removeLetter(lettersForName, chosenLetter);
     // return letter and new lettersForName
-    return [chosenLetter, lettersForName];
+    return chosenLetter;
 }
 
 function removeLetterFromModel(model, letter) {
