@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { mapLetterFrequency, isSubset, removeLetters, cleanText, frequencyToString, getLetterFrequencySize } from '../util/frequencyUtils';
+import { mapLetterFrequency, isSubset, removeLetters, cleanText} from '../util/frequencyUtils';
 import WordGroup from './wordGroup';
 import {generateTransformerPoweredNames} from '../util/nameGen';
 
@@ -10,13 +10,9 @@ export default function WordFinder(props) {
     let letterFrequency = useSelector(state => state.letterFrequency);
     const [word, setWord] = useState('');
     const [wordChoices, setWordChoices] = useState([]);
-    const [lettersSize, setLettersSize] = useState(getLetterFrequencySize(letterFrequency));
     useEffect(() => {
         getWordChoices();
-    }, [letterFrequency, word, props.type, props.filter])
-    useEffect(() => {
-        setLettersSize(getLetterFrequencySize(letterFrequency));
-    }, [letterFrequency])
+    }, [letterFrequency, word, props.type, props.filter]);
 
     let clearInput = () => {setWord('');};
 
@@ -65,7 +61,7 @@ export default function WordFinder(props) {
         <>
             <div className='flex mt-1'>
                 <div className="join text-base-content w-full">
-                    <input className="join-item input input-md w-full" type='text' value={word} onChange={(e) => setWord(e.target.value)} onKeyDown={(e) => {if (e.key == "Enter" ) {selectWord()}}}/>
+                    <input className="join-item input input-md w-full" type='text' value={word} onChange={(e) => setWord(e.target.value)} onKeyDown={(e) => {if (e.key === "Enter" ) {selectWord()}}}/>
                     <select onChange={(e) => props.setType(e.target.value)} defaultValue="Filter" className="select select-bordered join-item select-md">
                         <option disabled>Filter</option>
                         <option>{props.types[0]}</option>

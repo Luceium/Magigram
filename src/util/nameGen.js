@@ -1,4 +1,4 @@
-import { cleanFrequency, frequencyToString, getLetterFrequencySize, removeLetter } from "./frequencyUtils";
+import { cleanFrequency, getLetterFrequencySize, removeLetter } from "./frequencyUtils";
 
 async function getModel() {
     // TODO: get All models and user weights from store to generate model
