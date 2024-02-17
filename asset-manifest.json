@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Magigram/static/css/main.69ddf61a.css",
-    "main.js": "/Magigram/static/js/main.efac6ea5.js",
+    "main.js": "/Magigram/static/js/main.2513d318.js",
     "static/js/787.336fd899.chunk.js": "/Magigram/static/js/787.336fd899.chunk.js",
     "index.html": "/Magigram/index.html",
     "main.69ddf61a.css.map": "/Magigram/static/css/main.69ddf61a.css.map",
-    "main.efac6ea5.js.map": "/Magigram/static/js/main.efac6ea5.js.map",
+    "main.2513d318.js.map": "/Magigram/static/js/main.2513d318.js.map",
     "787.336fd899.chunk.js.map": "/Magigram/static/js/787.336fd899.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.69ddf61a.css",
-    "static/js/main.efac6ea5.js"
+    "static/js/main.2513d318.js"
   ]
 }
