@@ -19,7 +19,6 @@ export default function History() {
     }
 
     function push() {
-        if (isEmpty(letterFrequency)) return;
         dispatch({type: 'PUSH'});
     }
 
@@ -33,10 +32,10 @@ export default function History() {
             {
                 history.map((attempt, index) => {
                     return(
-                        <div className="flex join m-3">
+                        <div key={index} className="flex join m-3">
                             <div key={index} onClick={() => pull(index)} className="join-item p-1 bg-base-100">
                                 <WordGroup src={attempt.words} type='history' />
-                                <p className="badge badge-pill bg-secondary text-secondary-content">{frequencyToString(attempt.letterFrequency)}</p>
+                                {!isEmpty(history[index].letterFrequency) && <p className="badge badge-pill bg-secondary text-secondary-content">{frequencyToString(attempt.letterFrequency)}</p>}
                             </div>
                             <button className="bg-error text-error-content join-item p-1" onClick={() => pop(index)}>Delete</button>
                         </div>
