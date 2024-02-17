@@ -14,7 +14,7 @@ function validateModel(model, letterFrequency) {
         const validNextLetters = {};
 
         for (const nextLetter in letterFrequency) {
-            validNextLetters[nextLetter] = model[letter][nextLetter] ?? 0;
+            validNextLetters[nextLetter] = model[letter][nextLetter] ?? 1; // a small value to ensure it is not 0 but not probable
         }
 
         validModel[letter] = validNextLetters;
@@ -76,7 +76,7 @@ function selectNextLetter(temperature, lettersForName, nextLetterFrequency) {
     // the temperature is used to limit the range of the probability to the top x% of the probability
     let random = 1 - Math.random() * temperature;
     sum = 1;
-    for (const i in validLetters) {
+    for (let i = 0; i < validLetters.length; i++) {
         const letter = validLetters[i];
         sum -= nextLetterProbability[letter];
         if (random > sum) {
@@ -84,11 +84,9 @@ function selectNextLetter(temperature, lettersForName, nextLetterFrequency) {
             break;
         }
     }
-    // if no letter is chosen, choose the last letter
-    // this can happen if remaining letters are not in the model
-    // this indicative of a small corpus and infant model
+    // TODO: remove this ~ just searching for bugs
     if (!chosenLetter) {
-        chosenLetter = validLetters[validLetters.length - 1];
+        console.log(`random: ${random}\nsum: ${sum}\nvalidLetters: ${validLetters}\nnextLetterProbability: `, nextLetterProbability); // eslint-disable-line no-console
     }
 
     // remove letter from letters left for name
@@ -103,4 +101,12 @@ function removeLetterFromModel(model, letter) {
     }
     
     return model;
+}
+
+function removeSelectedLetter(letter, lettersForName, model) {
+    lettersForName = removeLetter(lettersForName, letter);
+    if (!lettersForName[letter]) {
+        model = removeLetterFromModel(model, letter);
+    }
+    return [lettersForName, model];
 }
