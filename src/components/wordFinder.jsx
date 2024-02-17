@@ -65,7 +65,7 @@ export default function WordFinder(props) {
         <>
             <div className='flex mt-1'>
                 <div className="join text-base-content w-full">
-                    <input className="join-item input input-md w-full" type='text' value={word} onChange={(e) => setWord(e.target.value)}/>
+                    <input className="join-item input input-md w-full" type='text' value={word} onChange={(e) => setWord(e.target.value)} onKeyDown={(e) => {if (e.key == "Enter" ) {useWord()}}}/>
                     <select onChange={(e) => props.setType(e.target.value)} defaultValue="Filter" className="select select-bordered join-item select-md">
                         <option disabled>Filter</option>
                         <option>{props.types[0]}</option>
