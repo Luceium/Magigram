@@ -20,7 +20,7 @@ export default function WordFinder(props) {
 
     let clearInput = () => {setWord('');};
 
-    function useWord() {
+    function selectWord() {
         if (!removeLetters(letterFrequency, word)) {
             return;
         }
@@ -65,7 +65,7 @@ export default function WordFinder(props) {
         <>
             <div className='flex mt-1'>
                 <div className="join text-base-content w-full">
-                    <input className="join-item input input-md w-full" type='text' value={word} onChange={(e) => setWord(e.target.value)} onKeyDown={(e) => {if (e.key == "Enter" ) {useWord()}}}/>
+                    <input className="join-item input input-md w-full" type='text' value={word} onChange={(e) => setWord(e.target.value)} onKeyDown={(e) => {if (e.key == "Enter" ) {selectWord()}}}/>
                     <select onChange={(e) => props.setType(e.target.value)} defaultValue="Filter" className="select select-bordered join-item select-md">
                         <option disabled>Filter</option>
                         <option>{props.types[0]}</option>
@@ -77,7 +77,7 @@ export default function WordFinder(props) {
                         <option>Starts With</option>
                         <option>Contains</option>
                     </select>
-                    <button className="join-item btn btn-md"  onClick={useWord}>Use word</button>
+                    <button className="join-item btn btn-md"  onClick={selectWord}>Use word</button>
                     {props.nameBuilder ? <button className='join-item btn btn-md' onClick={async () => setWordChoices(await generateTransformerPoweredNames(letterFrequency))}>Generate Names</button> : ''}
                     
                 </div>
