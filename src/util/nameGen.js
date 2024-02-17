@@ -28,8 +28,7 @@ export async function generateTransformerPoweredNames(letterFrequency) {
     const model = validateModel(await getModel(), lettersForName)
     console.log(model);
     let names = [];
-    // TODO: change 1 back to 20
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 20; i++) {
         names.push(generateName(model, lettersForName));
     }
     return names;
@@ -41,15 +40,12 @@ function generateName(model, lettersForName) {
     let letter;
     // Selects random first letter from lettersForName
     const keys = Object.keys(lettersForName);
-    // TODO: change back to random first letter
-    // let name = keys[Math.floor(Math.random()*keys.length)];
-    let name = keys[0];
+    let name = keys[Math.floor(Math.random()*keys.length)];
     lettersForName = removeLetter(lettersForName, name); // name at this point is 1 character long
     const frequencySize = getLetterFrequencySize(lettersForName);
-    console.log(frequencySize, lettersForName);
-    for (let i = 0; i < getLetterFrequencySize(lettersForName); i++) {
-        // TODO: change 0 back to 0.5
-        [letter, lettersForName] = selectNextLetter(0, lettersForName, model[name[i]]);
+    for (let i = 0; i < frequencySize; i++) {
+        console.log(i);
+        [letter, lettersForName] = selectNextLetter(0.5, lettersForName, model[name[i]]);
         console.log(lettersForName, frequencyToString(lettersForName));
         name += letter;
         if (!lettersForName[letter]) {
@@ -94,6 +90,12 @@ function selectNextLetter(temperature, lettersForName, nextLetterFrequency) {
             chosenLetter = letter;
             break;
         }
+    }
+    // if no letter is chosen, choose the last letter
+    // this can happen if remaining letters are not in the model
+    // this indicative of a small corpus and infant model
+    if (!chosenLetter) {
+        chosenLetter = validLetters[validLetters.length - 1];
     }
 
     // remove letter from letters left for name
