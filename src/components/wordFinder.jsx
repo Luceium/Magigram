@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { mapLetterFrequency, isSubset, removeLetters, cleanText} from '../util/frequencyUtils';
+import { removeLetters, cleanText} from '../util/frequencyUtils';
 import WordGroup from './wordGroup';
 import {generateTransformerPoweredNames} from '../util/nameGen';
 import { getWordChoices } from '../util/getWordChoices';
