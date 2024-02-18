@@ -25,7 +25,7 @@ function Name(props) {
         <div className='p-2 bg-neutral text-neutral-content rounded flex items-center'>
             <h2>Name:&nbsp;</h2>
             <div className="join">
-                <input type='text' placeholder='Tom Marvollo Riddle' className='input w-full max-w-xs join-item' autoComplete='name' onChange={(e) => handleChange(e.target.value)} onKeyDown={(e) => {if (e.key === "Enter") {handleClick()}}}/>
+                <input type='text' placeholder='Tom Marvollo Riddle' className='input w-full max-w-xs join-item text-base-content' autoComplete='name' onChange={(e) => handleChange(e.target.value)} onKeyDown={(e) => {if (e.key === "Enter") {handleClick()}}}/>
                 <button className='btn join-item' onClick={handleClick}>Submit</button>
             </div>
         </div>
