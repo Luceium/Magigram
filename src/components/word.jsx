@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeLetters } from '../util/frequencyUtils'
 import './word.css'

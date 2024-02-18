@@ -5,7 +5,6 @@ import { frequencyToString, isEmpty } from "../util/frequencyUtils";
 //alias to import functional react component
 export default function History() {
     let history = useSelector(state => state.hist);
-    let letterFrequency = useSelector(state => state.letterFrequency);
     const dispatch = useDispatch();
 
     function pop(index) {

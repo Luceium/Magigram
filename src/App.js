@@ -1,12 +1,9 @@
 import React from 'react';
 import Header from "./components/header";
 import History from "./components/history";
-import WordFinder from "./components/wordFinder";
-import WordGroup from "./components/wordGroup";
-import Foot from "./components/foot";
+// import Foot from "./components/foot";
 import LetterBank from './components/letterBank';
 import Name from './components/name';
-import Instructions from './components/Instructions';
 import './CompiledApp.css';
 import { useEffect } from 'react'
 import { themeChange } from 'theme-change'
