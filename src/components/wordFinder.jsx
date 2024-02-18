@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { mapLetterFrequency, isSubset, removeLetters, cleanText} from '../util/frequencyUtils';
 import WordGroup from './wordGroup';
 import {generateTransformerPoweredNames} from '../util/nameGen';
+import { getWordChoices } from '../util/getWordChoices';
 
 export default function WordFinder(props) {
     const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export default function WordFinder(props) {
     const [word, setWord] = useState('');
     const [wordChoices, setWordChoices] = useState([]);
     useEffect(() => {
-        getWordChoices();
+        setWordChoices(getWordChoices(props.filter, props.type, letterFrequency, word));
     }, [letterFrequency, word, props.type, props.filter]);
 
     let clearInput = () => {setWord('');};
@@ -27,34 +28,6 @@ export default function WordFinder(props) {
         //update the state of the store with the new word in the words list
         dispatch({type: 'UPDATE_DATA', payload: data})
         setWord(''); // clears input field
-    }
-
-    function getWordChoices() {
-        let wordChoices = [];
-        //load JSON file for the part of speech from dictionary/JSON into trie variable
-        let trie = require(`../../dictionary/JSON/${props.type}.json`);
-        //create copy of word that has been sanitized
-        let wordCopy = cleanText(word);
-    
-        //for each prefix in trie, check if the prefix can be made from the letter bank
-        for (const prefix in trie) {
-            let passFilter = props.filter==="Starts With" ? prefix.startsWith(wordCopy) || wordCopy.startsWith(prefix) : true;
-            if (passFilter && isSubset(mapLetterFrequency(prefix), letterFrequency)) {
-                for (const wordObj in trie[prefix]) {
-                    if (props.filter==="Starts With" && !wordObj.startsWith(wordCopy)) continue;
-                    let wordsLetterFrequency = trie[prefix][wordObj]; 
-                    // get frequency of input (word)
-                    if (props.filter==="Contains") {
-                        let inputLetterFrequency = mapLetterFrequency(wordCopy);
-                        if (!isSubset(inputLetterFrequency, wordsLetterFrequency)) continue;
-                    }
-                    if (isSubset(wordsLetterFrequency, letterFrequency)){
-                        wordChoices.push(wordObj);
-                    }
-                }
-            }
-        }
-        setWordChoices(wordChoices);
     }
     
     return (
