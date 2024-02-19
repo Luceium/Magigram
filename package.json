@@ -16,13 +16,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "deploy.sh",
     "start": "echo start-tailwind and start-react",
     "start-react": "react-scripts start",
     "start-tailwind": "npx tailwindcss -i ./src/App.css -o ./src/CompiledApp.css --watch",
     "build": "react-scripts build",
-    "postbuild": "cp -r ./nameModel ./build/nameModel",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
