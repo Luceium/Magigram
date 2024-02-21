@@ -107,7 +107,6 @@ Hausa
 Bayajida
 Gizo
 Igbo
-
 Aha Njoku
 Ala
 Amadioha
@@ -127,7 +126,6 @@ Gaunab
 Heitsi-eibib
 Tsui'goab
 Kongo
-
 Bunzi
 Chicamassichinuinji
 Dinganga

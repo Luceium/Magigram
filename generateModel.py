@@ -29,7 +29,7 @@ def makeModel(corpusFile):
         # if the letter is not in the model, add it
         model[" "] = model.get(" ", {})
         # update next letter count
-        model[" "][name[0]] = model[name[" "]].get(name[0], 0) + 1
+        model[" "][name[0]] = model[" "].get(name[0], 0) + 1
 
         # creates probability model that maps each letter to the next letter's probability
         for i in range(1, len(name)):
