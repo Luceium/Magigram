@@ -21,9 +21,13 @@ function validateModel(model, letterFrequency) {
     }
 
     // " " won't be in the frequency but is needed to pick the first letter of a name
-    validModel[" "] = model[" "];
+    const validNextLetters = {};
 
-    console.log(model[" "])
+    for (const nextLetter in letterFrequency) {
+        validNextLetters[nextLetter] = model[" "][nextLetter] ?? 1; // a small value to ensure it is not 0 but not probable
+    }
+
+    validModel[" "] = validNextLetters;
     
     return validModel;
 }
@@ -48,6 +52,7 @@ function generateName(model, lettersForName) {
 
     const firstLetter = selectNextLetter(1, lettersForName, model[" "]);
     name += firstLetter;
+    delete model[" "];
     removeSelectedLetter(letter, lettersForName, model);
     for (let i = 0; i < frequencySize; i++) {
         letter = selectNextLetter(1, lettersForName, model[name[i]]);
