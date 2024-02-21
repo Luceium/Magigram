@@ -142,7 +142,6 @@ Morta
 Murcia
 Murtia
 Mutunus Tutunus
-----------------------------
 Naenia
 Nascio
 Necessitas
@@ -154,11 +153,9 @@ Nixi
 Nona
 Nortia
 Nox
-----------------------------
 Ops
 Opis
 Orcus
-----------------------------
 Palatua
 Pales
 Panda
@@ -182,16 +179,13 @@ Priapus
 Proserpina
 Providentia
 Pudicitia
-----------------------------
 Querquetulanae
 Quirinus
 Quiritis
-----------------------------
 Robigo
 Robigus
 Roma
 Rumina
-----------------------------
 Sol Invictus
 Salacia
 Salus
@@ -209,7 +203,6 @@ Sterquilinus
 Suadela
 Summanus
 Sulis Minerva
-----------------------------
 Talasius
 Tellumo
 Tellurus
@@ -221,7 +214,6 @@ Tiberinus
 Tibertus
 Tranquillitas
 Trivia
-----------------------------
 Venus
 Vacuna
 Vagitanus
