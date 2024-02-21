@@ -19,13 +19,18 @@ function validateModel(model, letterFrequency) {
 
         validModel[letter] = validNextLetters;
     }
+
+    // " " won't be in the frequency but is needed to pick the first letter of a name
+    validModel[" "] = model[" "];
+
+    console.log(model[" "])
     
     return validModel;
 }
 
 export async function generateTransformerPoweredNames(letterFrequency) {
     const lettersForName = cleanFrequency({ ...letterFrequency }); // should not be needed if letterFrequency is maintained properly
-    const model = validateModel(await getModel(), lettersForName)
+    const model = validateModel(await getModel(), lettersForName);
     let names = [];
     for (let i = 0; i < 20; i++) {
         names.push(generateName(model, lettersForName));
@@ -37,12 +42,13 @@ function generateName(model, lettersForName) {
     lettersForName = { ...lettersForName };
     model = structuredClone(model);
     let letter;
-    // Selects random first letter from lettersForName
-    const keys = Object.keys(lettersForName);
-    let name = keys[Math.floor(Math.random()*keys.length)];
-    removeSelectedLetter(name, lettersForName, model); // name is 1 char long
+    let name = "";
 
     const frequencySize = getLetterFrequencySize(lettersForName);
+
+    const firstLetter = selectNextLetter(1, lettersForName, model[" "]);
+    name += firstLetter;
+    removeSelectedLetter(letter, lettersForName, model);
     for (let i = 0; i < frequencySize; i++) {
         letter = selectNextLetter(1, lettersForName, model[name[i]]);
         name += letter;
