@@ -1,4 +1,4 @@
-import { cleanFrequency, getLetterFrequencySize, removeLetter } from "./frequencyUtils";
+import { cleanFrequency, getLetterFrequencySize, isEmpty, removeLetter } from "./frequencyUtils";
 
 async function getModel() {
     // TODO: get All models and user weights from store to generate model
@@ -33,6 +33,7 @@ function validateModel(model, letterFrequency) {
 }
 
 export async function generateTransformerPoweredNames(letterFrequency) {
+    if (isEmpty(letterFrequency)) return [];
     const lettersForName = cleanFrequency({ ...letterFrequency }); // should not be needed if letterFrequency is maintained properly
     const model = validateModel(await getModel(), lettersForName);
     let names = [];
