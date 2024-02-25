@@ -16,8 +16,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "deploy": "bash deploy.sh",
-    "linux-deploy": "./deploy.sh",
+    "deploy": "run-script-os",
+    "deploy:win32": "bash deploy.sh",
+    "deploy:darwin:linux": "./deploy.sh",
     "start": "echo start-tailwind and start-react",
     "start-react": "react-scripts start",
     "start-tailwind": "npx tailwindcss -i ./src/App.css -o ./src/CompiledApp.css --watch",
