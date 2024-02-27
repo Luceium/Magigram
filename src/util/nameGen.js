@@ -13,7 +13,10 @@ function validateModel(model, letterFrequency) {
     for (const letter in letterFrequency) {
         const validNextLetters = {};
 
+        // in case the model does not include a letter in the frequency add it to the model to avoid undefined errors
+        if (model[letter] === undefined) model[letter] = {}
         for (const nextLetter in letterFrequency) {
+            console.log(`model[${letter}][${nextLetter}]: `, model[letter][nextLetter]);
             validNextLetters[nextLetter] = model[letter][nextLetter] ?? 1; // a small value to ensure it is not 0 but not probable
         }
 
