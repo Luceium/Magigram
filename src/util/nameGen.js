@@ -13,7 +13,10 @@ function validateModel(model, letterFrequency) {
     for (const letter in letterFrequency) {
         const validNextLetters = {};
 
+        // in case the model does not include a letter in the frequency add it to the model to avoid undefined errors
+        if (model[letter] === undefined) model[letter] = {}
         for (const nextLetter in letterFrequency) {
+            console.log(`model[${letter}][${nextLetter}]: `, model[letter][nextLetter]);
             validNextLetters[nextLetter] = model[letter][nextLetter] ?? 1; // a small value to ensure it is not 0 but not probable
         }
 
@@ -51,11 +54,13 @@ function generateName(model, lettersForName) {
 
     const frequencySize = getLetterFrequencySize(lettersForName);
 
+    // refactor this section into the  loop by making the first letter of name " " then chop that off before returning the name
+    // there might be issues with delete model[" "]
     const firstLetter = selectNextLetter(1, lettersForName, model[" "]);
     name += firstLetter;
     delete model[" "];
-    removeSelectedLetter(letter, lettersForName, model);
-    for (let i = 0; i < frequencySize; i++) {
+    removeSelectedLetter(firstLetter, lettersForName, model);
+    for (let i = 0; i < frequencySize - 1; i++) {
         letter = selectNextLetter(1, lettersForName, model[name[i]]);
         name += letter;
         removeSelectedLetter(letter, lettersForName, model);
