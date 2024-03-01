@@ -54,6 +54,8 @@ function generateName(model, lettersForName) {
 
     const frequencySize = getLetterFrequencySize(lettersForName);
 
+    // refactor this section into the  loop by making the first letter of name " " then chop that off before returning the name
+    // there might be issues with delete model[" "]
     const firstLetter = selectNextLetter(1, lettersForName, model[" "]);
     name += firstLetter;
     delete model[" "];
