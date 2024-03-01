@@ -57,7 +57,7 @@ function generateName(model, lettersForName) {
     const firstLetter = selectNextLetter(1, lettersForName, model[" "]);
     name += firstLetter;
     delete model[" "];
-    removeSelectedLetter(letter, lettersForName, model);
+    removeSelectedLetter(firstLetter, lettersForName, model);
     for (let i = 0; i < frequencySize; i++) {
         letter = selectNextLetter(1, lettersForName, model[name[i]]);
         name += letter;
